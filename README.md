@@ -35,7 +35,7 @@ After drop-off the Motorhome will be cleaned. The auto mechanic checks oil & wat
 # Your task
 You are hired to develop a new system for Nordic Motorhome Rental that can handle information about motorhomes, rentals and customers. For this first version of the system the owners and the staff at Nordic motorhome Rentals will be the users of the system. In a future version of the system the customers should be able to make reservations through a web interface.
 
-** Note! During the project your ITO teacher represents the owners of Nordic Motorhome Rental **
+**Note! During the project your ITO teacher represents the owners of Nordic Motorhome Rental**
 
 As representative of Nordic Mortorhome Rental the ITO teacher can help you with:
 * Further Specification of requirements for the system and acceptance criteria
