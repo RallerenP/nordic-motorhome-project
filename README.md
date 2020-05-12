@@ -1,3 +1,5 @@
-<span style="display:block;text-align:center">![Car Image](/docs/images/BILlede.png)</span>
+<p align="center">
+  <img src="/docs/images/BILlede.png" />
+</p>
 
 # Nordic Motorhome Project
