@@ -2,7 +2,7 @@
   <img src="/docs/images/BILlede.png" />
 </p>
 
-# Nordic Motorhome Project test
+# Nordic Motorhome Project
 
 ## Case Description
 Nordic Motorhome Rental is a Danish company that rents out motorhomes. Nordic Motorhome Rental was founded in 2019 and is situated just outside Copenhagen. So far there are 8 employees, but the company is very successful, and the two owners expect to hire more people in the near future.
@@ -87,18 +87,18 @@ Jeres løsning skal tage højde for følgende tekniske og designmæssige krav:
 
 ## Programdokumentation
 * Et implementeringsafsnit i rapporten med:
-..* Beskrivelse af de programdele, der har særlig kompleks karakter (illustrér med indsættelse af kommenteret udklip af kode).
-..* En beskrivelse og dokumentation af de løsninger, der kræver en særlig argumentation, f.eks. brug af design patterns, valg af datastrukturer, anvendelse af arv og/eller interfaces.
-..* Kommentarer til programkoden om særlige forhold. Det kan f.eks. være:
+    * Beskrivelse af de programdele, der har særlig kompleks karakter (illustrér med indsættelse af kommenteret udklip af kode).
+    * En beskrivelse og dokumentation af de løsninger, der kræver en særlig argumentation, f.eks. brug af design patterns, valg af datastrukturer, anvendelse af arv og/eller interfaces.
+    * Kommentarer til programkoden om særlige forhold. Det kan f.eks. være:
 * Hvordan håndterer I exceptions?
 * Hvordan har I valgt at lave brugerinput validering?
 * Har I lavet sikkerhed i forbindelse med login – og hvordan?
-..* SQL i løsningen (både DDL og DML).
+    * SQL i løsningen (både DDL og DML).
 
 ## Test
 * I kan dokumentere automatiserede tests ved at beskrive i tabelform:
-o Hvilke klasser og metoder er testet
-o Dækningsgrad af jeres tests for de valgte metoder og klasser
+    * Hvilke klasser og metoder er testet
+    * Dækningsgrad af jeres tests for de valgte metoder og klasser
 
 ## Kørselsvejledning
 * En beskrivelse af de softwaremæssige forudsætninger for at kunne anvende applikationen, og en vejledning i, hvordan man installerer, starter og kører systemet. Vejledningen skal dække både Java og databasedelen.
