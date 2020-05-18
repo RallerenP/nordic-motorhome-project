@@ -69,7 +69,39 @@ The report must contain the following artefacts:
 
 ## SWK Requirements
 
-** TODO: Add requirements **
+Jeres løsning skal tage højde for følgende tekniske og designmæssige krav:
+
+* Bruge en MySQL database.
+* En logisk lagdelt arkitektur, der kan køre på en Java server (Tomcat).
+* Applikationen skal bruge både almindelige Java klasser, Spring Controllere, HTML, CSS og Thymeleaf.
+
+## Produktkrav
+* Der skal udvikles og implementeres mindst 2 centrale use cases.
+* Der skal være sporbarhed ml. krav, analyse, design og kode.
+* GUI er designet til brugerne med hensyntagen til Gestaltlovene og The Golden Rules.
+
+## Database
+* SQL-script til oprettelse af database og testdata
+* ER diagram, inkl. en beskrivelse af tabellerne i databasen (skema)
+* En beskrivelse, analyse og vurdering af databasen, herunder til 3. normalform samt overvejelser om, hvorledes I har understøttet databasens integritet.
+
+## Programdokumentation
+* Et implementeringsafsnit i rapporten med:
+o Beskrivelse af de programdele, der har særlig kompleks karakter (illustrér med indsættelse af kommenteret udklip af kode).
+o En beskrivelse og dokumentation af de løsninger, der kræver en særlig argumentation, f.eks. brug af design patterns, valg af datastrukturer, anvendelse af arv og/eller interfaces.
+o Kommentarer til programkoden om særlige forhold. Det kan f.eks. være:
+* Hvordan håndterer I exceptions?
+* Hvordan har I valgt at lave brugerinput validering?
+* Har I lavet sikkerhed i forbindelse med login – og hvordan?
+o SQL i løsningen (både DDL og DML).
+
+## Test
+* I kan dokumentere automatiserede tests ved at beskrive i tabelform:
+o Hvilke klasser og metoder er testet
+o Dækningsgrad af jeres tests for de valgte metoder og klasser
+
+## Kørselsvejledning
+* En beskrivelse af de softwaremæssige forudsætninger for at kunne anvende applikationen, og en vejledning i, hvordan man installerer, starter og kører systemet. Vejledningen skal dække både Java og databasedelen.
 
 ## Report and programme requirements
 You are expected to prepare a project report which documents the system’s development and implementation. The audience of the report is the teachers.
