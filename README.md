@@ -2,7 +2,7 @@
   <img src="/docs/images/BILlede.png" />
 </p>
 
-# Nordic Motorhome Project
+# Nordic Motorhome Project test
 
 ## Case Description
 Nordic Motorhome Rental is a Danish company that rents out motorhomes. Nordic Motorhome Rental was founded in 2019 and is situated just outside Copenhagen. So far there are 8 employees, but the company is very successful, and the two owners expect to hire more people in the near future.
