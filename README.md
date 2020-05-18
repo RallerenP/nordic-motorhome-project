@@ -87,13 +87,13 @@ Jeres løsning skal tage højde for følgende tekniske og designmæssige krav:
 
 ## Programdokumentation
 * Et implementeringsafsnit i rapporten med:
-o Beskrivelse af de programdele, der har særlig kompleks karakter (illustrér med indsættelse af kommenteret udklip af kode).
-o En beskrivelse og dokumentation af de løsninger, der kræver en særlig argumentation, f.eks. brug af design patterns, valg af datastrukturer, anvendelse af arv og/eller interfaces.
-o Kommentarer til programkoden om særlige forhold. Det kan f.eks. være:
+** Beskrivelse af de programdele, der har særlig kompleks karakter (illustrér med indsættelse af kommenteret udklip af kode).
+** En beskrivelse og dokumentation af de løsninger, der kræver en særlig argumentation, f.eks. brug af design patterns, valg af datastrukturer, anvendelse af arv og/eller interfaces.
+** Kommentarer til programkoden om særlige forhold. Det kan f.eks. være:
 * Hvordan håndterer I exceptions?
 * Hvordan har I valgt at lave brugerinput validering?
 * Har I lavet sikkerhed i forbindelse med login – og hvordan?
-o SQL i løsningen (både DDL og DML).
+** SQL i løsningen (både DDL og DML).
 
 ## Test
 * I kan dokumentere automatiserede tests ved at beskrive i tabelform:
