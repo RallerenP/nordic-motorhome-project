@@ -2,6 +2,7 @@ package com.nordicmotorhome.motorhomerentals.data.mappers;
 
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
 import com.nordicmotorhome.motorhomerentals.data.entity.MotorhomeModel;
+import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.sql.*;
 
@@ -30,7 +31,7 @@ public class MotorhomeModelMapper {
         }
     }
 
-    public MotorhomeModel get(int id) {
+    public MotorhomeModel get(int id) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
             String SQL = "SELECT * FROM motorhome_models WHERE id = ?";
@@ -40,7 +41,8 @@ public class MotorhomeModelMapper {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
-            rs.next();
+            if (!rs.next()) throw new NoSuchEntityException();
+
             return this.load(rs);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,7 +50,7 @@ public class MotorhomeModelMapper {
         }
     }
 
-    public MotorhomeModel update(MotorhomeModel model) {
+    public MotorhomeModel update(MotorhomeModel model) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
             String SQL = "UPDATE motorhome_models WHERE id = ?, name = ?, beds = ?, price = ?";

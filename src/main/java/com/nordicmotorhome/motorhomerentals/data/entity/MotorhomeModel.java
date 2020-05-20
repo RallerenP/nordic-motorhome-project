@@ -1,5 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
+import java.util.Objects;
+
 public class MotorhomeModel {
     private int ID;
     private String name;
@@ -43,5 +45,21 @@ public class MotorhomeModel {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MotorhomeModel that = (MotorhomeModel) o;
+        return ID == that.ID &&
+                beds == that.beds &&
+                Double.compare(that.price, price) == 0 &&
+                name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, name, beds, price);
     }
 }
