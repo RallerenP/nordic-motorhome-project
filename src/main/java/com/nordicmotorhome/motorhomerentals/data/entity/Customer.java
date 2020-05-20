@@ -64,4 +64,16 @@ public class Customer {
     public void setCPR(String CPR) {
         this.CPR = CPR;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "ID=" + ID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", number=" + number +
+                ", email='" + email + '\'' +
+                ", CPR='" + CPR + '\'' +
+                '}';
+    }
 }
