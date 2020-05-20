@@ -1,18 +1,18 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Rental {
     private int ID;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int startKilometers;
     private int endKilometers;
     private boolean fuelNeeded;
     private Customer customer;
     private Motorhome motorhome;
 
-    public Rental(int id, Date startDate, Date endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
+    public Rental(int id, LocalDate startDate, LocalDate endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
                   Customer customer, Motorhome motorhome) {
         this.ID = id;
         this.startDate = startDate;
@@ -32,19 +32,19 @@ public class Rental {
         this.ID = ID;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -86,5 +86,19 @@ public class Rental {
 
     public void setMotorhome(Motorhome motorhome) {
         this.motorhome = motorhome;
+    }
+
+    @Override
+    public String toString() {
+        return "Rental{" +
+                "ID=" + ID +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", startKilometers=" + startKilometers +
+                ", endKilometers=" + endKilometers +
+                ", fuelNeeded=" + fuelNeeded +
+                ", customer=" + customer +
+                ", motorhome=" + motorhome +
+                '}';
     }
 }
