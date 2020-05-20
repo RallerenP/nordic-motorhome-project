@@ -1,11 +1,11 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class Accessories {
+public class Accessory {
     private int ID;
     private String name;
     private double price;
 
-    public Accessories(int id, String name, double price) {
+    public Accessory(int id, String name, double price) {
         this.ID = id;
         this.name = name;
         this.price = price;

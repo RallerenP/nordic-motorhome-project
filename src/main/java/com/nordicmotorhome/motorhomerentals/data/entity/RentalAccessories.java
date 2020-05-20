@@ -2,11 +2,11 @@ package com.nordicmotorhome.motorhomerentals.data.entity;
 
 public class RentalAccessories {
     private Rentals rentals;
-    private Accessories accessories;
+    private Accessory accessory;
 
-    public RentalAccessories(Rentals rentals, Accessories accessories) {
+    public RentalAccessories(Rentals rentals, Accessory accessory) {
         this.rentals = rentals;
-        this.accessories = accessories;
+        this.accessory = accessory;
     }
 
     public Rentals getRentals() {
@@ -17,11 +17,11 @@ public class RentalAccessories {
         this.rentals = rentals;
     }
 
-    public Accessories getAccessories() {
-        return accessories;
+    public Accessory getAccessory() {
+        return accessory;
     }
 
-    public void setAccessories(Accessories accessories) {
-        this.accessories = accessories;
+    public void setAccessory(Accessory accessory) {
+        this.accessory = accessory;
     }
 }

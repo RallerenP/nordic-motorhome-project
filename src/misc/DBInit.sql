@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS staff;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS accessories_stock;
 DROP TABLE IF EXISTS rental_accessories;
-DROP TABLE IF EXISTS accessories;
+DROP TABLE IF EXISTS accessory;
 DROP TABLE IF EXISTS rentals;
 DROP TABLE IF EXISTS motorhomes;
 DROP TABLE IF EXISTS motorhome_models;
@@ -46,7 +46,7 @@ CREATE TABLE rentals (
     FOREIGN KEY (motorhome_id) REFERENCES motorhomes(ID)
 );
 
-CREATE TABLE accessories (
+CREATE TABLE accessory (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     price decimal(10,2) NOT NULL
@@ -57,13 +57,13 @@ CREATE TABLE rental_accessories (
     accessories_id INTEGER NOT NULL,
     PRIMARY KEY (rental_id, accessories_id),
     FOREIGN KEY (rental_id) REFERENCES rentals(ID),
-    FOREIGN KEY (accessories_id) REFERENCES accessories(ID)
+    FOREIGN KEY (accessories_id) REFERENCES accessory(ID)
 );
 
 CREATE TABLE accessories_stock (
 	accessories_id INTEGER PRIMARY KEY,
     amount INTEGER NOT NULL,
-    FOREIGN KEY (accessories_id) REFERENCES accessories(ID)
+    FOREIGN KEY (accessories_id) REFERENCES accessory(ID)
 );
 
 CREATE TABLE roles (

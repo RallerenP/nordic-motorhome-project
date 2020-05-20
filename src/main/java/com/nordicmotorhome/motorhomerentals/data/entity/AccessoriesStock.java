@@ -1,20 +1,20 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
 public class AccessoriesStock {
-    private Accessories accessories;
+    private Accessory accessory;
     private int amount;
 
-    public AccessoriesStock(Accessories accessories, int amount) {
-        this.accessories = accessories;
+    public AccessoriesStock(Accessory accessory, int amount) {
+        this.accessory = accessory;
         this.amount = amount;
     }
 
-    public Accessories getAccessories() {
-        return accessories;
+    public Accessory getAccessory() {
+        return accessory;
     }
 
-    public void setAccessories(Accessories accessories) {
-        this.accessories = accessories;
+    public void setAccessory(Accessory accessory) {
+        this.accessory = accessory;
     }
 
     public int getAmount() {
