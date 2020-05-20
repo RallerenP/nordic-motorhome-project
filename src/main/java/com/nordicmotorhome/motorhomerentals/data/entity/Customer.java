@@ -1,6 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class Customers {
+public class Customer {
     private int ID;
     private String firstName;
     private String lastName;
@@ -8,7 +8,7 @@ public class Customers {
     private String email;
     private String CPR;
 
-    public Customers(int id, String firstName, String lastName, int number, String email, String cpr) {
+    public Customer(int id, String firstName, String lastName, int number, String email, String cpr) {
         this.ID = id;
         this.firstName = firstName;
         this.lastName = lastName;

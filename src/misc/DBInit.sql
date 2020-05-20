@@ -4,11 +4,11 @@ DROP TABLE IF EXISTS accessories_stock;
 DROP TABLE IF EXISTS rental_accessories;
 DROP TABLE IF EXISTS accessory;
 DROP TABLE IF EXISTS rentals;
-DROP TABLE IF EXISTS motorhomes;
+DROP TABLE IF EXISTS motorhome;
 DROP TABLE IF EXISTS motorhome_models;
-DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS customer;
 
-CREATE TABLE customers (
+CREATE TABLE customer (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name varchar(255) NOT NULL,
     last_name varchar(255) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE motorhome_models (
     price DECIMAL(10,2)
 );
 
-CREATE TABLE motorhomes (
+CREATE TABLE motorhome (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
     model_id INTEGER NOT NULL,
     km_driven INTEGER NOT NULL,
@@ -42,8 +42,8 @@ CREATE TABLE rentals (
     fuel_needed BIT,
     customer_id INTEGER NOT NULL,
     motorhome_id INTEGER NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customers(ID),
-    FOREIGN KEY (motorhome_id) REFERENCES motorhomes(ID)
+    FOREIGN KEY (customer_id) REFERENCES customer(ID),
+    FOREIGN KEY (motorhome_id) REFERENCES motorhome(ID)
 );
 
 CREATE TABLE accessory (

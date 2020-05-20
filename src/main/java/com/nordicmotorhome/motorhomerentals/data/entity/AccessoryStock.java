@@ -1,10 +1,10 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class AccessoriesStock {
+public class AccessoryStock {
     private Accessory accessory;
     private int amount;
 
-    public AccessoriesStock(Accessory accessory, int amount) {
+    public AccessoryStock(Accessory accessory, int amount) {
         this.accessory = accessory;
         this.amount = amount;
     }

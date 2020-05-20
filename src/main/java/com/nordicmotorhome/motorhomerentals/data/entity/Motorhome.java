@@ -1,13 +1,13 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class Motorhomes {
+public class Motorhome {
     private int ID;
     private MotorhomeModel motorhomeModel;
     private int kilometersDriven;
     private boolean cleaned;
     private boolean serviced;
 
-    public Motorhomes(int id, MotorhomeModel motorhomeModel, int kilometersDriven, boolean cleaned, boolean serviced) {
+    public Motorhome(int id, MotorhomeModel motorhomeModel, int kilometersDriven, boolean cleaned, boolean serviced) {
         this.ID = id;
         this.motorhomeModel = motorhomeModel;
         this.kilometersDriven = kilometersDriven;

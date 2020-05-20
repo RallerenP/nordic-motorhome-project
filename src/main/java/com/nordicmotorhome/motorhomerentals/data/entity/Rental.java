@@ -2,26 +2,26 @@ package com.nordicmotorhome.motorhomerentals.data.entity;
 
 import java.util.Date;
 
-public class Rentals {
+public class Rental {
     private int ID;
     private Date startDate;
     private Date endDate;
     private int startKilometers;
     private int endKilometers;
     private boolean fuelNeeded;
-    private Customers customers;
-    private Motorhomes motorhomes;
+    private Customer customer;
+    private Motorhome motorhome;
 
-    public Rentals(int id, Date startDate, Date endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
-                        Customers customers, Motorhomes motorhomes) {
+    public Rental(int id, Date startDate, Date endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
+                  Customer customer, Motorhome motorhome) {
         this.ID = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.startKilometers = startKilometers;
         this.endKilometers = endKilometers;
         this.fuelNeeded = fuelNeeded;
-        this.customers = customers;
-        this.motorhomes = motorhomes;
+        this.customer = customer;
+        this.motorhome = motorhome;
     }
 
     public int getID() {
@@ -72,19 +72,19 @@ public class Rentals {
         this.fuelNeeded = fuelNeeded;
     }
 
-    public Customers getCustomers() {
-        return customers;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomers(Customers customers) {
-        this.customers = customers;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Motorhomes getMotorhomes() {
-        return motorhomes;
+    public Motorhome getMotorhome() {
+        return motorhome;
     }
 
-    public void setMotorhomes(Motorhomes motorhomes) {
-        this.motorhomes = motorhomes;
+    public void setMotorhome(Motorhome motorhome) {
+        this.motorhome = motorhome;
     }
 }
