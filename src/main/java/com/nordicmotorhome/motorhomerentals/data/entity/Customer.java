@@ -17,6 +17,18 @@ public class Customer {
         this.CPR = cpr;
     }
 
+    public Customer(String firstName, String lastName, int number, String email, String cpr) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.number = number;
+        this.email = email;
+        this.CPR = cpr;
+    }
+
+    public Customer(){
+
+    }
+
     public int getID() {
         return ID;
     }
@@ -63,5 +75,17 @@ public class Customer {
 
     public void setCPR(String CPR) {
         this.CPR = CPR;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "ID=" + ID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", number=" + number +
+                ", email='" + email + '\'' +
+                ", CPR='" + CPR + '\'' +
+                '}';
     }
 }

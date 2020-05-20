@@ -9,5 +9,4 @@ public class MotorhomeRentalsApplication {
     public static void main(String[] args) {
         SpringApplication.run(MotorhomeRentalsApplication.class, args);
     }
-
 }
