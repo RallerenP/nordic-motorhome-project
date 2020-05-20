@@ -1,8 +1,12 @@
 HELP.md
 target/
+
+!*.properties
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+
 
 ### STS ###
 .apt_generated
@@ -20,7 +24,7 @@ target/
 *.iml
 *.ipr
 
-/src/main/resources/application.properties
+
 
 ### NetBeans ###
 /nbproject/private/
