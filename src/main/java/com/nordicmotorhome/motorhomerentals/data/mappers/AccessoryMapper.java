@@ -58,7 +58,7 @@ public class AccessoryMapper {
 
             ps.setInt(1, model.getID());
             ps.setString(2, model.getName());
-            ps.setDouble(4, model.getPrice());
+            ps.setDouble(3, model.getPrice());
 
             ps.executeUpdate();
 
