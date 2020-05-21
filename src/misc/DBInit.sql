@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS accessories_stock;
 DROP TABLE IF EXISTS rental_accessories;
 DROP TABLE IF EXISTS accessory;
 DROP TABLE IF EXISTS rentals;
-DROP TABLE IF EXISTS motorhome;
+DROP TABLE IF EXISTS motorhomes;
 DROP TABLE IF EXISTS motorhome_models;
 DROP TABLE IF EXISTS customer;
 
