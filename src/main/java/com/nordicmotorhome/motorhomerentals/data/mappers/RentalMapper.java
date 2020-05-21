@@ -11,7 +11,8 @@ public class RentalMapper {
     public Rental insert(Rental rental) throws NoSuchEntityException{
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "INSERT INTO rentals (start_date, end_date, start_km, end_km, fuel_needed, customer_id, motorhome_id) VALUES (?,?,?,?,?,?,?)";
+            String SQL = "INSERT INTO rentals (start_date, end_date, start_km, end_km, fuel_needed, customer_id, motorhome_id, pickup_distance, delivery_distance) " +
+                    "VALUES (?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, Date.valueOf(rental.getStartDate()));
@@ -21,6 +22,8 @@ public class RentalMapper {
             ps.setBoolean(5, rental.isFuelNeeded());
             ps.setInt(6, rental.getCustomer().getID());
             ps.setInt(7, rental.getMotorhome().getID());
+            ps.setInt(8, rental.getPickup_distance());
+            ps.setInt(9, rental.getDelivery_distance());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -59,7 +62,7 @@ public class RentalMapper {
         try {
             Connection con = DBManager.getConnection();
             String SQL = "UPDATE rentals SET start_date = ?, end_date = ?, start_km = ?, end_km = ?, fuel_needed = ?," +
-                            "customer_id = ?, motorhome_id = ? WHERE id = ?";
+                            "customer_id = ?, motorhome_id = ?, pickup_distance = ?, delivery_distance = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setDate(1, Date.valueOf(model.getStartDate()));
@@ -69,7 +72,9 @@ public class RentalMapper {
             ps.setBoolean(5, model.isFuelNeeded());
             ps.setInt(6, model.getCustomer().getID());
             ps.setInt(7, model.getMotorhome().getID());
-            ps.setInt(8, model.getID());
+            ps.setInt(8, model.getPickup_distance());
+            ps.setInt(9, model.getDelivery_distance());
+            ps.setInt(10, model.getID());
 
             ps.executeUpdate();
 
@@ -107,7 +112,9 @@ public class RentalMapper {
             rs.getInt("end_km"),
             rs.getBoolean("fuel_needed"),
             cm.get(rs.getInt("customer_id")),
-            mm.get(rs.getInt("motorhome_id"))
+            mm.get(rs.getInt("motorhome_id")),
+            rs.getInt("pickup_distance"),
+            rs.getInt("deliver_distance")
         );
     }
 }
