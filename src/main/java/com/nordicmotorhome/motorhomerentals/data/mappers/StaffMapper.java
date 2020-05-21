@@ -56,15 +56,15 @@ public class StaffMapper {
     public Staff update(Staff model) throws NoSuchEntityException{
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "UPDATE staff WHERE id = ?, first_name = ?, last_name = ?, email = ?, password = ?, role_id = ?";
+            String SQL = "UPDATE staff SET first_name = ?, last_name = ?, email = ?, password = ?, role_id = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1, model.getID());
-            ps.setString(2, model.getFirstName());
-            ps.setString(3, model.getLastName());
-            ps.setString(4, model.getEmail());
-            ps.setString(5, model.getPassword());
-            ps.setInt(6, model.getRole().getID());
+            ps.setString(1, model.getFirstName());
+            ps.setString(2, model.getLastName());
+            ps.setString(3, model.getEmail());
+            ps.setString(4, model.getPassword());
+            ps.setInt(5, model.getRole().getID());
+            ps.setInt(6, model.getID());
 
             ps.executeUpdate();
 

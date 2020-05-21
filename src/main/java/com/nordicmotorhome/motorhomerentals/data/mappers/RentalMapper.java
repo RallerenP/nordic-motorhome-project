@@ -58,18 +58,18 @@ public class RentalMapper {
     public Rental update(Rental model) throws NoSuchEntityException{
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "UPDATE rentals WHERE id = ?, start_date = ?, end_date = ?, start_km = ?, end_km = ?," +
-                            "fuel_needed = ?, customer_id = ?, motorhome_id = ?";
+            String SQL = "UPDATE rentals SET start_date = ?, end_date = ?, start_km = ?, end_km = ?, fuel_needed = ?," +
+                            "customer_id = ?, motorhome_id = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1, model.getID());
-            ps.setDate(2, Date.valueOf(model.getStartDate()));
-            ps.setDate(3, Date.valueOf(model.getEndDate()));
-            ps.setInt(4, model.getStartKilometers());
-            ps.setInt(5, model.getEndKilometers());
-            ps.setBoolean(6, model.isFuelNeeded());
-            ps.setInt(7, model.getCustomer().getID());
-            ps.setInt(8, model.getMotorhome().getID());
+            ps.setDate(1, Date.valueOf(model.getStartDate()));
+            ps.setDate(2, Date.valueOf(model.getEndDate()));
+            ps.setInt(3, model.getStartKilometers());
+            ps.setInt(4, model.getEndKilometers());
+            ps.setBoolean(5, model.isFuelNeeded());
+            ps.setInt(6, model.getCustomer().getID());
+            ps.setInt(7, model.getMotorhome().getID());
+            ps.setInt(8, model.getID());
 
             ps.executeUpdate();
 

@@ -53,13 +53,13 @@ public class MotorhomeModelMapper {
     public MotorhomeModel update(MotorhomeModel model) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "UPDATE motorhome_models WHERE id = ?, name = ?, beds = ?, price = ?";
+            String SQL = "UPDATE motorhome_models SET name = ?, beds = ?, price = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1, model.getID());
-            ps.setString(2, model.getName());
-            ps.setInt(3, model.getBeds());
-            ps.setDouble(4, model.getPrice());
+            ps.setString(1, model.getName());
+            ps.setInt(2, model.getBeds());
+            ps.setDouble(3, model.getPrice());
+            ps.setInt(4, model.getID());
 
             ps.executeUpdate();
 

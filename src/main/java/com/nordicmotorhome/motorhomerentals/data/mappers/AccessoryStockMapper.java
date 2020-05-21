@@ -49,11 +49,11 @@ public class AccessoryStockMapper {
     public AccessoryStock update(AccessoryStock model) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "UPDATE accessories_stock WHERE accessories_id = ?, amount = ?";
+            String SQL = "UPDATE accessories_stock SET amount = ? WHERE accessories_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1, model.getAccessory().getID());
-            ps.setInt(2, model.getAmount());
+            ps.setInt(1, model.getAmount());
+            ps.setInt(2, model.getAccessory().getID());
 
             ps.executeUpdate();
 

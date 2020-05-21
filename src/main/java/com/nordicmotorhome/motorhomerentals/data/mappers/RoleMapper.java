@@ -53,11 +53,11 @@ public class RoleMapper {
     public Role update(Role model) throws NoSuchEntityException{
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "UPDATE rentals WHERE id = ?, name = ?";
+            String SQL = "UPDATE rentals SET name = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1, model.getID());
-            ps.setString(2, model.getName());
+            ps.setString(1, model.getName());
+            ps.setInt(2, model.getID());
 
             ps.executeUpdate();
 

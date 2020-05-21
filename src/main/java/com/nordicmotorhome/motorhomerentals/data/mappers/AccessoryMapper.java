@@ -53,12 +53,12 @@ public class AccessoryMapper {
     public Accessory update(Accessory model) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "UPDATE accessory WHERE id = ?, name = ?, price = ?";
+            String SQL = "UPDATE accessory SET name = ?, price = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1, model.getID());
-            ps.setString(2, model.getName());
-            ps.setDouble(3, model.getPrice());
+            ps.setString(1, model.getName());
+            ps.setDouble(2, model.getPrice());
+            ps.setInt(3, model.getID());
 
             ps.executeUpdate();
 
