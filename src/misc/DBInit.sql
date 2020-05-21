@@ -42,6 +42,8 @@ CREATE TABLE rentals (
     fuel_needed BIT,
     customer_id INTEGER NOT NULL,
     motorhome_id INTEGER NOT NULL,
+    pickup_distance INTEGER,
+    delivery_distance INTEGER,
     FOREIGN KEY (customer_id) REFERENCES customer(ID),
     FOREIGN KEY (motorhome_id) REFERENCES motorhome(ID)
 );
