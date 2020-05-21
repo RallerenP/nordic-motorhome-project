@@ -17,13 +17,13 @@ public class Customer {
         this.CPR = cpr;
     }
 
-    public Customer(String firstName, String lastName, int number, String email, String cpr) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.number = number;
-        this.email = email;
-        this.CPR = cpr;
-    }
+//    public Customer(String firstName, String lastName, int number, String email, String cpr) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.number = number;
+//        this.email = email;
+//        this.CPR = cpr;
+//    }
 
     public Customer(){
 

@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerMapper {
-    public List<Customer> getAll(){
+
+    public List<Customer> getAll() throws NoSuchEntityException {
         List<Customer> customers = new ArrayList<>();
         try {
             Connection connection = DBManager.getConnection();
@@ -103,6 +104,35 @@ public class CustomerMapper {
             id = rs.getInt(1);
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customerMapper.get(id);
+    }
+
+    public Customer update(Customer customer) throws NoSuchEntityException{
+        CustomerMapper customerMapper = new CustomerMapper();
+        int id = 0;
+        try {
+            Connection connection = DBManager.getConnection();
+
+            id = customer.getID();
+            String firstName = customer.getFirstName();
+            String lastName = customer.getLastName();
+            int number = customer.getNumber();
+            String email = customer.getEmail();
+            String cpr = customer.getCPR();
+
+            String sql = "UPDATE customers SET first_name=?, last_name=?, tlf=?, email=?, cpr=? WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setInt(3, number);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, cpr);
+            preparedStatement.setInt(6, id);
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
             e.printStackTrace();
         }
         return customerMapper.get(id);
