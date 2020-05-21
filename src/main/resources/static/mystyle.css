@@ -1,0 +1,49 @@
+body {
+    font-family: arial, sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+#title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+#topMargin {
+    margin-top: 15%;
+}
+
+#bottomMargin {
+    margin-bottom: 5%;
+}
+
+input {
+    padding: 1% 2% !important;
+    font-size: 1.5rem;
+}
+
+button {
+    width: 10%;
+    height: 40px;
+}
+
+#buttonTopMargin {
+    margin-top: 2.5%;
+}
+
+div p {
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 36%;
+}
