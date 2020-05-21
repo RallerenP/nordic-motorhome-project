@@ -18,11 +18,5 @@ public class MotorhomeRentalsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MotorhomeRentalsApplication.class, args);
-
-        AuthenticationService as = new AuthenticationService();
-
-        System.out.println(as.login("bob@bob.dk", "12346"));
-        System.out.println(as.login("bob@bob.dk", "1234"));
-
     }
 }
