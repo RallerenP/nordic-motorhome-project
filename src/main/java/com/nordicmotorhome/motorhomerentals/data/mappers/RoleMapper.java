@@ -42,7 +42,6 @@ public class RoleMapper {
             ResultSet rs = ps.executeQuery();
 
             if (!rs.next()) throw new NoSuchEntityException();
-            rs.next();
             return this.load(rs);
         } catch (SQLException e) {
             e.printStackTrace();

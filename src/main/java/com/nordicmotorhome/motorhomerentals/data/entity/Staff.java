@@ -6,15 +6,13 @@ public class Staff {
     private String lastName;
     private Role role;
     private String email;
-    private String password;
 
-    public Staff(int id, String firstName, String lastName, Role role, String email, String password) {
+    public Staff(int id, String firstName, String lastName, Role role, String email) {
         this.ID = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
         this.email = email;
-        this.password = password;
     }
 
     public int getID() {
@@ -57,11 +55,14 @@ public class Staff {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "ID=" + ID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", role=" + role +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

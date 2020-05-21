@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class StaffMapper {
 
-    public Staff insert(Staff staff) throws NoSuchEntityException {
+    public Staff insert(Staff staff, String hashedPw) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
             String SQL = "INSERT INTO staff (first_name, last_name, email, password, role_id) VALUES (?,?,?,?,?)";
@@ -17,13 +17,12 @@ public class StaffMapper {
             ps.setString(1, staff.getFirstName());
             ps.setString(2, staff.getLastName());
             ps.setString(3, staff.getEmail());
-            ps.setString(4, staff.getPassword());
+            ps.setString(4, hashedPw);
             ps.setInt(5, staff.getRole().getID());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
             if (!rs.next()) throw new NoSuchEntityException();
-            rs.next();
 
             int id = rs.getInt(1);
             staff.setID(id);
@@ -37,7 +36,7 @@ public class StaffMapper {
     public Staff get(int id) throws NoSuchEntityException{
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM staff WHERE id = ?";
+            String SQL = "SELECT ID, first_name, last_name, role_id, email FROM staff WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
 
@@ -45,8 +44,41 @@ public class StaffMapper {
             ResultSet rs = ps.executeQuery();
 
             if (!rs.next()) throw new NoSuchEntityException();
-            rs.next();
             return this.load(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Staff getByEmail(String email) throws NoSuchEntityException{
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT ID, first_name, last_name, role_id, email FROM staff WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            if (!rs.next()) throw new NoSuchEntityException();
+            return this.load(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getPwById(int id) throws NoSuchEntityException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT password FROM staff WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (!rs.next()) throw new NoSuchEntityException();
+            return rs.getString(1);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -56,15 +88,14 @@ public class StaffMapper {
     public Staff update(Staff model) throws NoSuchEntityException{
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "UPDATE staff SET first_name = ?, last_name = ?, email = ?, password = ?, role_id = ? WHERE id = ?";
+            String SQL = "UPDATE staff SET first_name = ?, last_name = ?, email = ?, role_id = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, model.getFirstName());
             ps.setString(2, model.getLastName());
             ps.setString(3, model.getEmail());
-            ps.setString(4, model.getPassword());
-            ps.setInt(5, model.getRole().getID());
-            ps.setInt(6, model.getID());
+            ps.setInt(4, model.getRole().getID());
+            ps.setInt(5, model.getID());
 
             ps.executeUpdate();
 
@@ -72,6 +103,23 @@ public class StaffMapper {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public boolean updatePw(int id, String hashedPw) {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "UPDATE staff SET password = ? WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setString(1, hashedPw);
+
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -98,9 +146,7 @@ public class StaffMapper {
                 rs.getString("first_name"),
                 rs.getString("last_name"),
                 rm.get(rs.getInt("role_id")),
-                rs.getString("email"),
-                rs.getString("password")
-
+                rs.getString("email")
         );
     }
 }
