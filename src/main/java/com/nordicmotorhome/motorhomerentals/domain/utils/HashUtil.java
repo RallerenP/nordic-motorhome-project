@@ -2,7 +2,7 @@ package com.nordicmotorhome.motorhomerentals.domain.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-public class BCryptUtil {
+public class HashUtil {
     private final int rounds = 5;
 
     public static String hash(String pw) {

@@ -1,34 +1,38 @@
 package com.nordicmotorhome.motorhomerentals.domain.services;
 
-import com.nordicmotorhome.motorhomerentals.data.entity.Staff;
-import com.nordicmotorhome.motorhomerentals.data.mappers.RoleMapper;
-import com.nordicmotorhome.motorhomerentals.data.mappers.StaffMapper;
+import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.data.entity.StaffEntity;
+import com.nordicmotorhome.motorhomerentals.data.repositories.RoleRepository;
+import com.nordicmotorhome.motorhomerentals.data.repositories.StaffRepository;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
-import com.nordicmotorhome.motorhomerentals.domain.utils.BCryptUtil;
+import com.nordicmotorhome.motorhomerentals.domain.mappers.RoleEntityModelMapper;
+import com.nordicmotorhome.motorhomerentals.domain.mappers.StaffEntityModelMapper;
+import com.nordicmotorhome.motorhomerentals.domain.utils.HashUtil;
 
 public class AuthenticationService {
-    private StaffMapper sm = new StaffMapper();
-    private RoleMapper rm = new RoleMapper();
+    private StaffRepository sr = new StaffRepository();
+    private RoleRepository rr = new RoleRepository();
+    StaffEntityModelMapper semm = new StaffEntityModelMapper();
 
-    public Staff register(String email, String pw, String firstName,  String lastName, int role_id) {
+    public StaffModel register(String email, String pw, String firstName, String lastName, int role_id) {
         try {
-            Staff staff = new Staff(0, firstName, lastName, rm.get(role_id), email);
+            StaffEntity se = new StaffEntity(0, firstName, lastName, rr.getById(role_id), email, null);
 
-            pw = BCryptUtil.hash(pw);
-            return sm.insert(staff, pw);
+            pw = HashUtil.hash(pw);
+
+            se.setPassword(pw);
+            return semm.mapToModel(sr.create(se));
         } catch (NoSuchEntityException e) {
             return null;
         }
     }
 
-    public Staff login(String email, String pw) {
+    public StaffModel login(String email, String pw) {
         try {
-            Staff staff = sm.getByEmail(email);
-            String hashedPw = sm.getPwById(staff.getID());
+            StaffEntity se = sr.findOne("email", email);
 
-            if (BCryptUtil.verify(pw, hashedPw)) return staff;
+            if (HashUtil.verify(pw, se.getPassword())) return semm.mapToModel(se);
             else return null;
-
         } catch (NoSuchEntityException e) {
             return null;
         }

@@ -1,26 +1,31 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class Staff {
-    private int ID;
+public class CustomerEntity extends BaseEntity {
     private String firstName;
     private String lastName;
-    private Role role;
+    private int number;
     private String email;
+    private String CPR;
 
-    public Staff(int id, String firstName, String lastName, Role role, String email) {
+    public CustomerEntity(int id, String firstName, String lastName, int number, String email, String cpr) {
         this.ID = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.role = role;
+        this.number = number;
         this.email = email;
+        this.CPR = cpr;
     }
 
-    public int getID() {
-        return ID;
-    }
+//    public Customer(String firstName, String lastName, int number, String email, String cpr) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.number = number;
+//        this.email = email;
+//        this.CPR = cpr;
+//    }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public CustomerEntity(){
+
     }
 
     public String getFirstName() {
@@ -39,12 +44,12 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public Role getRole() {
-        return role;
+    public int getNumber() {
+        return number;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public String getEmail() {
@@ -55,14 +60,23 @@ public class Staff {
         this.email = email;
     }
 
+    public String getCPR() {
+        return CPR;
+    }
+
+    public void setCPR(String CPR) {
+        this.CPR = CPR;
+    }
+
     @Override
     public String toString() {
-        return "Staff{" +
+        return "Customer{" +
                 "ID=" + ID +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role=" + role +
+                ", number=" + number +
                 ", email='" + email + '\'' +
+                ", CPR='" + CPR + '\'' +
                 '}';
     }
 }

@@ -1,34 +1,25 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class Motorhome {
-    private int ID;
-    private MotorhomeModel motorhomeModel;
+public class MotorhomeEntity extends BaseEntity {
+    private MotorhomeModelEntity motorhomeModelEntity;
     private int kilometersDriven;
     private boolean cleaned;
     private boolean serviced;
 
-    public Motorhome(int id, MotorhomeModel motorhomeModel, int kilometersDriven, boolean cleaned, boolean serviced) {
+    public MotorhomeEntity(int id, MotorhomeModelEntity motorhomeModelEntity, int kilometersDriven, boolean cleaned, boolean serviced) {
         this.ID = id;
-        this.motorhomeModel = motorhomeModel;
+        this.motorhomeModelEntity = motorhomeModelEntity;
         this.kilometersDriven = kilometersDriven;
         this.cleaned = cleaned;
         this.serviced = serviced;
     }
 
-    public int getID() {
-        return ID;
+    public MotorhomeModelEntity getMotorhomeModelEntity() {
+        return motorhomeModelEntity;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public MotorhomeModel getMotorhomeModel() {
-        return motorhomeModel;
-    }
-
-    public void setMotorhomeModel(MotorhomeModel motorhomeModel) {
-        this.motorhomeModel = motorhomeModel;
+    public void setMotorhomeModelEntity(MotorhomeModelEntity motorhomeModelEntity) {
+        this.motorhomeModelEntity = motorhomeModelEntity;
     }
 
     public int getKilometersDriven() {

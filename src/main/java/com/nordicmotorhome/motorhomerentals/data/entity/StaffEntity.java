@@ -1,40 +1,19 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class Customer {
-    private int ID;
+public class StaffEntity extends BaseEntity {
     private String firstName;
     private String lastName;
-    private int number;
+    private RoleEntity roleEntity;
     private String email;
-    private String CPR;
+    private String password;
 
-    public Customer(int id, String firstName, String lastName, int number, String email, String cpr) {
+    public StaffEntity(int id, String firstName, String lastName, RoleEntity roleEntity, String email, String password) {
         this.ID = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.number = number;
+        this.roleEntity = roleEntity;
         this.email = email;
-        this.CPR = cpr;
-    }
-
-//    public Customer(String firstName, String lastName, int number, String email, String cpr) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.number = number;
-//        this.email = email;
-//        this.CPR = cpr;
-//    }
-
-    public Customer(){
-
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -53,12 +32,12 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public int getNumber() {
-        return number;
+    public RoleEntity getRoleEntity() {
+        return roleEntity;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setRoleEntity(RoleEntity roleEntity) {
+        this.roleEntity = roleEntity;
     }
 
     public String getEmail() {
@@ -69,23 +48,22 @@ public class Customer {
         this.email = email;
     }
 
-    public String getCPR() {
-        return CPR;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCPR(String CPR) {
-        this.CPR = CPR;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "Staff{" +
                 "ID=" + ID +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", number=" + number +
+                ", role=" + roleEntity +
                 ", email='" + email + '\'' +
-                ", CPR='" + CPR + '\'' +
                 '}';
     }
 }

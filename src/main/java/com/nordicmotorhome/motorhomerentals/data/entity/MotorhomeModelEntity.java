@@ -2,25 +2,16 @@ package com.nordicmotorhome.motorhomerentals.data.entity;
 
 import java.util.Objects;
 
-public class MotorhomeModel {
-    private int ID;
+public class MotorhomeModelEntity extends BaseEntity {
     private String name;
     private int beds;
     private double price;
 
-    public MotorhomeModel(int id, String name, int beds, double price) {
+    public MotorhomeModelEntity(int id, String name, int beds, double price) {
         this.ID = id;
         this.name = name;
         this.beds = beds;
         this.price = price;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getName() {
@@ -51,7 +42,7 @@ public class MotorhomeModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MotorhomeModel that = (MotorhomeModel) o;
+        MotorhomeModelEntity that = (MotorhomeModelEntity) o;
         return ID == that.ID &&
                 beds == that.beds &&
                 Double.compare(that.price, price) == 0 &&

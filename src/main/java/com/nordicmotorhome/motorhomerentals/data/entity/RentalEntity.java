@@ -2,38 +2,29 @@ package com.nordicmotorhome.motorhomerentals.data.entity;
 
 import java.time.LocalDate;
 
-public class Rental {
-    private int ID;
+public class RentalEntity extends BaseEntity {
     private LocalDate startDate;
     private LocalDate endDate;
     private int startKilometers;
     private int endKilometers;
     private boolean fuelNeeded;
-    private Customer customer;
-    private Motorhome motorhome;
+    private CustomerEntity customerEntity;
+    private MotorhomeEntity motorhomeEntity;
     private int pickup_distance;
     private int delivery_distance;
 
-    public Rental(int id, LocalDate startDate, LocalDate endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
-                  Customer customer, Motorhome motorhome, int pickup_distance, int delivery_distance) {
+    public RentalEntity(int id, LocalDate startDate, LocalDate endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
+                        CustomerEntity customerEntity, MotorhomeEntity motorhomeEntity, int pickup_distance, int delivery_distance) {
         this.ID = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.startKilometers = startKilometers;
         this.endKilometers = endKilometers;
         this.fuelNeeded = fuelNeeded;
-        this.customer = customer;
-        this.motorhome = motorhome;
+        this.customerEntity = customerEntity;
+        this.motorhomeEntity = motorhomeEntity;
         this.pickup_distance = pickup_distance;
         this.delivery_distance = delivery_distance;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public LocalDate getStartDate() {
@@ -76,20 +67,20 @@ public class Rental {
         this.fuelNeeded = fuelNeeded;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public CustomerEntity getCustomerEntity() {
+        return customerEntity;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerEntity(CustomerEntity customerEntity) {
+        this.customerEntity = customerEntity;
     }
 
-    public Motorhome getMotorhome() {
-        return motorhome;
+    public MotorhomeEntity getMotorhomeEntity() {
+        return motorhomeEntity;
     }
 
-    public void setMotorhome(Motorhome motorhome) {
-        this.motorhome = motorhome;
+    public void setMotorhomeEntity(MotorhomeEntity motorhomeEntity) {
+        this.motorhomeEntity = motorhomeEntity;
     }
 
     public int getPickup_distance() {
@@ -117,8 +108,8 @@ public class Rental {
                 ", startKilometers=" + startKilometers +
                 ", endKilometers=" + endKilometers +
                 ", fuelNeeded=" + fuelNeeded +
-                ", customer=" + customer +
-                ", motorhome=" + motorhome +
+                ", customer=" + customerEntity +
+                ", motorhome=" + motorhomeEntity +
                 '}';
     }
 }

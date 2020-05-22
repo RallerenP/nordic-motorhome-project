@@ -1,22 +1,13 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class Accessory {
-    private int ID;
+public class AccessoryEntity extends BaseEntity {
     private String name;
     private double price;
 
-    public Accessory(int id, String name, double price) {
+    public AccessoryEntity(int id, String name, double price) {
         this.ID = id;
         this.name = name;
         this.price = price;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getName() {

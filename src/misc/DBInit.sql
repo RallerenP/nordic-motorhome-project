@@ -1,14 +1,14 @@
-DROP TABLE IF EXISTS staff;
+DROP TABLE IF EXISTS staffEntity;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS accessories_stock;
 DROP TABLE IF EXISTS rental_accessories;
-DROP TABLE IF EXISTS accessory;
+DROP TABLE IF EXISTS accessorEntity;
 DROP TABLE IF EXISTS rentals;
-DROP TABLE IF EXISTS motorhome;
+DROP TABLE IF EXISTS motorhomeEntity;
 DROP TABLE IF EXISTS motorhome_models;
-DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS customerEntity;
 
-CREATE TABLE customer (
+CREATE TABLE customerEntity (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name varchar(255) NOT NULL,
     last_name varchar(255) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE motorhome_models (
     price DECIMAL(10,2)
 );
 
-CREATE TABLE motorhome (
+CREATE TABLE motorhomeEntity (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
     model_id INTEGER NOT NULL,
     km_driven INTEGER NOT NULL,
@@ -44,11 +44,11 @@ CREATE TABLE rentals (
     motorhome_id INTEGER NOT NULL,
     pickup_distance INTEGER,
     delivery_distance INTEGER,
-    FOREIGN KEY (customer_id) REFERENCES customer(ID),
-    FOREIGN KEY (motorhome_id) REFERENCES motorhome(ID)
+    FOREIGN KEY (customer_id) REFERENCES customerEntity(ID),
+    FOREIGN KEY (motorhome_id) REFERENCES motorhomeEntity(ID)
 );
 
-CREATE TABLE accessory (
+CREATE TABLE accessorEntity (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
     name varchar(255) NOT NULL,
     price decimal(10,2) NOT NULL
@@ -59,13 +59,13 @@ CREATE TABLE rental_accessories (
     accessories_id INTEGER NOT NULL,
     PRIMARY KEY (rental_id, accessories_id),
     FOREIGN KEY (rental_id) REFERENCES rentals(ID),
-    FOREIGN KEY (accessories_id) REFERENCES accessory(ID)
+    FOREIGN KEY (accessories_id) REFERENCES accessorEntity(ID)
 );
 
 CREATE TABLE accessories_stock (
 	accessories_id INTEGER PRIMARY KEY,
     amount INTEGER NOT NULL,
-    FOREIGN KEY (accessories_id) REFERENCES accessory(ID)
+    FOREIGN KEY (accessories_id) REFERENCES accessorEntity(ID)
 );
 
 CREATE TABLE roles (
@@ -73,7 +73,7 @@ CREATE TABLE roles (
     name VARCHAR(255)
 );
 
-CREATE TABLE staff (
+CREATE TABLE staffEntity (
 	ID INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,

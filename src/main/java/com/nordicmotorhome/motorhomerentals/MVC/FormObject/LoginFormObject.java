@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.view.FormObject;
+package com.nordicmotorhome.motorhomerentals.MVC.FormObject;
 
 public class LoginFormObject {
     private String email;

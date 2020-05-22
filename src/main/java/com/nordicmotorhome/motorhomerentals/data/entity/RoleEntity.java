@@ -1,10 +1,9 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
-public class Role {
+public class RoleEntity extends BaseEntity {
     private String name;
-    private int ID;
 
-    public Role(String name, int id) {
+    public RoleEntity(String name, int id) {
         this.name = name;
         this.ID = id;
     }
@@ -15,13 +14,5 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 }
