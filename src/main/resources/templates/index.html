@@ -8,9 +8,10 @@
 <body>
     <nav th:replace="fragments/navbar.html"></nav>
     <div class="center-screen flex-center">
-        <form id="login-form">
-            <input id="username" placeholder="Username">
-            <input id="password" placeholder="Password" type="password">
+        <form th:action="@{/auth/login}" th:object="${loginObject}" id="login-form" method="post">
+            <input th:field="*{email}" id="username" placeholder="Username">
+            <input th:field="*{password}" id="password" placeholder="Password" type="password">
+            <button type="submit">Login</button>
         </form>
     </div>
 
