@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.domain.exceptions.utils;
+package com.nordicmotorhome.motorhomerentals.domain.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
 

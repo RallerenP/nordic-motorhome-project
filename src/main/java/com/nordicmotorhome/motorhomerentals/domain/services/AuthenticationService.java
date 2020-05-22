@@ -1,11 +1,10 @@
-package com.nordicmotorhome.motorhomerentals.domain.exceptions.services;
+package com.nordicmotorhome.motorhomerentals.domain.services;
 
-import com.nordicmotorhome.motorhomerentals.data.entity.Role;
 import com.nordicmotorhome.motorhomerentals.data.entity.Staff;
 import com.nordicmotorhome.motorhomerentals.data.mappers.RoleMapper;
 import com.nordicmotorhome.motorhomerentals.data.mappers.StaffMapper;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
-import com.nordicmotorhome.motorhomerentals.domain.exceptions.utils.BCryptUtil;
+import com.nordicmotorhome.motorhomerentals.domain.utils.BCryptUtil;
 
 public class AuthenticationService {
     private StaffMapper sm = new StaffMapper();
@@ -20,7 +19,6 @@ public class AuthenticationService {
         } catch (NoSuchEntityException e) {
             return null;
         }
-
     }
 
     public Staff login(String email, String pw) {
