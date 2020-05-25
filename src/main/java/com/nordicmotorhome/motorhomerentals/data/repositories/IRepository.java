@@ -49,5 +49,7 @@ public interface IRepository<T extends BaseEntity> {
      * @return A single entity
      */
     T findOne(String key, String value) throws NoSuchEntityException;
+
+
     T findOne(String key, int value) throws NoSuchEntityException;
 }
