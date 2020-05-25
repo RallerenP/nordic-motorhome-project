@@ -14,7 +14,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model) {
-
         model.addAttribute("loginObject", new LoginFormObject());
 
         return "index";

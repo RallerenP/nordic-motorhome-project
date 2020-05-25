@@ -20,7 +20,6 @@ public class AuthenticationService {
     public StaffModel register(String email, String pw, String firstName, String lastName, int role_id) {
         try {
             StaffEntity se = new StaffEntity(0, firstName, lastName, roleRepository.getById(role_id), email, null);
-
             pw = HashUtil.hash(pw);
 
             se.setPassword(pw);

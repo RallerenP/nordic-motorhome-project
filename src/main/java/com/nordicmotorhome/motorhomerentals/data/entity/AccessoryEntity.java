@@ -1,8 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
 public class AccessoryEntity extends BaseEntity {
-    public static final String TABLE_NAME = "accessories";
-
     private String name;
     private double price;
 

@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 @Controller()
 @RequestMapping("/auth")
 public class AuthenticationController {
+    private final AuthenticationService as = new AuthenticationService();
 
     @PostMapping("/login")
     public String login(@ModelAttribute LoginFormObject loginFormObject, HttpServletRequest request) {
-        AuthenticationService as = new AuthenticationService();
         request.getSession().setAttribute("user", as.login(loginFormObject.getEmail(), loginFormObject.getPassword()));
         return "redirect:/";
     }
