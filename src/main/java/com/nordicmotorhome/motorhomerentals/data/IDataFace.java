@@ -8,7 +8,7 @@ import java.util.List;
 public interface IDataFace {
     // Accessories
     public AccessoryEntity getAccessoryById(int id) throws NoSuchEntityException;
-    public List<AccessoryEntity> getAllAccessory() throws NoSuchEntityException;
+    public List<AccessoryEntity> getAllAccessories() throws NoSuchEntityException;
     public AccessoryEntity createAccessory(AccessoryEntity entity);
     public void deleteAccessory(AccessoryEntity model);
     public AccessoryEntity saveAccessory(AccessoryEntity entity);
@@ -17,7 +17,7 @@ public interface IDataFace {
 
     // AccessoryStock
     public AccessoryStockEntity getAccessoryStockById(int id) throws NoSuchEntityException;
-    public List<AccessoryStockEntity> getAlAccessoryStockl() throws NoSuchEntityException;
+    public List<AccessoryStockEntity> getAllAccessoryStock() throws NoSuchEntityException;
     public AccessoryStockEntity createAccessoryStock(AccessoryStockEntity entity);
     public void deleteAccessoryStock(AccessoryStockEntity entity);
     public AccessoryStockEntity saveAccessoryStock(AccessoryStockEntity entity);
@@ -26,7 +26,7 @@ public interface IDataFace {
 
     // Customer
     public CustomerEntity getCustomerById(int id) throws NoSuchEntityException;
-    public List<CustomerEntity> getAllCustomer() throws NoSuchEntityException;
+    public List<CustomerEntity> getAllCustomers() throws NoSuchEntityException;
     public CustomerEntity createCustomer(CustomerEntity entity);
     public void deleteCustomer(CustomerEntity entity);
     public CustomerEntity saveCustomer(CustomerEntity entity);
@@ -35,7 +35,7 @@ public interface IDataFace {
 
     // MotorhomeModel
     public MotorhomeModelEntity getMotorhomeModelById(int id) throws NoSuchEntityException;
-    public List<MotorhomeModelEntity> getAllMotorhomeModel() throws NoSuchEntityException;
+    public List<MotorhomeModelEntity> getAllMotorhomeModels() throws NoSuchEntityException;
     public MotorhomeModelEntity createMotorhomeModel(MotorhomeModelEntity entity);
     public void deleteMotorhomeModel(MotorhomeModelEntity entity);
     public MotorhomeModelEntity saveMotorhomeModel(MotorhomeModelEntity entity);
@@ -44,7 +44,7 @@ public interface IDataFace {
 
     // Motorhome
     public MotorhomeEntity getMotorhomeById(int id) throws NoSuchEntityException;
-    public List<MotorhomeEntity> getAllMotorhome() throws NoSuchEntityException;
+    public List<MotorhomeEntity> getAllMotorhomes() throws NoSuchEntityException;
     public MotorhomeEntity createMotorhome(MotorhomeEntity entity);
     public void deleteMotorhome(MotorhomeEntity entity);
     public MotorhomeEntity saveMotorhome(MotorhomeEntity entity);
@@ -55,7 +55,7 @@ public interface IDataFace {
 
     // Rental
     public RentalEntity getRentalById(int id) throws NoSuchEntityException;
-    public List<RentalEntity> getAlRentall() throws NoSuchEntityException;
+    public List<RentalEntity> getAllRentals() throws NoSuchEntityException;
     public RentalEntity createRental(RentalEntity entity);
     public void deleteRental(RentalEntity entity);
     public RentalEntity saveRental(RentalEntity entity);
@@ -64,7 +64,7 @@ public interface IDataFace {
 
     // Role
     public RoleEntity getRoleById(int id) throws NoSuchEntityException;
-    public List<RoleEntity> getAllRole() throws NoSuchEntityException;
+    public List<RoleEntity> getAllRoles() throws NoSuchEntityException;
     public RoleEntity createRole(RoleEntity entity);
     public void deleteRole(RoleEntity entity);
     public RoleEntity saveRole(RoleEntity entity);
