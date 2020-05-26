@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.data.repositories;
 
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
+import com.nordicmotorhome.motorhomerentals.data.entity.AccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.data.entity.RentalEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
@@ -21,7 +22,8 @@ public class RentalRepository implements IRepository<RentalEntity> {
             ResultSet rs = ps.executeQuery();
 
             if (!rs.next()) throw new NoSuchEntityException();
-            rs.next();
+
+
             return this.load(rs);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,6 +166,29 @@ public class RentalRepository implements IRepository<RentalEntity> {
         }
     }
 
+    public ArrayList<AccessoryEntity> getAccessories(int rentalId) {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT * FROM rentals WHERE rental_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setInt(1, rentalId);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<AccessoryEntity> accessories = new ArrayList<>();
+            AccessoryRepository ar = new AccessoryRepository();
+            while (rs.next()) {
+                accessories.add(ar.load(rs));
+            }
+
+            return accessories;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
     public RentalEntity load(ResultSet rs) throws SQLException, NoSuchEntityException {
         CustomerRepository cr = new CustomerRepository();
         MotorhomeRepository mr = new MotorhomeRepository();
@@ -177,7 +202,8 @@ public class RentalRepository implements IRepository<RentalEntity> {
             cr.getById(rs.getInt("customer_id")),
             mr.getById(rs.getInt("motorhome_id")),
             rs.getInt("pickup_distance"),
-            rs.getInt("deliver_distance")
+            rs.getInt("deliver_distance"),
+            getAccessories(rs.getInt("id"))
         );
     }
 

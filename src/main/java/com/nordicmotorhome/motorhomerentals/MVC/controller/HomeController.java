@@ -16,6 +16,12 @@ public class HomeController {
     public String index(HttpServletRequest request, Model model) {
         model.addAttribute("loginObject", new LoginFormObject());
 
+        if (request.getSession().getAttribute("user") != null) {
+            model.addAttribute("content", "HomeView");
+        } else {
+            model.addAttribute("content", "LoginView");
+        }
+
         return "index";
     }
 

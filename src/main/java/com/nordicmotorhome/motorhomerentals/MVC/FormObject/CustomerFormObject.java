@@ -1,13 +1,14 @@
-package com.nordicmotorhome.motorhomerentals.data.entity;
+package com.nordicmotorhome.motorhomerentals.MVC.FormObject;
 
-public class CustomerEntity extends BaseEntity {
+public class CustomerFormObject {
+    private int ID;
     private String firstName;
     private String lastName;
     private int number;
     private String email;
     private String CPR;
 
-    public CustomerEntity(int id, String firstName, String lastName, int number, String email, String cpr) {
+    public CustomerFormObject(int id, String firstName, String lastName, int number, String email, String cpr) {
         this.ID = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,17 +55,5 @@ public class CustomerEntity extends BaseEntity {
 
     public void setCPR(String CPR) {
         this.CPR = CPR;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "ID=" + ID +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", number=" + number +
-                ", email='" + email + '\'' +
-                ", CPR='" + CPR + '\'' +
-                '}';
     }
 }

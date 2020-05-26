@@ -1,5 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.mappers;
 
-public interface IEntityModelMapper<E, M> {
+import com.nordicmotorhome.motorhomerentals.data.entity.BaseEntity;
+
+public interface IEntityModelMapper<E extends BaseEntity, M> {
     M mapToModel(E entity);
 }

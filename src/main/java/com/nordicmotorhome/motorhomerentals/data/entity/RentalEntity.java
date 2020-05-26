@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.data.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class RentalEntity extends BaseEntity {
     private LocalDate startDate;
@@ -13,8 +14,11 @@ public class RentalEntity extends BaseEntity {
     private int pickup_distance;
     private int delivery_distance;
 
+    private ArrayList<AccessoryEntity> accessoryEntities = new ArrayList<>();
+
     public RentalEntity(int id, LocalDate startDate, LocalDate endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
-                        CustomerEntity customerEntity, MotorhomeEntity motorhomeEntity, int pickup_distance, int delivery_distance) {
+                        CustomerEntity customerEntity, MotorhomeEntity motorhomeEntity, int pickup_distance, int delivery_distance,
+                        ArrayList<AccessoryEntity> accessoryEntities) {
         this.ID = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -25,6 +29,7 @@ public class RentalEntity extends BaseEntity {
         this.motorhomeEntity = motorhomeEntity;
         this.pickup_distance = pickup_distance;
         this.delivery_distance = delivery_distance;
+        this.accessoryEntities = accessoryEntities;
     }
 
     public LocalDate getStartDate() {

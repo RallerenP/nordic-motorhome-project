@@ -13,7 +13,7 @@ public class StaffRepository implements IRepository<StaffEntity> {
     public StaffEntity getById(int id) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT ID, first_name, last_name, role_id, email FROM staff WHERE id = ?";
+            String SQL = "SELECT * FROM staff WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
 
@@ -48,6 +48,7 @@ public class StaffRepository implements IRepository<StaffEntity> {
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
             int id = rs.getInt(1);
 
             return getById(id);
@@ -98,11 +99,10 @@ public class StaffRepository implements IRepository<StaffEntity> {
     public StaffEntity findOne(String key, String value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM staff WHERE ? = ?";
+            String SQL = "SELECT * FROM staff WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setString(2, value);
+            ps.setString(1, value);
 
             ResultSet rs = ps.executeQuery();
 

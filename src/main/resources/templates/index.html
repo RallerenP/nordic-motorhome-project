@@ -7,13 +7,8 @@
 </head>
 <body>
     <nav th:replace="fragments/navbar.html"></nav>
-    <div class="center-screen flex-center">
-        <form th:action="@{/auth/login}" th:object="${loginObject}" id="login-form" method="post">
-            <input th:field="*{email}" id="username" placeholder="Username">
-            <input th:field="*{password}" id="password" placeholder="Password" type="password">
-            <button type="submit">Login</button>
-        </form>
-    </div>
+    <div th:replace='${"views/" + content}'></div>
+<!--    <div th:replace="@{'views/' + ${content}} :: ${content}"></div>-->
 
 <!--    <h1 id="title">Nordic Motorhome Rental</h1>-->
 

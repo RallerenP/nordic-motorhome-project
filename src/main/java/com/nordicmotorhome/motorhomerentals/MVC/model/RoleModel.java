@@ -16,4 +16,9 @@ public enum RoleModel {
             return "Rengøring";
         }
     },
+    BOOK_KEEPER {
+        public String toString() {
+            return "Bogholder";
+        }
+    }
 }

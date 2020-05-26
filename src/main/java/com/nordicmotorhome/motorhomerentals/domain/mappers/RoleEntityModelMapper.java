@@ -14,6 +14,8 @@ public class RoleEntityModelMapper implements IEntityModelMapper<RoleEntity, Rol
                 return RoleModel.MECHANIC;
             case "CLEANER":
                 return RoleModel.CLEANER;
+            case "BOOK_KEEPER":
+                return RoleModel.BOOK_KEEPER;
             default:
                 throw new IllegalStateException("Unexpected value: " + entity.getName());
         }

@@ -1,5 +1,6 @@
 package com.nordicmotorhome.motorhomerentals;
 
+import com.nordicmotorhome.motorhomerentals.data.DBManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,5 +9,7 @@ public class MotorhomeRentalsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MotorhomeRentalsApplication.class, args);
+        DBSetup setup = new DBSetup();
+        setup.setup();
     }
 }
