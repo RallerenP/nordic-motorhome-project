@@ -8,15 +8,6 @@ public class CustomerFormObject {
     private String email;
     private String CPR;
 
-    public CustomerFormObject(int id, String firstName, String lastName, int number, String email, String cpr) {
-        this.ID = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.number = number;
-        this.email = email;
-        this.CPR = cpr;
-    }
-
     public String getFirstName() {
         return firstName;
     }

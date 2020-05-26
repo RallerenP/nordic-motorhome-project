@@ -32,6 +32,14 @@ public class RentalEntity extends BaseEntity {
         this.accessoryEntities = accessoryEntities;
     }
 
+    public ArrayList<AccessoryEntity> getAccessoryEntities() {
+        return accessoryEntities;
+    }
+
+    public void setAccessoryEntities(ArrayList<AccessoryEntity> accessoryEntities) {
+        this.accessoryEntities = accessoryEntities;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }

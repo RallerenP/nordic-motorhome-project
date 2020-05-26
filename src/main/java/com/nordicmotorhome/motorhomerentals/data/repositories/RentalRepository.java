@@ -202,7 +202,7 @@ public class RentalRepository implements IRepository<RentalEntity> {
             cr.getById(rs.getInt("customer_id")),
             mr.getById(rs.getInt("motorhome_id")),
             rs.getInt("pickup_distance"),
-            rs.getInt("deliver_distance"),
+            rs.getInt("delivery_distance"),
             getAccessories(rs.getInt("id"))
         );
     }

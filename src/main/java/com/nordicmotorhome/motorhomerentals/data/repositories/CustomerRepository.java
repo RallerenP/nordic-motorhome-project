@@ -11,7 +11,6 @@ import java.util.List;
 public class CustomerRepository implements IRepository<CustomerEntity> {
     @Override
     public CustomerEntity getById(int id) throws NoSuchEntityException {
-        CustomerEntity customerEntity = new CustomerEntity();
         try {
             Connection connection = DBManager.getConnection();
             String sql = "select * from customers where ID = ?";
@@ -25,8 +24,8 @@ public class CustomerRepository implements IRepository<CustomerEntity> {
             return load(rs);
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
-        return customerEntity;
     }
 
     @Override
