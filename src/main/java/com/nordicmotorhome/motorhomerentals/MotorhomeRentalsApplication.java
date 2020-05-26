@@ -22,20 +22,8 @@ public class MotorhomeRentalsApplication {
     public static void main(String[] args) {
         SpringApplication.run(MotorhomeRentalsApplication.class, args);
 
-        CustomerService cs = new CustomerService();
-        RentalService rs = new RentalService();
-
-        StaffRepository sr = new StaffRepository();
-        try {
-            StaffModel sm = new StaffEntityModelMapper().mapToModel(sr.getById(1));
-            CustomerModel ce = cs.create("Bob", "Bob", 88888888, "bob@bob.dk", "2605204555", sm);
-
-            RentalModel rm = rs.create(ce.getID(), LocalDate.now(), LocalDate.now().plusWeeks(2), 5, 0, 0, 0);
-
-        } catch (NoSuchEntityException e) {
-            e.printStackTrace();
-        }
-
+       DBSetup setup = new DBSetup();
+       setup.setup();
 
     }
 }

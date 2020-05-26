@@ -169,7 +169,7 @@ public class RentalRepository implements IRepository<RentalEntity> {
     public ArrayList<AccessoryEntity> getAccessories(int rentalId) {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM rentals WHERE rental_id = ?";
+            String SQL = "SELECT * FROM rental_accessories WHERE rental_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setInt(1, rentalId);

@@ -1,11 +1,20 @@
 package com.nordicmotorhome.motorhomerentals;
 
+import com.nordicmotorhome.motorhomerentals.MVC.model.CustomerModel;
+import com.nordicmotorhome.motorhomerentals.MVC.model.RentalModel;
+import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
+import com.nordicmotorhome.motorhomerentals.data.repositories.StaffRepository;
+import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
+import com.nordicmotorhome.motorhomerentals.domain.mappers.StaffEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.services.AuthenticationService;
+import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
+import com.nordicmotorhome.motorhomerentals.domain.services.RentalService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 public class DBSetup {
     public void setup() {
@@ -301,6 +310,22 @@ public class DBSetup {
 
             as.register("mie@laursen.dk", "4321", "Mie", "Laursen", 4);
 
+            //endregion
+
+            //region RENTAL DUMMY DATA
+            CustomerService cs = new CustomerService();
+            RentalService rs = new RentalService();
+
+            StaffRepository sr = new StaffRepository();
+            try {
+                StaffModel sm = new StaffEntityModelMapper().mapToModel(sr.getById(1));
+                CustomerModel ce = cs.create("Bob", "Bob", 88888888, "bob@bob.dk", "2605204555", sm);
+
+                RentalModel rm = rs.create(ce.getID(), LocalDate.now(), LocalDate.now().plusWeeks(2), 5, 0, 0, 0);
+
+            } catch (NoSuchEntityException e) {
+                e.printStackTrace();
+            }
             //endregion
 
         } catch (SQLException e) {

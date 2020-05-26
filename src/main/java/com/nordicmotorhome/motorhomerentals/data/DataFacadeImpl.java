@@ -6,7 +6,9 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 
 import java.util.List;
 
-public class DataFacadeImpl implements  IDataFace {
+public class DataFacadeImpl implements IDataFacade {
+    private static final DataFacadeImpl instance = new DataFacadeImpl();
+    public static DataFacadeImpl getInstance() { return instance; }
 
     private final IRepository<AccessoryEntity> ar = new AccessoryRepository();
     private final IRepository<AccessoryStockEntity> asr = new AccessoryStockRepository();

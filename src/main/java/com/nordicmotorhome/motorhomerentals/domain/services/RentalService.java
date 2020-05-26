@@ -1,13 +1,11 @@
 package com.nordicmotorhome.motorhomerentals.domain.services;
 
 import com.nordicmotorhome.motorhomerentals.MVC.model.RentalModel;
+import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
+import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
 import com.nordicmotorhome.motorhomerentals.data.entity.CustomerEntity;
 import com.nordicmotorhome.motorhomerentals.data.entity.MotorhomeEntity;
 import com.nordicmotorhome.motorhomerentals.data.entity.RentalEntity;
-import com.nordicmotorhome.motorhomerentals.data.repositories.CustomerRepository;
-import com.nordicmotorhome.motorhomerentals.data.repositories.IRepository;
-import com.nordicmotorhome.motorhomerentals.data.repositories.MotorhomeRepository;
-import com.nordicmotorhome.motorhomerentals.data.repositories.RentalRepository;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.RentalEntityModelMapper;
@@ -15,9 +13,8 @@ import com.nordicmotorhome.motorhomerentals.domain.mappers.RentalEntityModelMapp
 import java.time.LocalDate;
 
 public class RentalService {
-    IRepository<CustomerEntity> customerRepository = new CustomerRepository();
-    IRepository<MotorhomeEntity> motorhomeRepository = new MotorhomeRepository();
-    IRepository<RentalEntity> rentalRepository = new RentalRepository();
+    IDataFacade dataFacade = DataFacadeImpl.getInstance();
+
     IEntityModelMapper<RentalEntity, RentalModel> remm = new RentalEntityModelMapper();
     public RentalModel create(
             int customerID,
@@ -29,8 +26,8 @@ public class RentalService {
             int startKm
     ) {
         try {
-            CustomerEntity ce = customerRepository.getById(customerID);
-            MotorhomeEntity me = motorhomeRepository.getById(motorhomeID);
+            CustomerEntity ce = dataFacade.getCustomerById(customerID);
+            MotorhomeEntity me = dataFacade.getMotorhomeById(motorhomeID);
 
             RentalEntity re = new RentalEntity(
                     0,
@@ -46,7 +43,7 @@ public class RentalService {
                     null
             );
 
-            return remm.mapToModel(rentalRepository.create(re));
+            return remm.mapToModel(dataFacade.createRental(re));
 
         } catch (NoSuchEntityException e) {
             e.printStackTrace();
