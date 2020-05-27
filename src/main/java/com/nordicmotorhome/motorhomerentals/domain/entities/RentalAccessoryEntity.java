@@ -2,12 +2,12 @@ package com.nordicmotorhome.motorhomerentals.domain.entities;
 
 public class RentalAccessoryEntity extends BaseEntity {
     private RentalEntity rental;
-    private AccessoryEntity accessoryEntity;
+    private AccessoryEntity accessory;
     private int amount;
 
-    public RentalAccessoryEntity(RentalEntity rental, AccessoryEntity accessoryEntity, int amount) {
+    public RentalAccessoryEntity(RentalEntity rental, AccessoryEntity accessory, int amount) {
         this.rental = rental;
-        this.accessoryEntity = accessoryEntity;
+        this.accessory = accessory;
         this.amount = amount;
     }
 
@@ -19,12 +19,12 @@ public class RentalAccessoryEntity extends BaseEntity {
         this.rental = rental;
     }
 
-    public AccessoryEntity getAccessoryEntity() {
-        return accessoryEntity;
+    public AccessoryEntity getAccessory() {
+        return accessory;
     }
 
-    public void setAccessoryEntity(AccessoryEntity accessoryEntity) {
-        this.accessoryEntity = accessoryEntity;
+    public void setAccessory(AccessoryEntity accessory) {
+        this.accessory = accessory;
     }
 
     public int getAmount() {

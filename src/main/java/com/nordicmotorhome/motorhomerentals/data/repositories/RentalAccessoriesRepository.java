@@ -65,7 +65,7 @@ public class RentalAccessoriesRepository implements IRepository<RentalAccessoryE
             PreparedStatement ps = conn.prepareStatement(SQL);
 
             ps.setInt(1, entity.getRental().getID());
-            ps.setInt(2, entity.getAccessoryEntity().getID());
+            ps.setInt(2, entity.getAccessory().getID());
             ps.setInt(3, entity.getAmount());
 
             ps.executeUpdate();
@@ -103,7 +103,7 @@ public class RentalAccessoriesRepository implements IRepository<RentalAccessoryE
             PreparedStatement ps = conn.prepareStatement(SQL);
 
             ps.setInt(1, entity.getRental().getID());
-            ps.setInt(2, entity.getAccessoryEntity().getID());
+            ps.setInt(2, entity.getAccessory().getID());
             ps.setInt(3, entity.getAmount());
 
             ps.executeUpdate();

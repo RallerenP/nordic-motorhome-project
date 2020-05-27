@@ -1,9 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.domain.mappers;
 
-import com.nordicmotorhome.motorhomerentals.MVC.model.AccessoryModel;
-import com.nordicmotorhome.motorhomerentals.MVC.model.CustomerModel;
-import com.nordicmotorhome.motorhomerentals.MVC.model.MotorhomeModel;
-import com.nordicmotorhome.motorhomerentals.MVC.model.RentalModel;
+import com.nordicmotorhome.motorhomerentals.MVC.model.*;
 import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.domain.entities.RentalAccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.domain.entities.RentalEntity;
@@ -17,7 +14,13 @@ public class RentalEntityModelMapper implements IEntityModelMapper<RentalEntity,
         CustomerModel cm = new CustomerEntityModelMapper().mapToModel(entity.getCustomerEntity());
         MotorhomeModel mm = new MotorhomeEntityModelMapper().mapToModel(entity.getMotorhomeEntity());
 
-        ArrayList<AccessoryModel> accessories = new ArrayList<>();
+        ArrayList<RentalAccessoryModel> accessories = new ArrayList<>();
+
+        IEntityModelMapper<RentalAccessoryEntity, RentalAccessoryModel> raemm = new RentalAccessoryEntityModelMapper();
+
+        for (RentalAccessoryEntity accessory : entity.getAccessoryEntities()) {
+            accessories.add(raemm.mapToModel(accessory));
+        }
 
         return new RentalModel(
                 entity.getID(),

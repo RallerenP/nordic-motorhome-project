@@ -12,11 +12,11 @@ public class RentalModel {
     private boolean fuelNeeded;
     private CustomerModel customer;
     private MotorhomeModel motorhome;
-    private ArrayList<AccessoryModel> accessories;
+    private ArrayList<RentalAccessoryModel> accessories;
     private int pickupDistance;
     private int deliveryDistance;
 
-    public RentalModel(int ID, LocalDate startDate, LocalDate endDate, int startKm, int endKm, boolean fuelNeeded, CustomerModel customer, MotorhomeModel motorhome, ArrayList<AccessoryModel> accessories, int pickupDistance, int deliveryDistance) {
+    public RentalModel(int ID, LocalDate startDate, LocalDate endDate, int startKm, int endKm, boolean fuelNeeded, CustomerModel customer, MotorhomeModel motorhome, ArrayList<RentalAccessoryModel> accessories, int pickupDistance, int deliveryDistance) {
         this.ID = ID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -62,7 +62,7 @@ public class RentalModel {
         return motorhome;
     }
 
-    public ArrayList<AccessoryModel> getAccessories() {
+    public ArrayList<RentalAccessoryModel> getAccessories() {
         return accessories;
     }
 

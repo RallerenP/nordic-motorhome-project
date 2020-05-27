@@ -18,6 +18,7 @@ public class DataFacadeImpl implements IDataFacade {
     private final IRepository<RentalEntity> rtr = new RentalRepository();
     private final IRepository<RoleEntity> rr = new RoleRepository();
     private final IRepository<StaffEntity> sr = new StaffRepository();
+    private final IRepository<RentalAccessoryEntity> rar = new RentalAccessoriesRepository();
 
     @Override
     public AccessoryEntity getAccessoryById(int id) throws NoSuchEntityException {
@@ -52,6 +53,16 @@ public class DataFacadeImpl implements IDataFacade {
     @Override
     public AccessoryEntity findOneAccessory(String key, int value) throws NoSuchEntityException {
         return ar.findOne(key, value);
+    }
+
+    @Override
+    public List<AccessoryEntity> findAllAccessories(String key, String value) throws NoSuchEntityException {
+        return ar.findAll(key, value);
+    }
+
+    @Override
+    public List<AccessoryEntity> findAllAccessories(String key, int value) throws NoSuchEntityException {
+        return ar.findAll(key, value);
     }
 
     @Override
@@ -90,6 +101,16 @@ public class DataFacadeImpl implements IDataFacade {
     }
 
     @Override
+    public List<AccessoryStockEntity> findAllAccessoryStock(String key, String value) throws NoSuchEntityException {
+        return asr.findAll(key, value);
+    }
+
+    @Override
+    public List<AccessoryStockEntity> findAllAccessoryStock(String key, int value) throws NoSuchEntityException {
+        return asr.findAll(key, value);
+    }
+
+    @Override
     public CustomerEntity getCustomerById(int id) throws NoSuchEntityException {
         return cr.getById(id);
     }
@@ -122,6 +143,16 @@ public class DataFacadeImpl implements IDataFacade {
     @Override
     public CustomerEntity findOneCustomer(String key, int value) throws NoSuchEntityException {
         return cr.findOne(key, value);
+    }
+
+    @Override
+    public List<CustomerEntity> findAllCustomers(String key, String value) throws NoSuchEntityException {
+        return cr.findAll(key,value);
+    }
+
+    @Override
+    public List<CustomerEntity> findAllCustomers(String key, int value) throws NoSuchEntityException {
+        return cr.findAll(key,value);
     }
 
     @Override
@@ -160,6 +191,16 @@ public class DataFacadeImpl implements IDataFacade {
     }
 
     @Override
+    public List<MotorhomeModelEntity> findAllMotorhomeModels(String key, String value) throws NoSuchEntityException {
+        return mmr.findAll(key,value);
+    }
+
+    @Override
+    public List<MotorhomeModelEntity> findAllMotorhomeModels(String key, int value) throws NoSuchEntityException {
+        return mmr.findAll(key,value);
+    }
+
+    @Override
     public MotorhomeEntity getMotorhomeById(int id) throws NoSuchEntityException {
         return mr.getById(id);
     }
@@ -192,6 +233,61 @@ public class DataFacadeImpl implements IDataFacade {
     @Override
     public MotorhomeEntity findOneMotorhome(String key, int value) throws NoSuchEntityException {
         return mr.findOne(key, value);
+    }
+
+    @Override
+    public List<MotorhomeEntity> findAllMotorhomes(String key, String value) throws NoSuchEntityException {
+        return mr.findAll(key,value);
+    }
+
+    @Override
+    public List<MotorhomeEntity> findAllMotorhomes(String key, int value) throws NoSuchEntityException {
+        return mr.findAll(key,value);
+    }
+
+    @Override
+    public RentalAccessoryEntity getRentalAccessoryById(int id) throws NoSuchEntityException {
+        return rar.getById(id);
+    }
+
+    @Override
+    public List<RentalAccessoryEntity> getAll() throws NoSuchEntityException {
+        return rar.getAll();
+    }
+
+    @Override
+    public RentalAccessoryEntity createRentalAccessory(RentalAccessoryEntity entity) {
+        return rar.create(entity);
+    }
+
+    @Override
+    public void deleteRentalAccessory(RentalAccessoryEntity entity) {
+        rar.delete(entity);
+    }
+
+    @Override
+    public RentalAccessoryEntity saveRentalAccessory(RentalAccessoryEntity entity) {
+        return rar.save(entity);
+    }
+
+    @Override
+    public RentalAccessoryEntity findOneRentalAccessory(String key, String value) throws NoSuchEntityException {
+        return rar.findOne(key,value);
+    }
+
+    @Override
+    public RentalAccessoryEntity findOneRentalAccessory(String key, int value) throws NoSuchEntityException {
+        return rar.findOne(key,value);
+    }
+
+    @Override
+    public List<RentalAccessoryEntity> findAllRentalAccessories(String key, String value) throws NoSuchEntityException {
+        return rar.findAll(key,value);
+    }
+
+    @Override
+    public List<RentalAccessoryEntity> findAllRentalAccessories(String key, int value) throws NoSuchEntityException {
+        return rar.findAll(key,value);
     }
 
     @Override
@@ -230,6 +326,16 @@ public class DataFacadeImpl implements IDataFacade {
     }
 
     @Override
+    public List<RentalEntity> findAllRentals(String key, String value) throws NoSuchEntityException {
+        return rtr.findAll(key,value);
+    }
+
+    @Override
+    public List<RentalEntity> findAllRentals(String key, int value) throws NoSuchEntityException {
+        return rtr.findAll(key,value);
+    }
+
+    @Override
     public RoleEntity getRoleById(int id) throws NoSuchEntityException {
         return rr.getById(id);
     }
@@ -265,6 +371,16 @@ public class DataFacadeImpl implements IDataFacade {
     }
 
     @Override
+    public List<RoleEntity> findAllRoles(String key, String value) throws NoSuchEntityException {
+        return rr.findAll(key,value);
+    }
+
+    @Override
+    public List<RoleEntity> findALlRoles(String key, int value) throws NoSuchEntityException {
+        return rr.findAll(key,value);
+    }
+
+    @Override
     public StaffEntity getStaffById(int id) throws NoSuchEntityException {
         return sr.getById(id);
     }
@@ -297,5 +413,15 @@ public class DataFacadeImpl implements IDataFacade {
     @Override
     public StaffEntity findOneStaff(String key, int value) throws NoSuchEntityException {
         return sr.findOne(key,value);
+    }
+
+    @Override
+    public List<StaffEntity> findAllStaff(String key, String value) throws NoSuchEntityException {
+        return sr.findAll(key,value);
+    }
+
+    @Override
+    public List<StaffEntity> findAllStaff(String key, int value) throws NoSuchEntityException {
+        return sr.findAll(key,value);
     }
 }
