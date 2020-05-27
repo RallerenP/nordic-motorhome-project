@@ -1,6 +1,8 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class RentalEntity extends BaseEntity {
@@ -13,6 +15,8 @@ public class RentalEntity extends BaseEntity {
     private MotorhomeEntity motorhomeEntity;
     private int pickup_distance;
     private int delivery_distance;
+    private ArrayList<Double> fees;
+    private long averageKilometers;
 
     private ArrayList<RentalAccessoryEntity> accessoryEntities = new ArrayList<>();
 
@@ -30,6 +34,39 @@ public class RentalEntity extends BaseEntity {
         this.pickup_distance = pickup_distance;
         this.delivery_distance = delivery_distance;
         this.accessoryEntities = accessoryEntities;
+    }
+
+    private void calculateFees() {
+        // Average kilometers
+        averageKilometers = (endKilometers - startKilometers) / ChronoUnit.DAYS.between(startDate, endDate);
+
+        // Find season and get multiplier
+        Month month = startDate.getMonth();
+        double multiplier = 1;
+
+        if (month.equals(Month.JANUARY) || month.equals(Month.FEBRUARY) || month.equals(Month.MARCH)) {
+            multiplier *= 0.3;
+        }
+
+        else if (month.equals(Month.APRIL) ||month.equals(Month.MAY) || month.equals(Month.JUNE) ||
+                month.equals(Month.JULY) || month.equals(Month.AUGUST) || month.equals(Month.SEPTEMBER)) {
+            multiplier *= 0.6;
+        }
+
+
+        // Calculate fees from multiplier and distance
+        if (averageKilometers > 400) {
+            averageKilometers = averageKilometers - 400;
+            fees.add(averageKilometers * multiplier);
+        }
+
+        if (pickup_distance != 0) {
+            fees.add(pickup_distance * multiplier);
+        }
+
+        if (delivery_distance != 0) {
+            fees.add(delivery_distance * multiplier);
+        }
     }
 
     public ArrayList<RentalAccessoryEntity> getAccessoryEntities() {
