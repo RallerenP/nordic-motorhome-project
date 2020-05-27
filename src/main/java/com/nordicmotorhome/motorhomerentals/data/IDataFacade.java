@@ -5,7 +5,7 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 
 import java.util.List;
 
-interface IDataFacade {
+public interface IDataFacade {
     // Accessories
     AccessoryEntity getAccessoryById(int id) throws NoSuchEntityException;
     List<AccessoryEntity> getAllAccessories() throws NoSuchEntityException;
