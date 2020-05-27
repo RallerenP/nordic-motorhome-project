@@ -94,6 +94,7 @@ public class DBSetup {
                     "CREATE TABLE rental_accessories (" +
                             "rental_id INTEGER NOT NULL," +
                             "accessories_id INTEGER NOT NULL," +
+                            "amount INTEGER DEFAULT 0," +
                             "PRIMARY KEY (rental_id, accessories_id)," +
                             "FOREIGN KEY (rental_id) REFERENCES rentals(ID)," +
                             "FOREIGN KEY (accessories_id) REFERENCES accessories(ID)" +

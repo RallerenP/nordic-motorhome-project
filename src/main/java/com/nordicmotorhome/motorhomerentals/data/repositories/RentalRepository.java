@@ -1,8 +1,9 @@
 package com.nordicmotorhome.motorhomerentals.data.repositories;
 
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
-import com.nordicmotorhome.motorhomerentals.data.entity.AccessoryEntity;
-import com.nordicmotorhome.motorhomerentals.data.entity.RentalEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.RentalAccessoryEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.RentalEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.sql.*;
@@ -166,32 +167,57 @@ public class RentalRepository implements IRepository<RentalEntity> {
         }
     }
 
-    public ArrayList<AccessoryEntity> getAccessories(int rentalId) {
+    @Override
+    public List<RentalEntity> findAll(String key, String value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM rental_accessories WHERE rental_id = ?";
+            String SQL = "SELECT * FROM rentals WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setInt(1, rentalId);
+            ps.setString(1, value);
 
             ResultSet rs = ps.executeQuery();
 
-            ArrayList<AccessoryEntity> accessories = new ArrayList<>();
-            AccessoryRepository ar = new AccessoryRepository();
-            while (rs.next()) {
-                accessories.add(ar.load(rs));
-            }
+            ArrayList<RentalEntity> entities = new ArrayList<>();
 
-            return accessories;
+            while(rs.next()) entities.add(load(rs));
+
+            if (entities.size() == 0) throw new NoSuchEntityException();
+            return entities;
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<>();
+            return null;
+        }
+    }
+
+    @Override
+    public List<RentalEntity> findAll(String key, int value) throws NoSuchEntityException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT * FROM rentals WHERE " + key + " = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setInt(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<RentalEntity> entities = new ArrayList<>();
+
+            while(rs.next()) entities.add(load(rs));
+
+            if (entities.size() == 0) throw new NoSuchEntityException();
+            return entities;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
     public RentalEntity load(ResultSet rs) throws SQLException, NoSuchEntityException {
         CustomerRepository cr = new CustomerRepository();
         MotorhomeRepository mr = new MotorhomeRepository();
+        RentalAccessoriesRepository rar = new RentalAccessoriesRepository();
+
         return new RentalEntity(
             rs.getInt("id"),
             rs.getDate("start_date").toLocalDate(),
@@ -203,7 +229,7 @@ public class RentalRepository implements IRepository<RentalEntity> {
             mr.getById(rs.getInt("motorhome_id")),
             rs.getInt("pickup_distance"),
             rs.getInt("delivery_distance"),
-            getAccessories(rs.getInt("id"))
+            rar.findAll("rental_id", rs.getInt("id"))
         );
     }
 

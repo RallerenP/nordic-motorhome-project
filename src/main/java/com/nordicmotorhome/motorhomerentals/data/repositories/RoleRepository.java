@@ -1,10 +1,12 @@
 package com.nordicmotorhome.motorhomerentals.data.repositories;
 
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
-import com.nordicmotorhome.motorhomerentals.data.entity.RoleEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.RoleEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoleRepository implements IRepository<RoleEntity> {
@@ -125,6 +127,52 @@ public class RoleRepository implements IRepository<RoleEntity> {
             if (!rs.next()) throw new NoSuchEntityException();
 
             return this.load(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<RoleEntity> findAll(String key, String value) throws NoSuchEntityException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT * FROM roles WHERE " + key + " = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setString(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<RoleEntity> entities = new ArrayList<>();
+
+            while(rs.next()) entities.add(load(rs));
+
+            if (entities.size() == 0) throw new NoSuchEntityException();
+            return entities;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<RoleEntity> findAll(String key, int value) throws NoSuchEntityException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT * FROM roles WHERE " + key + " = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setInt(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<RoleEntity> entities = new ArrayList<>();
+
+            while(rs.next()) entities.add(load(rs));
+
+            if (entities.size() == 0) throw new NoSuchEntityException();
+            return entities;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

@@ -1,4 +1,6 @@
-package com.nordicmotorhome.motorhomerentals.data.entity;
+package com.nordicmotorhome.motorhomerentals.domain.entities;
+
+import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
 
 public class CustomerEntity extends BaseEntity {
     private String firstName;

@@ -4,7 +4,7 @@ import com.nordicmotorhome.motorhomerentals.MVC.model.CustomerModel;
 import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
-import com.nordicmotorhome.motorhomerentals.data.entity.CustomerEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.CustomerEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 

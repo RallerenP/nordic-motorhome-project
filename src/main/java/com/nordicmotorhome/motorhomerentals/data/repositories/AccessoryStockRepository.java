@@ -1,8 +1,8 @@
 package com.nordicmotorhome.motorhomerentals.data.repositories;
 
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
-import com.nordicmotorhome.motorhomerentals.data.entity.AccessoryEntity;
-import com.nordicmotorhome.motorhomerentals.data.entity.AccessoryStockEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryStockEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.sql.*;
@@ -144,6 +144,52 @@ public class AccessoryStockRepository implements IRepository<AccessoryStockEntit
             if (!rs.next()) throw new NoSuchEntityException();
 
             return this.load(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<AccessoryStockEntity> findAll(String key, String value) throws NoSuchEntityException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT * FROM accessories_stock WHERE " + key + " = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setString(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<AccessoryStockEntity> entities = new ArrayList<>();
+
+            while(rs.next()) entities.add(load(rs));
+
+            if (entities.size() == 0) throw new NoSuchEntityException();
+            return entities;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<AccessoryStockEntity> findAll(String key, int value) throws NoSuchEntityException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT * FROM accessories_stock WHERE " + key + " = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setInt(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<AccessoryStockEntity> entities = new ArrayList<>();
+
+            while(rs.next()) entities.add(load(rs));
+
+            if (entities.size() == 0) throw new NoSuchEntityException();
+            return entities;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

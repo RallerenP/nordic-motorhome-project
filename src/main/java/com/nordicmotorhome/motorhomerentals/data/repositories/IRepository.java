@@ -1,11 +1,11 @@
 package com.nordicmotorhome.motorhomerentals.data.repositories;
 
-import com.nordicmotorhome.motorhomerentals.data.entity.BaseEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.util.List;
 
-public interface IRepository<T extends BaseEntity> {
+public interface IRepository<T> {
 
     /**
      * Gets an specific entity
@@ -50,6 +50,27 @@ public interface IRepository<T extends BaseEntity> {
      */
     T findOne(String key, String value) throws NoSuchEntityException;
 
-
+    /**
+     * Finds a single entity
+     * @param key The key to include in the condition
+     * @param value The value to include
+     * @return A single entity
+     */
     T findOne(String key, int value) throws NoSuchEntityException;
+
+    /**
+     * Finds all entities matching query
+     * @param key The key to match against
+     * @param value The value to search for
+     * @return Returns list of entites matching query
+     */
+    List<T> findAll(String key, String value) throws NoSuchEntityException;
+
+    /**
+     * Finds all entities matching query
+     * @param key The key to match against
+     * @param value The value to search for
+     * @return Returns list of entites matching query
+     */
+    List<T> findAll(String key, int value) throws NoSuchEntityException;
 }

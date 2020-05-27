@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.mappers;
 
 import com.nordicmotorhome.motorhomerentals.MVC.model.AccessoryModel;
-import com.nordicmotorhome.motorhomerentals.data.entity.AccessoryEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 
 public class AccessoryEntityModelMapper implements IEntityModelMapper<AccessoryEntity, AccessoryModel> {
     @Override

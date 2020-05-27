@@ -2,7 +2,7 @@ package com.nordicmotorhome.motorhomerentals.domain.mappers;
 
 import com.nordicmotorhome.motorhomerentals.MVC.model.RoleModel;
 import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
-import com.nordicmotorhome.motorhomerentals.data.entity.StaffEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.StaffEntity;
 
 public class StaffEntityModelMapper implements IEntityModelMapper<StaffEntity, StaffModel> {
 

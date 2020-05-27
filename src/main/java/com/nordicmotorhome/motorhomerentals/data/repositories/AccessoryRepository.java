@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.data.repositories;
 
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
-import com.nordicmotorhome.motorhomerentals.data.entity.AccessoryEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.sql.*;
@@ -14,7 +14,7 @@ public class AccessoryRepository implements IRepository<AccessoryEntity> {
     public AccessoryEntity getById(int id) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM accessory WHERE id = ?";
+            String SQL = "SELECT * FROM accessories WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
 
@@ -34,7 +34,7 @@ public class AccessoryRepository implements IRepository<AccessoryEntity> {
     public List<AccessoryEntity> getAll() throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM accessory";
+            String SQL = "SELECT * FROM accessories";
 
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
@@ -58,7 +58,7 @@ public class AccessoryRepository implements IRepository<AccessoryEntity> {
     public AccessoryEntity create(AccessoryEntity entity) {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "INSERT INTO accessory (name, price) VALUES (?,?)";
+            String SQL = "INSERT INTO accessories (name, price) VALUES (?,?)";
 
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, entity.getName());
@@ -81,7 +81,7 @@ public class AccessoryRepository implements IRepository<AccessoryEntity> {
     public void delete(AccessoryEntity model) {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "DELETE FROM accessory WHERE id = ?";
+            String SQL = "DELETE FROM accessories WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setInt(1, model.getID());
@@ -95,7 +95,7 @@ public class AccessoryRepository implements IRepository<AccessoryEntity> {
     public AccessoryEntity save(AccessoryEntity entity) {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "UPDATE accessory SET name = ?, price = ? WHERE id = ?";
+            String SQL = "UPDATE accessories SET name = ?, price = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, entity.getName());
@@ -115,11 +115,10 @@ public class AccessoryRepository implements IRepository<AccessoryEntity> {
     public AccessoryEntity findOne(String key, String value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM accessory WHERE ? = ?";
+            String SQL = "SELECT * FROM accessories WHERE " + key +" = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setString(2, value);
+            ps.setString(1, value);
 
             ResultSet rs = ps.executeQuery();
 
@@ -136,17 +135,62 @@ public class AccessoryRepository implements IRepository<AccessoryEntity> {
     public AccessoryEntity findOne(String key, int value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM accessory WHERE ? = ?";
+            String SQL = "SELECT * FROM accessories WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setInt(2, value);
+            ps.setInt(1, value);
 
             ResultSet rs = ps.executeQuery();
 
             if (!rs.next()) throw new NoSuchEntityException();
 
             return this.load(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<AccessoryEntity> findAll(String key, String value) throws NoSuchEntityException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT * FROM accessories WHERE " + key + " = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setString(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<AccessoryEntity> entities = new ArrayList<>();
+
+            while(rs.next()) entities.add(load(rs));
+
+            if (entities.size() == 0) throw new NoSuchEntityException();
+            return entities;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<AccessoryEntity> findAll(String key, int value) throws NoSuchEntityException {
+        try {
+            Connection con = DBManager.getConnection();
+            String SQL = "SELECT * FROM accessories WHERE " + key + " = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ps.setInt(1, value);
+
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<AccessoryEntity> entities = new ArrayList<>();
+
+            while(rs.next()) entities.add(load(rs));
+
+            if (entities.size() == 0) throw new NoSuchEntityException();
+            return entities;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

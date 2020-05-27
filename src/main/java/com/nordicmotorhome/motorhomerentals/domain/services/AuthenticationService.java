@@ -3,7 +3,7 @@ package com.nordicmotorhome.motorhomerentals.domain.services;
 import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
-import com.nordicmotorhome.motorhomerentals.data.entity.StaffEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.StaffEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.StaffEntityModelMapper;

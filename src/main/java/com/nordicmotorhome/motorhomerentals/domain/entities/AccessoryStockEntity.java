@@ -1,4 +1,7 @@
-package com.nordicmotorhome.motorhomerentals.data.entity;
+package com.nordicmotorhome.motorhomerentals.domain.entities;
+
+import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
 
 public class AccessoryStockEntity extends BaseEntity {
     private AccessoryEntity accessoryEntity;

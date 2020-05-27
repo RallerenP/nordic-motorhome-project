@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.data.entity;
+package com.nordicmotorhome.motorhomerentals.domain.entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ public class RentalEntity extends BaseEntity {
     private int pickup_distance;
     private int delivery_distance;
 
-    private ArrayList<AccessoryEntity> accessoryEntities = new ArrayList<>();
+    private ArrayList<RentalAccessoryEntity> accessoryEntities = new ArrayList<>();
 
     public RentalEntity(int id, LocalDate startDate, LocalDate endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
                         CustomerEntity customerEntity, MotorhomeEntity motorhomeEntity, int pickup_distance, int delivery_distance,
-                        ArrayList<AccessoryEntity> accessoryEntities) {
+                        ArrayList<RentalAccessoryEntity> accessoryEntities) {
         this.ID = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -32,11 +32,11 @@ public class RentalEntity extends BaseEntity {
         this.accessoryEntities = accessoryEntities;
     }
 
-    public ArrayList<AccessoryEntity> getAccessoryEntities() {
+    public ArrayList<RentalAccessoryEntity> getAccessoryEntities() {
         return accessoryEntities;
     }
 
-    public void setAccessoryEntities(ArrayList<AccessoryEntity> accessoryEntities) {
+    public void setAccessoryEntities(ArrayList<RentalAccessoryEntity> accessoryEntities) {
         this.accessoryEntities = accessoryEntities;
     }
 

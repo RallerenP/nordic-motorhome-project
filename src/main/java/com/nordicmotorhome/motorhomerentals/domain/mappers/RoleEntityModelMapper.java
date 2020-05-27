@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.mappers;
 
 import com.nordicmotorhome.motorhomerentals.MVC.model.RoleModel;
-import com.nordicmotorhome.motorhomerentals.data.entity.RoleEntity;
+import com.nordicmotorhome.motorhomerentals.domain.entities.RoleEntity;
 
 public class RoleEntityModelMapper implements IEntityModelMapper<RoleEntity, RoleModel> {
 

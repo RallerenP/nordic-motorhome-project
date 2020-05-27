@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.data.entity;
+package com.nordicmotorhome.motorhomerentals.domain.entities;
 
 public abstract class BaseEntity {
     int ID;

@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.data;
 
-import com.nordicmotorhome.motorhomerentals.data.entity.*;
 import com.nordicmotorhome.motorhomerentals.data.repositories.*;
+import com.nordicmotorhome.motorhomerentals.domain.entities.*;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.util.List;
