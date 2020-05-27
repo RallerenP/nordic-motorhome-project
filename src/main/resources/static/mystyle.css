@@ -61,6 +61,11 @@ body {
     align-items: center;
 }
 
+.full-size {
+    height: 100%;
+    width: 100%;
+}
+
 input {
     height: 48px;
 
@@ -72,6 +77,22 @@ input {
     border-bottom: 2px solid var(--main-hl-color);
 }
 
+/*LoginUser*/
+
+.column {
+    border: 2px solid #f28015;
+    height: 200px;
+    width: 100px;
+    padding: 16px 32px;
+    display: inline-table;
+    font-size: 16px;
+    margin: 0px 20px;
+}
+
+.column1 {
+    background-color: white;
+    color: black;
+}
 /* Specific */
 
 #login-form {
