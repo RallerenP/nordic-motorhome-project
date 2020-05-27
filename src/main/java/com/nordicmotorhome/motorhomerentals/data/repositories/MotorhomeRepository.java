@@ -113,7 +113,7 @@ public class MotorhomeRepository implements IRepository<MotorhomeEntity> {
     public MotorhomeEntity findOne(String key, String value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM motorhomes WHERE ? = ?";
+            String SQL = "SELECT * FROM motorhomes WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);
@@ -134,7 +134,7 @@ public class MotorhomeRepository implements IRepository<MotorhomeEntity> {
     public MotorhomeEntity findOne(String key, int value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM motorhomes WHERE ? = ?";
+            String SQL = "SELECT * FROM motorhomes WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);

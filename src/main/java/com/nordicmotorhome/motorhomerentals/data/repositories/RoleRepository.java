@@ -95,7 +95,7 @@ public class RoleRepository implements IRepository<RoleEntity> {
     public RoleEntity findOne(String key, String value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM roles WHERE ? = ?";
+            String SQL = "SELECT * FROM roles WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);
@@ -116,7 +116,7 @@ public class RoleRepository implements IRepository<RoleEntity> {
     public RoleEntity findOne(String key, int value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM roles WHERE ? = ?";
+            String SQL = "SELECT * FROM roles WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);

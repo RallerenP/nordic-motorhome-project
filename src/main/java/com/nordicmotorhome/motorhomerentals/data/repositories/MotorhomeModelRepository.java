@@ -97,7 +97,7 @@ public class MotorhomeModelRepository implements IRepository<MotorhomeModelEntit
     public MotorhomeModelEntity findOne(String key, String value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM motorhome_models WHERE ? = ?";
+            String SQL = "SELECT * FROM motorhome_models WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);
@@ -118,7 +118,7 @@ public class MotorhomeModelRepository implements IRepository<MotorhomeModelEntit
     public MotorhomeModelEntity findOne(String key, int value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM motorhome_models WHERE ? = ?";
+            String SQL = "SELECT * FROM motorhome_models WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);

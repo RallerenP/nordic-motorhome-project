@@ -112,7 +112,7 @@ public class AccessoryStockRepository implements IRepository<AccessoryStockEntit
     public AccessoryStockEntity findOne(String key, String value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM accessories_stock WHERE ? = ?";
+            String SQL = "SELECT * FROM accessories_stock WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);
@@ -133,7 +133,7 @@ public class AccessoryStockRepository implements IRepository<AccessoryStockEntit
     public AccessoryStockEntity findOne(String key, int value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM accessories_stock WHERE ? = ?";
+            String SQL = "SELECT * FROM accessories_stock WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);

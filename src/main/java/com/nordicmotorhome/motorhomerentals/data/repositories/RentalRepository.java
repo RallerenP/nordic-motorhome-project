@@ -129,7 +129,7 @@ public class RentalRepository implements IRepository<RentalEntity> {
     public RentalEntity findOne(String key, String value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM rentals WHERE ? = ?";
+            String SQL = "SELECT * FROM rentals WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);
@@ -150,7 +150,7 @@ public class RentalRepository implements IRepository<RentalEntity> {
     public RentalEntity findOne(String key, int value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM rentals WHERE ? = ?";
+            String SQL = "SELECT * FROM rentals WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);

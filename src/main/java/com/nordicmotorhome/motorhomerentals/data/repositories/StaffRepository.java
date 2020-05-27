@@ -121,7 +121,7 @@ public class StaffRepository implements IRepository<StaffEntity> {
     public StaffEntity findOne(String key, int value) throws NoSuchEntityException {
         try {
             Connection con = DBManager.getConnection();
-            String SQL = "SELECT * FROM staff WHERE ? = ?";
+            String SQL = "SELECT * FROM staff WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, key);
