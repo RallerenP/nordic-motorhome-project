@@ -10,12 +10,12 @@ Nordic Motorhome Rental is a Danish company that rents out motorhomeEntity. Nord
 **Employees:** 4 sales assistants, 2 cleaning staffEntity, 1 auto mechanic, 1 bookkeeper
 
 ### The Fleet
-Nordic Motorhome Rental has a fleet of 32 motorhomeEntity available for hire. Nordic Motorhome Rental currently offers 8 different types of motorhomeEntity. These are of various brands and models. Some are small compact campers for 2 persons and others are large with up to 6 beds.
+Nordic Motorhome Rental has a fleet of 32 motorhome available for hire. Nordic Motorhome Rental currently offers 8 different types of motorhome. These are of various brands and models. Some are small compact campers for 2 persons and others are large with up to 6 beds.
 
 ### Prices per day
-The price per day for rent depends on the brand and model of the motorhomeEntity. Apart from the brand and model price per day also depends upon the season. There are 3 seasons: Peak season, Middle Season and Low season.
+The price per day for rent depends on the brand and model of the motorhome. Apart from the brand and model price per day also depends upon the season. There are 3 seasons: Peak season, Middle Season and Low season.
 
-In peak season the prices for all motorhomeEntity are 60 % higher than prices in the low season. In middle season the prices for all motorhomeEntity are 30 % higher than prices in the low season.
+In peak season the prices for all motorhome are 60 % higher than prices in the low season. In middle season the prices for all motorhome are 30 % higher than prices in the low season.
 
 The price per day includes:
 
@@ -24,16 +24,16 @@ The price per day includes:
 * External cleaning
 
 ### Pick-up and drop-off points
-Nordic motorhomeEntity rentalEntity offers delivery of motorhomeEntity to a location that is most convenient for the customerEntity. It is often an airport, but it can be any other location for instance a ferry port or a hotel. For pick-up or drop-off outside Nordic motorhomeEntity Rentals office, customerEntity will be charged a transfer cost of 0,70€ per kilometer.
+Nordic motorhome rental offers delivery of motorhome to a location that is most convenient for the customer. It is often an airport, but it can be any other location for instance a ferry port or a hotel. For pick-up or drop-off outside Nordic motorhome Rentals office, customer will be charged a transfer cost of 0,70€ per kilometer.
 
 ### Extras
-To make the trip more enjoyable customerEntity can rent accessorEntity such as bike rack, bed linen, child seat, picnic table and chairs etc.
+To make the trip more enjoyable customer can rent accessorEntity such as bike rack, bed linen, child seat, picnic table and chairs etc.
 
 ### Service and repairs
 After drop-off the Motorhome will be cleaned. The auto mechanic checks oil & water etc. If repairs or further service is needed the auto mechanic register this.
 
 # Your task
-You are hired to develop a new system for Nordic Motorhome Rental that can handle information about motorhomeEntity, rentals and customerEntity. For this first version of the system the owners and the staffEntity at Nordic motorhomeEntity Rentals will be the users of the system. In a future version of the system the customerEntity should be able to make reservations through a web interface.
+You are hired to develop a new system for Nordic Motorhome Rental that can handle information about motorhome, rentals and customer. For this first version of the system the owners and the staff at Nordic motorhome Rentals will be the users of the system. In a future version of the system the customer should be able to make reservations through a web interface.
 
 **Note! During the project your ITO teacher represents the owners of Nordic Motorhome Rental**
 
