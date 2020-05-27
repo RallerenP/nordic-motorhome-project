@@ -27,7 +27,7 @@ The price per day includes:
 Nordic motorhome rental offers delivery of motorhome to a location that is most convenient for the customer. It is often an airport, but it can be any other location for instance a ferry port or a hotel. For pick-up or drop-off outside Nordic motorhome Rentals office, customer will be charged a transfer cost of 0,70€ per kilometer.
 
 ### Extras
-To make the trip more enjoyable customer can rent accessorEntity such as bike rack, bed linen, child seat, picnic table and chairs etc.
+To make the trip more enjoyable customer can rent accessor such as bike rack, bed linen, child seat, picnic table and chairs etc.
 
 ### Service and repairs
 After drop-off the Motorhome will be cleaned. The auto mechanic checks oil & water etc. If repairs or further service is needed the auto mechanic register this.
