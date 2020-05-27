@@ -7,7 +7,7 @@
 ## Case Description
 Nordic Motorhome Rental is a Danish company that rents out motorhome. Nordic Motorhome Rental was founded in 2019 and is situated just outside Copenhagen. So far there are 8 employees, but the company is very successful, and the two owners expect to hire more people in the near future.
 
-**Employees:** 4 sales assistants, 2 cleaning staffEntity, 1 auto mechanic, 1 bookkeeper
+**Employees:** 4 sales assistants, 2 cleaning staff, 1 auto mechanic, 1 bookkeeper
 
 ### The Fleet
 Nordic Motorhome Rental has a fleet of 32 motorhome available for hire. Nordic Motorhome Rental currently offers 8 different types of motorhome. These are of various brands and models. Some are small compact campers for 2 persons and others are large with up to 6 beds.
