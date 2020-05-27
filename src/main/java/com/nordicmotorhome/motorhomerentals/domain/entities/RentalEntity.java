@@ -16,7 +16,6 @@ public class RentalEntity extends BaseEntity {
     private int pickup_distance;
     private int delivery_distance;
     private ArrayList<Double> fees;
-    private long averageKilometers;
 
     private ArrayList<RentalAccessoryEntity> accessoryEntities = new ArrayList<>();
 
@@ -38,7 +37,7 @@ public class RentalEntity extends BaseEntity {
 
     private void calculateFees() {
         // Average kilometers
-        averageKilometers = (endKilometers - startKilometers) / ChronoUnit.DAYS.between(startDate, endDate);
+        long averageKilometers = (endKilometers - startKilometers) / ChronoUnit.DAYS.between(startDate, endDate);
 
         // Find season and get multiplier
         Month month = startDate.getMonth();
