@@ -1,0 +1,35 @@
+<div class="full-size flex-center">
+    <div class="row">
+        <h1>Opret ny kunde</h1>
+    </div>
+    <div class="row form-group w-100">
+        <form th:object="${customerObject}" th:action="@{/rentals/createcustomer}" method="post">
+            <div class="row form-group w-100">
+                <label for="firstName"><h3>Fornavn(e)</h3></label>
+                <input type="text" id="firstName" class="form-control" placeholder="" />
+            </div>
+            <div class="row form-group w-100">
+                <label for="lastName"><h3>Efternavn</h3></label>
+                <input type="text" id="lastName" class="form-control" placeholder="" />
+            </div>
+            <div class="row form-group w-100">
+                <label for="number"><h3>Mobilnummer</h3></label>
+                <input type="text" id="number" class="form-control" placeholder=""/>
+            </div>
+            <div class="row form-group w-100">
+                <label for="email"><h3>E-mail</h3></label>
+                <input type="text" id="email" class="form-control" placeholder=""/>
+            </div>
+            <div class="row form-group w-100">
+                <label for="cpr"><h3>CPR-nummer</h3></label>
+                <input type="text" id="cpr" class="form-control" placeholder=""/>
+            </div>
+            <button id="cancel" class="btn btn-danger m-1">Annuller</button>
+            <button id="confirm" type="submit" class="btn btn-success m-1">Opret kunde</button>
+        </form>
+    </div>
+
+
+
+
+</div>
