@@ -118,7 +118,7 @@ public class RoleRepository implements IRepository<RoleEntity> {
             String SQL = "SELECT * FROM roles WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, value);
+            ps.setInt(1, value);
 
             ResultSet rs = ps.executeQuery();
 

@@ -2,18 +2,19 @@
     <div class="row">
         <div class="column column1">
             <p>CPR nr.</p>
-    <!--        <input th:field="*{cpr}" id="cpr" placeholder="CPR nr.">-->
-            <button type="button">Search</button>
-
+            <form th:object="${CPRObject}" th:action="@{/rentals/finduser}" method="post">
+                <input th:field="*{cpr}" id="cpr" placeholder="CPR nr.">
+                <button type="submit">Search</button>
+            </form>
         </div>
         <div class="column column1">
-            <p>First Name</p>
+            <p>First Name: <span th:text="${customer?.getFirstName()}"></span></p>
 
-            <p>Last Name</p>
+            <p>Last Name: <span th:text="${customer?.getLastName()}"></span></p>
 
-            <p>Phone nr.</p>
+            <p>Phone nr.: <span th:text="${customer?.getPhone()}"></span></p>
 
-            <p>E-Mail</p>
+            <p>E-Mail: <span th:text="${customer?.getEmail()}"></span></p>
 
             <button type="button">Select User</button>
 
