@@ -138,8 +138,7 @@ public class CustomerRepository implements IRepository<CustomerEntity> {
             String SQL = "SELECT * FROM customers WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setString(2, value);
+            ps.setString(1, value);
 
             ResultSet rs = ps.executeQuery();
 
@@ -159,8 +158,7 @@ public class CustomerRepository implements IRepository<CustomerEntity> {
             String SQL = "SELECT * FROM customers WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setInt(2, value);
+            ps.setInt(1, value);
 
             ResultSet rs = ps.executeQuery();
 
