@@ -124,8 +124,7 @@ public class StaffRepository implements IRepository<StaffEntity> {
             String SQL = "SELECT * FROM staff WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setInt(2, value);
+            ps.setInt(1, value);
 
             ResultSet rs = ps.executeQuery();
 

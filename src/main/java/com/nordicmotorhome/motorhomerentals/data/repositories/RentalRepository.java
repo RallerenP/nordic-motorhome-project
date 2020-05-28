@@ -132,8 +132,7 @@ public class RentalRepository implements IRepository<RentalEntity> {
             String SQL = "SELECT * FROM rentals WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setString(2, value);
+            ps.setString(1, value);
 
             ResultSet rs = ps.executeQuery();
 
@@ -153,8 +152,7 @@ public class RentalRepository implements IRepository<RentalEntity> {
             String SQL = "SELECT * FROM rentals WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setInt(2, value);
+            ps.setString(1, value);
 
             ResultSet rs = ps.executeQuery();
 

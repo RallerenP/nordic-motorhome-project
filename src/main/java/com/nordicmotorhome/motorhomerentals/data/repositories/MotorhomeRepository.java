@@ -137,8 +137,7 @@ public class MotorhomeRepository implements IRepository<MotorhomeEntity> {
             String SQL = "SELECT * FROM motorhomes WHERE " + key + " = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
-            ps.setString(1, key);
-            ps.setInt(2, value);
+            ps.setInt(1, value);
 
             ResultSet rs = ps.executeQuery();
 
