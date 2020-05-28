@@ -1,20 +1,22 @@
 <div class="full-size flex-center">
-    <div class="row">
-        <div class="column column1">
-            <p>CPR nr.</p>
-            <form th:object="${CPRObject}" th:action="@{/rentals/finduser}" method="post">
-                <input th:field="*{cpr}" id="cpr" placeholder="CPR nr.">
-                <button type="submit">Search</button>
-            </form>
+    <div id="finduser-container" class="row">
+        <div class="flex-center">
+            <div>
+                <p><b>CPR nr.</b></p>
+                <form th:object="${CPRObject}" th:action="@{/rentals/finduser}" method="post">
+                    <input style="width: 100%;" th:field="*{cpr}" id="cpr" placeholder="CPR nr.">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
         </div>
-        <div class="column column1">
-            <p>First Name: <span th:text="${customer?.getFirstName()}"></span></p>
+        <div>
+            <p><b>First Name: </b><span th:text="${customer?.getFirstName()}"></span></p>
 
-            <p>Last Name: <span th:text="${customer?.getLastName()}"></span></p>
+            <p><b>Last Name: </b><span th:text="${customer?.getLastName()}"></span></p>
 
-            <p>Phone nr.: <span th:text="${customer?.getPhone()}"></span></p>
+            <p><b>Phone nr.: </b><span th:text="${customer?.getPhone()}"></span></p>
 
-            <p>E-Mail: <span th:text="${customer?.getEmail()}"></span></p>
+            <p><b>E-Mail: </b><span th:text="${customer?.getEmail()}"></span></p>
 
             <button type="button">Select User</button>
 

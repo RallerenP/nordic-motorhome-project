@@ -1,5 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.MVC.interceptors;
 
+import com.nordicmotorhome.motorhomerentals.MVC.FormObject.LoginFormObject;
 import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,7 +17,9 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
         StaffModel current = (StaffModel) session.getAttribute("user");
 
+
         if (modelAndView != null) {
+            modelAndView.addObject("loginObject", new LoginFormObject());
             modelAndView.addObject("user_name", current == null ? "gæst" : current.getFirstName());
         }
     }

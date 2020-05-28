@@ -14,7 +14,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model) {
-        model.addAttribute("loginObject", new LoginFormObject());
+
 
         if (request.getSession().getAttribute("user") != null) {
             model.addAttribute("content", "HomeView");
