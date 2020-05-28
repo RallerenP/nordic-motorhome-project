@@ -16,11 +16,6 @@ public class MotorhomeRentalsApplication {
     public static void main(String[] args) {
         SpringApplication.run(MotorhomeRentalsApplication.class, args);
 
-        LocalDate d1 = LocalDate.now();
-        LocalDate d2 = LocalDate.now().plusWeeks(5);
-        long between = ChronoUnit.DAYS.between(d1, d2);
-        System.out.println(between);
-
        /*DBSetup setup = new DBSetup();
        setup.setup();*/
 
