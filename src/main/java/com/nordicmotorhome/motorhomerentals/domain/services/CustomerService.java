@@ -5,6 +5,7 @@ import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
 import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;
+import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.CustomerEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 
@@ -19,5 +20,12 @@ public class CustomerService {
         ce = dataFacade.createCustomer(ce);
 
         return cemm.mapToModel(ce);
+    }
+    public CustomerModel findCustomer(String cpr){
+        try{
+            return cemm.mapToModel(dataFacade.findOneCustomer("cpr", cpr));
+        }catch (NoSuchEntityException e){
+            return null;
+        }
     }
 }
