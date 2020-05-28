@@ -1,6 +1,8 @@
 package com.nordicmotorhome.motorhomerentals.MVC.controller;
 
+import com.nordicmotorhome.motorhomerentals.MVC.FormObject.CreatCustomerFormObject;
 import com.nordicmotorhome.motorhomerentals.MVC.FormObject.SearchUserFormObject;
+import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,4 +29,19 @@ public class RentalController {
         model.addAttribute("content","LoginUser.html");
         return "index";
     }
+    @GetMapping("/createcustomer")
+    public String createCustomer(Model model) {
+        model.addAttribute( "content","registerCustomer.html" );
+        model.addAttribute( "customerObject",new CreatCustomerFormObject() );
+        return "index";
+    }
+    @PostMapping("/createcustomer")
+    public String createCustomer(@ModelAttribute CreatCustomerFormObject customerObject, Model model) {
+        cs.create( customerObject.getFirstName(), customerObject.getLastName(),customerObject.getNumber(),customerObject.getEmail(),customerObject.getCpr(),
+                new StaffModel( null,null,null,null ) );
+        model.addAttribute( "content","registerCustomer.html" );
+        model.addAttribute( "customerObject",customerObject );
+        return "index";
+    }
+
 }
