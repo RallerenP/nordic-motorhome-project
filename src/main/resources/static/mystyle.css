@@ -32,17 +32,17 @@ body {
     box-sizing: border-box;
 }
 
-    .navbar-container img {
-        height: 100%;
-    }
+.navbar-container img {
+    height: 100%;
+}
 
-    .navbar-container a {
-        padding: 0;
-        margin: 0 10px;
-        font-size: 1.5rem;
-        color: black;
-        text-decoration: none;
-    }
+.navbar-container a {
+    padding: 0;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    color: black;
+    text-decoration: none;
+}
 
 .center-screen {
     position: absolute;
@@ -95,13 +95,41 @@ input {
 
     font-size: 1.3rem;
 }
-    #finduser-container > div {
-        border: 2px solid #f28015;
-        padding: 16px 32px;
-        margin: 0px 10px;
-        background-color: white;
-        color: black;
-    }
+#finduser-container > div {
+    border: 2px solid #f28015;
+    padding: 16px 32px;
+    margin: 0px 10px;
+    background-color: white;
+    color: black;
+}
+
+/*HomeView*/
+
+.button {
+    border: 2px solid #f28015;
+    background-color: white;
+    color: black;
+    height: 500px;
+    width: 250px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #ccffcc;
+} /* Green */
+
+.button2 {
+    background-color: #ffffcc;
+} /* Yellow */
+
+.button3 {
+    background-color: #ffcccc;
+} /* Red */
+
 /* Specific */
 
 #login-form {
