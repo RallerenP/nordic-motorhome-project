@@ -1,6 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.MVC.FormObject;
 
-public class CreatCustomerFormObject {
+public class CreateCustomerFormObject {
     private String firstName;
     private String lastName;
     private String email;

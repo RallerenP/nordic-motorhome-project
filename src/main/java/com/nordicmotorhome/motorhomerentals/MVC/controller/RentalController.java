@@ -1,7 +1,11 @@
 package com.nordicmotorhome.motorhomerentals.MVC.controller;
 
+<<<<<<< HEAD
 import com.nordicmotorhome.motorhomerentals.MVC.FormObject.CreatCustomerFormObject;
 import com.nordicmotorhome.motorhomerentals.MVC.FormObject.SearchFormObject;
+=======
+import com.nordicmotorhome.motorhomerentals.MVC.FormObject.CreateCustomerFormObject;
+>>>>>>> 81-accessory-view
 import com.nordicmotorhome.motorhomerentals.MVC.FormObject.SearchUserFormObject;
 import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
@@ -43,12 +47,12 @@ public class RentalController {
     @GetMapping("/createcustomer")
     public String createCustomer(Model model) {
         model.addAttribute( "content","registerCustomer.html" );
-        model.addAttribute( "customerObject",new CreatCustomerFormObject() );
+        model.addAttribute( "customerObject",new CreateCustomerFormObject() );
         return "index";
     }
 
     @PostMapping("/createcustomer")
-    public String createCustomer(@ModelAttribute CreatCustomerFormObject customerObject, Model model) {
+    public String createCustomer(@ModelAttribute CreateCustomerFormObject customerObject, Model model) {
         cs.create( customerObject.getFirstName(), customerObject.getLastName(),customerObject.getNumber(),customerObject.getEmail(),customerObject.getCpr(),
                 new StaffModel( null,null,null,null));
         model.addAttribute("content","registerCustomer.html");
@@ -70,5 +74,10 @@ public class RentalController {
         model.addAttribute("content", "MotorhomeSearch.html");
         return "index";
     }
-
+    @GetMapping("/registeraccessory")
+    public String registerAaccessory(Model model) {
+        model.addAttribute( "content", "registerAccessory.html" );
+        model.addAttribute( "customerObject", new CreateCustomerFormObject() );
+        return "index";
+    }
 }

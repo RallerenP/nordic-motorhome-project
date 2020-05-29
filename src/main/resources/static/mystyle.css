@@ -14,6 +14,10 @@ body {
     height: 100vh;
     width: 100vw;
 }
+h1 {
+    color: black;
+    text-align: center;
+}
 
 .navbar-container {
     height: 72px;
@@ -61,6 +65,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.accessory {
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+}
+table.center {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .full-size {
