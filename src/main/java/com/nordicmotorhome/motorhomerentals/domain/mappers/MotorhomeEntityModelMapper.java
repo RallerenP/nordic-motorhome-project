@@ -4,6 +4,9 @@ import com.nordicmotorhome.motorhomerentals.MVC.model.MotorhomeModel;
 import com.nordicmotorhome.motorhomerentals.MVC.model.MotorhomeModelModel;
 import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MotorhomeEntityModelMapper implements IEntityModelMapper<MotorhomeEntity, MotorhomeModel> {
 
     @Override
@@ -19,4 +22,15 @@ public class MotorhomeEntityModelMapper implements IEntityModelMapper<MotorhomeE
                 entity.isServiced()
         );
     }
+
+    @Override
+    public ArrayList<MotorhomeModel> mapAllToModel(List<MotorhomeEntity> entities) {
+        ArrayList<MotorhomeModel> mm = new ArrayList<>();
+        for (MotorhomeEntity entity : entities) {
+            mm.add(mapToModel(entity));
+        }
+        return mm;
+    }
+
+
 }

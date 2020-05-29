@@ -5,6 +5,9 @@ import com.nordicmotorhome.motorhomerentals.MVC.model.RentalAccessoryModel;
 import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.domain.entities.RentalAccessoryEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RentalAccessoryEntityModelMapper implements IEntityModelMapper<RentalAccessoryEntity, RentalAccessoryModel> {
 
     @Override
@@ -17,4 +20,15 @@ public class RentalAccessoryEntityModelMapper implements IEntityModelMapper<Rent
                 entity.getAmount()
         );
     }
+
+    @Override
+    public ArrayList<RentalAccessoryModel> mapAllToModel(List<RentalAccessoryEntity> entities) {
+        ArrayList<RentalAccessoryModel> ram = new ArrayList<>();
+        for (RentalAccessoryEntity entity : entities) {
+            ram.add(mapToModel(entity));
+        }
+        return ram;
+    }
+
+
 }
