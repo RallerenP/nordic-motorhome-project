@@ -3,6 +3,9 @@ package com.nordicmotorhome.motorhomerentals.domain.mappers;
 import com.nordicmotorhome.motorhomerentals.MVC.model.CustomerModel;
 import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomerEntityModelMapper implements IEntityModelMapper<CustomerEntity, CustomerModel> {
     @Override
     public CustomerModel mapToModel(CustomerEntity entity) {
@@ -14,4 +17,15 @@ public class CustomerEntityModelMapper implements IEntityModelMapper<CustomerEnt
                 entity.getEmail()
         );
     }
+
+    @Override
+    public ArrayList<CustomerModel> mapAllToModel(List<CustomerEntity> entities) {
+        ArrayList<CustomerModel> cm = new ArrayList<>();
+        for (CustomerEntity entity : entities) {
+            cm.add(mapToModel(entity));
+        }
+        return cm;
+    }
+
+
 }

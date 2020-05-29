@@ -4,6 +4,9 @@ import com.nordicmotorhome.motorhomerentals.MVC.model.RoleModel;
 import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.domain.entities.StaffEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StaffEntityModelMapper implements IEntityModelMapper<StaffEntity, StaffModel> {
 
     @Override
@@ -19,4 +22,15 @@ public class StaffEntityModelMapper implements IEntityModelMapper<StaffEntity, S
                 role
         );
     }
+
+    @Override
+    public ArrayList<StaffModel> mapAllToModel(List<StaffEntity> entities) {
+        ArrayList<StaffModel> sm = new ArrayList<>();
+        for (StaffEntity entity : entities) {
+            sm.add(mapToModel(entity));
+        }
+        return sm;
+    }
+
+
 }

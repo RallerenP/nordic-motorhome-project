@@ -3,6 +3,9 @@ package com.nordicmotorhome.motorhomerentals.domain.mappers;
 import com.nordicmotorhome.motorhomerentals.MVC.model.RoleModel;
 import com.nordicmotorhome.motorhomerentals.domain.entities.RoleEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoleEntityModelMapper implements IEntityModelMapper<RoleEntity, RoleModel> {
 
     @Override
@@ -20,5 +23,15 @@ public class RoleEntityModelMapper implements IEntityModelMapper<RoleEntity, Rol
                 throw new IllegalStateException("Unexpected value: " + entity.getName());
         }
     }
+
+    @Override
+    public ArrayList<RoleModel> mapAllToModel(List<RoleEntity> entities) {
+        ArrayList<RoleModel> rm = new ArrayList<>();
+        for (RoleEntity entity : entities) {
+            rm.add(mapToModel(entity));
+        }
+        return rm;
+    }
+
 
 }

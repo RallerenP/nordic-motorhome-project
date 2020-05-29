@@ -6,6 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.RentalAccessoryEntit
 import com.nordicmotorhome.motorhomerentals.domain.entities.RentalEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RentalEntityModelMapper implements IEntityModelMapper<RentalEntity, RentalModel> {
 
@@ -36,4 +37,15 @@ public class RentalEntityModelMapper implements IEntityModelMapper<RentalEntity,
                 entity.getDelivery_distance()
         );
     }
+
+    @Override
+    public ArrayList<RentalModel> mapAllToModel(List<RentalEntity> entities) {
+        ArrayList<RentalModel> rm = new ArrayList<>();
+        for (RentalEntity entity : entities) {
+            rm.add(mapToModel(entity));
+        }
+        return rm;
+    }
+
+
 }
