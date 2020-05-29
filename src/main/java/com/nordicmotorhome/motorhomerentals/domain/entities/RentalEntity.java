@@ -15,7 +15,6 @@ public class RentalEntity extends BaseEntity {
     private MotorhomeEntity motorhomeEntity;
     private int pickup_distance;
     private int delivery_distance;
-    private ArrayList<Double> fees;
 
     private ArrayList<RentalAccessoryEntity> accessoryEntities = new ArrayList<>();
 
@@ -35,37 +34,51 @@ public class RentalEntity extends BaseEntity {
         this.accessoryEntities = accessoryEntities;
     }
 
-    private void calculateFees() {
-        // Average kilometers
-        long averageKilometers = (endKilometers - startKilometers) / ChronoUnit.DAYS.between(startDate, endDate);
+    public double calculateFees() {
+        double total = 0.0;
+
+        // Total days.
+        int totalDays = (int)ChronoUnit.DAYS.between(startDate, endDate);
+
+        // Base prices
+        total += getMotorhomeEntity().getMotorhomeModelEntity().getPrice() * totalDays;
 
         // Find season and get multiplier
         Month month = startDate.getMonth();
         double multiplier = 1;
 
         if (month.equals(Month.JANUARY) || month.equals(Month.FEBRUARY) || month.equals(Month.MARCH)) {
-            multiplier *= 0.3;
+            multiplier = 1.3;
         }
 
         else if (month.equals(Month.APRIL) ||month.equals(Month.MAY) || month.equals(Month.JUNE) ||
                 month.equals(Month.JULY) || month.equals(Month.AUGUST) || month.equals(Month.SEPTEMBER)) {
-            multiplier *= 0.6;
+            multiplier = 1.6;
         }
+
+
+        total *= multiplier;
+
+        for (RentalAccessoryEntity ent : accessoryEntities) {
+            total += ent.calculateFees();
+        }
+
+
+        // Average kilometers
+        long averageKilometers = (endKilometers - startKilometers) / totalDays;
 
 
         // Calculate fees from multiplier and distance
         if (averageKilometers > 400) {
-            averageKilometers = averageKilometers - 400;
-            fees.add(averageKilometers * multiplier);
+            total += averageKilometers - 400;
         }
 
-        if (pickup_distance != 0) {
-            fees.add(pickup_distance * multiplier);
-        }
+        total += pickup_distance * 0.70;
+        total += delivery_distance * 0.70;
 
-        if (delivery_distance != 0) {
-            fees.add(delivery_distance * multiplier);
-        }
+        if (fuelNeeded) total += 70;
+
+        return total;
     }
 
     public ArrayList<RentalAccessoryEntity> getAccessoryEntities() {
