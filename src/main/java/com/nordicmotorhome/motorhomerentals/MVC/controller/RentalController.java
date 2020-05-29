@@ -19,6 +19,12 @@ public class RentalController {
     CustomerService cs = new CustomerService();
     RentalService rs = new RentalService();
 
+    @GetMapping("/rentoptions")
+    public String rentoptions(Model model){
+        model.addAttribute("content","RentOptions.html");
+        return "index";
+    }
+
     @GetMapping("/finduser")
     public String findCustomer(Model model){
         model.addAttribute("CPRObject", new SearchUserFormObject());
