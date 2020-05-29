@@ -11,6 +11,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeModelEntity
 import com.nordicmotorhome.motorhomerentals.domain.entities.RentalEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
+import com.nordicmotorhome.motorhomerentals.domain.mappers.MotorhomeEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.MotorhomeModelEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.RentalEntityModelMapper;
 
@@ -23,6 +24,7 @@ public class RentalService {
 
     IEntityModelMapper<RentalEntity, RentalModel> remm = new RentalEntityModelMapper();
     IEntityModelMapper<MotorhomeModelEntity, MotorhomeModelModel> mmemm = new MotorhomeModelEntityModelMapper();
+    IEntityModelMapper<MotorhomeEntity, MotorhomeModel> memm = new MotorhomeEntityModelMapper();
     public RentalModel create(
             int customerID,
             LocalDate startDate,
@@ -60,11 +62,41 @@ public class RentalService {
         }
     }
 
-    public List<MotorhomeModelModel> findAllMotorhomes(int beds) {
+
+
+    public List<MotorhomeModelModel> searchMotorhomes(int beds) {
         try {
             return mmemm.mapAllToModel(dataFacade.findAllMotorhomeModels("beds", beds));
         }catch (NoSuchEntityException e) {
             return null;
         }
     }
+
+    public List<MotorhomeModel> searchMotorhomes(int beds, LocalDate startDate, LocalDate endDate) {
+        try {
+            ArrayList<MotorhomeEntity> motorhomeEntities = (ArrayList<MotorhomeEntity>) dataFacade.findAllMotorhomes("beds", 4);
+            ArrayList<MotorhomeEntity> candidates = new ArrayList<>();
+
+            for (MotorhomeEntity entity : motorhomeEntities) {
+                try {
+                    ArrayList<RentalEntity> rentalEntities = (ArrayList<RentalEntity>) dataFacade.findAllRentals("motorhome_id", entity.getID());
+
+                    for (RentalEntity re : rentalEntities) {
+                        if (re.getStartDate().isBefore(startDate) && re.getEndDate().isAfter(startDate)) continue;
+                        if (re.getStartDate().isBefore(endDate) && re.getEndDate().isAfter(endDate)) continue;
+                        if (re.getStartDate().isBefore(endDate) && re.getEndDate().isAfter(startDate)) continue;
+                        if (re.getStartDate().isBefore(startDate) && re.getEndDate().isAfter(endDate)) continue;
+
+                        candidates.add(re.getMotorhomeEntity());
+                    }
+                } catch (NoSuchEntityException e) {
+                    candidates.add(entity);
+                }
+            }
+
+            return memm.mapAllToModel(candidates);
+        } catch (NoSuchEntityException e) {
+            return null; // TODO: return something better
+        }
+    };
 }

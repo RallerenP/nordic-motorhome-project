@@ -3,7 +3,7 @@
         <div class="flex-center">
             <div>
                 <p><b>CPR nr.</b></p>
-                <form th:object="${CPRObject}" th:action="@{/rentals/finduser}" method="post">
+                <form th:object="${CPRObject}" th:action="@{/rentals/findcustomer}" method="post">
                     <input style="width: 100%;" th:field="*{cpr}" id="cpr" placeholder="CPR nr.">
                     <button type="submit">Search</button>
                 </form>
@@ -18,7 +18,11 @@
 
             <p><b>E-Mail: </b><span th:text="${customer?.getEmail()}"></span></p>
 
-            <button type="button">Select User</button>
+            <form action="/rentals/selectcustomer" method="POST">
+                <input name="id" style="display: none;" th:value="${customer?.getID()}">
+                <button type="submit">Select User</button>
+            </form>
+
 
         </div>
     </div>
