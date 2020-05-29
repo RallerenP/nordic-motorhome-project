@@ -1,15 +1,9 @@
 package com.nordicmotorhome.motorhomerentals.MVC.controller;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import com.nordicmotorhome.motorhomerentals.MVC.FormObject.AddRentalFormObject;
->>>>>>> fe3ab9806c671512e25590cabdabbd4038e92e7c
-import com.nordicmotorhome.motorhomerentals.MVC.FormObject.CreatCustomerFormObject;
 import com.nordicmotorhome.motorhomerentals.MVC.FormObject.SearchFormObject;
-=======
 import com.nordicmotorhome.motorhomerentals.MVC.FormObject.CreateCustomerFormObject;
->>>>>>> 81-accessory-view
+
 import com.nordicmotorhome.motorhomerentals.MVC.FormObject.SearchUserFormObject;
 import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
@@ -66,16 +60,10 @@ public class RentalController {
     }
 
     @GetMapping("/createcustomer")
-<<<<<<< HEAD
-    public String createCustomer(Model model) {
-        model.addAttribute( "content","registerCustomer.html" );
-        model.addAttribute( "customerObject",new CreateCustomerFormObject() );
-=======
     public String createCustomer(HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
         model.addAttribute( "content","RegisterCustomerView.html" );
-        model.addAttribute( "customerObject",new CreatCustomerFormObject() );
->>>>>>> fe3ab9806c671512e25590cabdabbd4038e92e7c
+        model.addAttribute( "customerObject",new CreateCustomerFormObject() );
         return "index";
     }
 
