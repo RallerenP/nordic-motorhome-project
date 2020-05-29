@@ -3,7 +3,7 @@
         <div class="flex-center">
             <div>
                 <p><b>Motorhome Search</b></p>
-                <form th:object="${searchObject}" th:action="@{/rentals/search}" method="post">
+                <form th:object="${searchObject}" th:action="@{/rentals/searchmotorhome}" method="post">
                     Number of beds
                     <input style="width: 100%;" th:field="*{beds}" id="beds" placeholder="4">
                     Start date
