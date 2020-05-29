@@ -17,13 +17,14 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
         StaffModel current = (StaffModel) session.getAttribute("user");
 
-        if (current == null) {
-            modelAndView.getModel().replace("content", "LoginView.html");
-        }
+        session.setAttribute("user_name", current == null ? "gæst" : current.getFirstName());
 
         if (modelAndView != null) {
             modelAndView.addObject("loginObject", new LoginFormObject());
-            modelAndView.addObject("user_name", current == null ? "gæst" : current.getFirstName());
+
+            if (current == null) {
+                modelAndView.getModel().replace("content", "LoginView.html");
+            }
         }
     }
 }
