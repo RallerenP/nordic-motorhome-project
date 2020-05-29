@@ -21,6 +21,7 @@ public class CustomerService {
 
         return cemm.mapToModel(ce);
     }
+
     public CustomerModel findCustomer(String cpr){
         try{
             return cemm.mapToModel(dataFacade.findOneCustomer("cpr", cpr));

@@ -17,6 +17,9 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
         StaffModel current = (StaffModel) session.getAttribute("user");
 
+        if (current == null) {
+            modelAndView.getModel().replace("content", "LoginView.html");
+        }
 
         if (modelAndView != null) {
             modelAndView.addObject("loginObject", new LoginFormObject());
