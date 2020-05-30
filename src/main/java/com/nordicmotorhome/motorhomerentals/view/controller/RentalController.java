@@ -1,11 +1,13 @@
 package com.nordicmotorhome.motorhomerentals.view.controller;
 
+import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.AddRentalFormObject;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchFormObject;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.CreateCustomerFormObject;
 
 import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchUserFormObject;
 import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.view.model.CustomerModel;
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
 import com.nordicmotorhome.motorhomerentals.domain.services.RentalService;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+// AUTHORS: ME, AML, NKJ, RAP
 @Controller
 @RequestMapping ("/rentals")
 public class RentalController {
@@ -70,12 +73,18 @@ public class RentalController {
     }
 
     @PostMapping("/createcustomer")
-    public String createCustomer(@ModelAttribute CreateCustomerFormObject customerObject, Model model) {
-        cs.create( customerObject.getFirstName(), customerObject.getLastName(),customerObject.getNumber(),customerObject.getEmail(),customerObject.getCpr(),
-                new StaffModel( null,null,null,null));
-        model.addAttribute("content","RegisterCustomerView.html");
-        model.addAttribute("customerObject",customerObject);
-        return "index";
+    public String createCustomer(@ModelAttribute CreateCustomerFormObject customerObject, HttpServletRequest request, Model model) {
+        if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
+        CustomerModel cm = cs.create( customerObject.getFirstName(), customerObject.getLastName(),customerObject.getNumber(),customerObject.getEmail(),customerObject.getCpr(),
+                new StaffModel( null,null,null,null)); // TODO Actual auth
+
+        AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
+        arfo.setCustomerID(cm.getID());
+
+        // Maybe not needed
+        request.getSession().setAttribute("rental", arfo);
+
+        return "redirect:/rentals/searchmotorhome";
     }
 
     @GetMapping("/searchmotorhome")

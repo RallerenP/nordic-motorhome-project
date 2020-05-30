@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
+// AUTHORS: RAP
 @Controller
 public class HomeController {
 
