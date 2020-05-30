@@ -99,4 +99,13 @@ public class RentalService {
             return null; // TODO: return something better
         }
     };
+    public List<RentalModel> findRentals(){
+        try {
+            ArrayList<RentalEntity> re = (ArrayList<RentalEntity>) dataFacade.getAllRentals();
+            return remm.mapAllToModel(re);
+        } catch (NoSuchEntityException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

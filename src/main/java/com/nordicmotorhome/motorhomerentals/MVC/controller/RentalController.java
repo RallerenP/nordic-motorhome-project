@@ -97,4 +97,11 @@ public class RentalController {
         model.addAttribute( "customerObject", new CreateCustomerFormObject() );
         return "index";
     }
+
+    @GetMapping("/cancelrental")
+    public String cancelRental(Model model){
+        model.addAttribute("results", rs.findRentals());
+        model.addAttribute("content", "CancelRental.html");
+        return "index";
+    }
 }
