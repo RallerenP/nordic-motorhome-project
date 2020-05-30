@@ -3,6 +3,9 @@ package com.nordicmotorhome.motorhomerentals;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 @SpringBootApplication
 public class MotorhomeRentalsApplication {
 
