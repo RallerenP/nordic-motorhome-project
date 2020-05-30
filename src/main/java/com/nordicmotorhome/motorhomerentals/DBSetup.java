@@ -1,8 +1,8 @@
 package com.nordicmotorhome.motorhomerentals;
 
-import com.nordicmotorhome.motorhomerentals.MVC.model.CustomerModel;
-import com.nordicmotorhome.motorhomerentals.MVC.model.RentalModel;
-import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.view.model.CustomerModel;
+import com.nordicmotorhome.motorhomerentals.view.model.RentalModel;
+import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
 import com.nordicmotorhome.motorhomerentals.data.repositories.StaffRepository;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;

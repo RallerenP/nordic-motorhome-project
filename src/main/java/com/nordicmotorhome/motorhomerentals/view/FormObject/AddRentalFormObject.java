@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.MVC.FormObject;
+package com.nordicmotorhome.motorhomerentals.view.FormObject;
 
 import java.time.LocalDate;
 

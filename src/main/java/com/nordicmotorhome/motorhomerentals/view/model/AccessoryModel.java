@@ -1,15 +1,13 @@
-package com.nordicmotorhome.motorhomerentals.MVC.model;
+package com.nordicmotorhome.motorhomerentals.view.model;
 
-public class MotorhomeModelModel {
+public class AccessoryModel {
     private int ID;
     private String name;
-    private int beds;
     private double price;
 
-    public MotorhomeModelModel(int ID, String name, int beds, double price) {
+    public AccessoryModel(int ID, String name, double price) {
         this.ID = ID;
         this.name = name;
-        this.beds = beds;
         this.price = price;
     }
 
@@ -19,10 +17,6 @@ public class MotorhomeModelModel {
 
     public String getName() {
         return name;
-    }
-
-    public int getBeds() {
-        return beds;
     }
 
     public double getPrice() {

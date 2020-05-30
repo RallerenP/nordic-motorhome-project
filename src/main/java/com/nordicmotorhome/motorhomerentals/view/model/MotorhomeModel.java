@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.MVC.model;
+package com.nordicmotorhome.motorhomerentals.view.model;
 
 public class MotorhomeModel {
     private int ID;

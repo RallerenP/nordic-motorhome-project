@@ -1,6 +1,6 @@
-package com.nordicmotorhome.motorhomerentals.MVC.config;
+package com.nordicmotorhome.motorhomerentals.view.config;
 
-import com.nordicmotorhome.motorhomerentals.MVC.interceptors.AuthenticationInterceptor;
+import com.nordicmotorhome.motorhomerentals.view.interceptors.AuthenticationInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

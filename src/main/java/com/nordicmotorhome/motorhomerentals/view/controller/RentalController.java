@@ -1,11 +1,11 @@
-package com.nordicmotorhome.motorhomerentals.MVC.controller;
+package com.nordicmotorhome.motorhomerentals.view.controller;
 
-import com.nordicmotorhome.motorhomerentals.MVC.FormObject.AddRentalFormObject;
-import com.nordicmotorhome.motorhomerentals.MVC.FormObject.SearchFormObject;
-import com.nordicmotorhome.motorhomerentals.MVC.FormObject.CreateCustomerFormObject;
+import com.nordicmotorhome.motorhomerentals.view.FormObject.AddRentalFormObject;
+import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchFormObject;
+import com.nordicmotorhome.motorhomerentals.view.FormObject.CreateCustomerFormObject;
 
-import com.nordicmotorhome.motorhomerentals.MVC.FormObject.SearchUserFormObject;
-import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchUserFormObject;
+import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
 import com.nordicmotorhome.motorhomerentals.domain.services.RentalService;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.domain.mappers;
 
-import com.nordicmotorhome.motorhomerentals.MVC.model.MotorhomeModelModel;
+import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModelModel;
 import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeModelEntity;
 
 import java.util.ArrayList;

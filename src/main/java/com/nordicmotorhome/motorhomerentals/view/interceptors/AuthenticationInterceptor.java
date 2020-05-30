@@ -1,8 +1,7 @@
-package com.nordicmotorhome.motorhomerentals.MVC.interceptors;
+package com.nordicmotorhome.motorhomerentals.view.interceptors;
 
-import com.nordicmotorhome.motorhomerentals.MVC.FormObject.LoginFormObject;
-import com.nordicmotorhome.motorhomerentals.MVC.model.StaffModel;
-import org.springframework.ui.Model;
+import com.nordicmotorhome.motorhomerentals.view.FormObject.LoginFormObject;
+import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -19,12 +18,12 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
         session.setAttribute("user_name", current == null ? "gæst" : current.getFirstName());
 
-        if (modelAndView != null) {
-            modelAndView.addObject("loginObject", new LoginFormObject());
-
-            if (current == null) {
-                modelAndView.getModel().replace("content", "LoginView.html");
-            }
-        }
+//        if (modelAndView != null) {
+//            modelAndView.addObject("loginObject", new LoginFormObject());
+//
+//            if (current == null) {
+//                modelAndView.getModel().replace("content", "LoginView.html");
+//            }
+//        }
     }
 }

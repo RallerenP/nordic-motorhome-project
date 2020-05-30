@@ -19,6 +19,24 @@ h1 {
     text-align: center;
 }
 
+button {
+    height: 48px;
+    font-size: 1.3rem;
+    background: var(--main-bg-color);
+    color: var(--main-fg-color);
+
+    border: none;
+    border-bottom: 2px solid var(--main-hl-color);
+
+    transition: all 100ms;
+    cursor: pointer;
+}
+
+button:hover {
+    color: var(--main-bg-color);
+    background: var(--main-hl-color);
+}
+
 .navbar-container {
     height: 72px;
     width: 100%;

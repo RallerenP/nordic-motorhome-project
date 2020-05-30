@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.MVC.model;
+package com.nordicmotorhome.motorhomerentals.view.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
