@@ -65,25 +65,28 @@ public class RentalEntity extends BaseEntity {
 
         // Calculate percentage depending on time left before rental start
 
-        if (ChronoUnit.DAYS.between(startDate, LocalDate.now()) > 50) {
+        return daysBetweenMultiplier(total);
+    }
+
+    private double daysBetweenMultiplier(double total) {
+        if (ChronoUnit.DAYS.between(LocalDate.now(), startDate) > 50) {
             total *= 0.2;
             if (total < 200) {
                 total = 200;
             }
         }
 
-        else if (ChronoUnit.DAYS.between(startDate, LocalDate.now()) < 50 && ChronoUnit.DAYS.between(startDate, LocalDate.now()) > 14) {
+        else if (ChronoUnit.DAYS.between(LocalDate.now(), startDate) > 14) {
             total *= 0.5;
         }
 
-        else if (ChronoUnit.DAYS.between(startDate, LocalDate.now()) < 15 && ChronoUnit.DAYS.between(startDate, LocalDate.now()) > 1) {
+        else if (ChronoUnit.DAYS.between(LocalDate.now(), startDate) > 1) {
             total *= 0.8;
         }
 
         else {
             total *= 0.95;
         }
-
         return total;
     }
 
