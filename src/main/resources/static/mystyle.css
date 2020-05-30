@@ -37,6 +37,10 @@ button:hover {
     background: var(--main-hl-color);
 }
 
+.hidden {
+    display: none;
+}
+
 .navbar-container {
     height: 72px;
     width: 100%;

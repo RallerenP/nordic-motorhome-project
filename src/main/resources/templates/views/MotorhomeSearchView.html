@@ -19,15 +19,18 @@
         <div class="flex-grow border-theme motorhome-search-result-container">
             <th:block th:each="result : ${results}">
                 <div class="motorhome-search-result-item">
-                    <img style="height: 100%" th:src='${"/images/motorhomes/" + result.getModel().getName() + ".jpg"}'>
+                    <img style="height: 100%" th:src='${"/images/motorhomes/" + result.motorhome.model.name + ".jpg"}'>
                     <div class="info-block">
                         <div class="flex flex-col">
-                            <p class="title" th:text="${result.getModel().getName()}">
-                            <p class="subtitle" th:text="${result.getModel().getBeds() + ' beds'}"></p>
+                            <p class="title" th:text="${result.motorhome.model.name}">
+                            <p class="subtitle" th:text="${result.motorhome.model.beds + ' beds'}"></p>
                         </div>
                         <div class="flex-center flex-grow flex-col">
-                            <p class="title">$PRICE</p>
-                            <button>Select Motorhome</button>
+                            <p class="title" th:text="${'Pris: ' + result.price + 'DKK'}"></p>
+                            <form action="/rentals/selectmotorhome" method="post">
+                                <input class="hidden" name="id" th:value="${result.motorhome.ID}" >
+                                <button>Select Motorhome</button>
+                            </form>
                         </div>
 
                     </div>

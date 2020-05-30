@@ -1,6 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.view.controller;
 
-import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;
+import com.nordicmotorhome.motorhomerentals.domain.services.MotorhomeService;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.AddRentalFormObject;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchFormObject;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.CreateCustomerFormObject;
@@ -27,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 public class RentalController {
     CustomerService cs = new CustomerService();
     RentalService rs = new RentalService();
+    MotorhomeService ms = new MotorhomeService();
 
     @GetMapping("/customerselect")
     public String rentoptions(HttpServletRequest request, Model model){
@@ -102,19 +103,19 @@ public class RentalController {
         LocalDate start = LocalDate.parse(searchObject.getStartDate(), dtf);
         LocalDate end = LocalDate.parse(searchObject.getEndDate(), dtf);
 
-        model.addAttribute("results", rs.searchMotorhomes(searchObject.getBeds(), start, end));
+        model.addAttribute("results", ms.searchMotorhomes(searchObject.getBeds(), start, end));
         model.addAttribute("searchObject", searchObject);
         model.addAttribute("content", "MotorhomeSearchView.html");
         return "index";
     }
 
-
-    @GetMapping("/registeraccessory")
+    @GetMapping("/addaccessory")
     public String registerAccessory(Model model) {
         model.addAttribute( "content", "RegisterAccessory.html" );
         model.addAttribute( "customerObject", new CreateCustomerFormObject() );
         return "index";
     }
+
     @GetMapping("/updatecustomer")
     public String updateCustomer(Model model) {
         model.addAttribute( "content", "UpdateCustomer.html" );
@@ -127,5 +128,17 @@ public class RentalController {
         model.addAttribute("results", rs.findRentals());
         model.addAttribute("content", "CancelRental.html");
         return "index";
+    }
+
+    @PostMapping("/selectmotorhome")
+    public String selectMotorhome(HttpServletRequest request) {
+        AddRentalFormObject rental = (AddRentalFormObject) request.getSession().getAttribute("rental");
+
+        rental.setMotorhomeID(Integer.parseInt(request.getParameter("id")));
+
+        // Maybe not needed
+        request.getSession().setAttribute("rental", rental);
+
+        return "redirect:/rentals/addaccessory";
     }
 }

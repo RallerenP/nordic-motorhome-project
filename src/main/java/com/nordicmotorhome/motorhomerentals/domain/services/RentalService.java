@@ -23,8 +23,7 @@ public class RentalService {
     IDataFacade dataFacade = DataFacadeImpl.getInstance();
 
     IEntityModelMapper<RentalEntity, RentalModel> remm = new RentalEntityModelMapper();
-    IEntityModelMapper<MotorhomeModelEntity, MotorhomeModelModel> mmemm = new MotorhomeModelEntityModelMapper();
-    IEntityModelMapper<MotorhomeEntity, MotorhomeModel> memm = new MotorhomeEntityModelMapper();
+
     public RentalModel create(
             int customerID,
             LocalDate startDate,
@@ -62,46 +61,7 @@ public class RentalService {
         }
     }
 
-    public List<MotorhomeModelModel> searchMotorhomes(int beds) {
-        try {
-            return mmemm.mapAllToModel(dataFacade.findAllMotorhomeModels("beds", beds));
-        }catch (NoSuchEntityException e) {
-            return null;
-        }
-    }
 
-    // Author: RAP
-    public List<MotorhomeModel> searchMotorhomes(int beds, LocalDate startDate, LocalDate endDate) {
-        try {
-            ArrayList<MotorhomeModelEntity> motorhomeModelEntities = (ArrayList<MotorhomeModelEntity>) dataFacade.findAllMotorhomeModels("beds", beds);
-            ArrayList<MotorhomeEntity> candidates = new ArrayList<>();
-
-            for (MotorhomeModelEntity model : motorhomeModelEntities) {
-                ArrayList<MotorhomeEntity> motorhomeEntities = (ArrayList<MotorhomeEntity>) dataFacade.findAllMotorhomes("model_id", model.getID());
-
-                for (MotorhomeEntity entity : motorhomeEntities) {
-                    try {
-                        ArrayList<RentalEntity> rentalEntities = (ArrayList<RentalEntity>) dataFacade.findAllRentals("motorhome_id", entity.getID());
-
-                        for (RentalEntity re : rentalEntities) {
-                            if (re.getStartDate().isBefore(startDate) && re.getEndDate().isAfter(startDate)) continue;
-                            if (re.getStartDate().isBefore(endDate) && re.getEndDate().isAfter(endDate)) continue;
-                            if (re.getStartDate().isBefore(endDate) && re.getEndDate().isAfter(startDate)) continue;
-                            if (re.getStartDate().isBefore(startDate) && re.getEndDate().isAfter(endDate)) continue;
-
-                            candidates.add(re.getMotorhomeEntity());
-                        }
-                    } catch (NoSuchEntityException e) {
-                        candidates.add(entity);
-                    }
-                }
-            }
-
-            return memm.mapAllToModel(candidates);
-        } catch (NoSuchEntityException e) {
-            return null; // TODO: return something better
-        }
-    };
     public List<RentalModel> findRentals(){
         try {
             ArrayList<RentalEntity> re = (ArrayList<RentalEntity>) dataFacade.getAllRentals();

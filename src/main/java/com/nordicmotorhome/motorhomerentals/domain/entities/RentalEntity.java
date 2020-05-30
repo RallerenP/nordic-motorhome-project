@@ -97,7 +97,7 @@ public class RentalEntity extends BaseEntity {
         int totalDays = (int)ChronoUnit.DAYS.between(startDate, endDate);
 
         // Base prices
-        total += getMotorhomeEntity().getMotorhomeModelEntity().getPrice() * totalDays;
+        total += getMotorhomeEntity().getPriceByRentalLength(totalDays);
 
         // Find season and get multiplier
         Month month = startDate.getMonth();
