@@ -1,10 +1,13 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
+import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
+// AUTHORS: AML, RAP
 public class RentalEntity extends BaseEntity {
     private LocalDate startDate;
     private LocalDate endDate;
@@ -34,6 +37,7 @@ public class RentalEntity extends BaseEntity {
         this.accessoryEntities = accessoryEntities;
     }
 
+    // AUTHOR: AML
     public double calculateCancellationFees() {
         double total = 0.0;
 
@@ -45,19 +49,7 @@ public class RentalEntity extends BaseEntity {
         total += getMotorhomeEntity().getMotorhomeModelEntity().getPrice() * totalDays;
 
         // Find season and get multiplier
-        Month month = startDate.getMonth();
-        double multiplier = 1;
-
-        if (month.equals(Month.JANUARY) || month.equals(Month.FEBRUARY) || month.equals(Month.MARCH)) {
-            multiplier = 1.3;
-        }
-
-        else if (month.equals(Month.APRIL) ||month.equals(Month.MAY) || month.equals(Month.JUNE) ||
-                month.equals(Month.JULY) || month.equals(Month.AUGUST) || month.equals(Month.SEPTEMBER)) {
-            multiplier = 1.6;
-        }
-
-        total *= multiplier;
+        total *= Season.getSeason(startDate).getMult();
 
         for (RentalAccessoryEntity ent : accessoryEntities) {
             total += ent.calculateFees();
@@ -68,6 +60,7 @@ public class RentalEntity extends BaseEntity {
         return daysBetweenMultiplier(total);
     }
 
+    // AUTHOR: AML
     private double daysBetweenMultiplier(double total) {
         if (ChronoUnit.DAYS.between(LocalDate.now(), startDate) > 50) {
             total *= 0.2;
@@ -90,6 +83,7 @@ public class RentalEntity extends BaseEntity {
         return total;
     }
 
+    // AUTHOR: RAP
     public double calculateFees() {
         double total = 0.0;
 
@@ -97,23 +91,9 @@ public class RentalEntity extends BaseEntity {
         int totalDays = (int)ChronoUnit.DAYS.between(startDate, endDate);
 
         // Base prices
-        total += getMotorhomeEntity().getPriceByRentalLength(totalDays);
+        total += getMotorhomeEntity().getPriceByRentalLength(totalDays, Season.getSeason(startDate));
 
         // Find season and get multiplier
-        Month month = startDate.getMonth();
-        double multiplier = 1;
-
-        if (month.equals(Month.JANUARY) || month.equals(Month.FEBRUARY) || month.equals(Month.MARCH)) {
-            multiplier = 1.3;
-        }
-
-        else if (month.equals(Month.APRIL) ||month.equals(Month.MAY) || month.equals(Month.JUNE) ||
-                month.equals(Month.JULY) || month.equals(Month.AUGUST) || month.equals(Month.SEPTEMBER)) {
-            multiplier = 1.6;
-        }
-
-
-        total *= multiplier;
 
         for (RentalAccessoryEntity ent : accessoryEntities) {
             total += ent.calculateFees();

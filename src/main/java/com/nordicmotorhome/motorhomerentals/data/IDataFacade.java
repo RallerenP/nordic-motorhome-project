@@ -63,7 +63,7 @@ public interface IDataFacade {
 
     // RentalAccessories
     RentalAccessoryEntity getRentalAccessoryById(int id) throws NoSuchEntityException;
-    List<RentalAccessoryEntity> getAll() throws NoSuchEntityException;
+    List<RentalAccessoryEntity> getAllRentalAccessories() throws NoSuchEntityException;
     RentalAccessoryEntity createRentalAccessory(RentalAccessoryEntity entity);
     void deleteRentalAccessory(RentalAccessoryEntity entity);
     RentalAccessoryEntity saveRentalAccessory(RentalAccessoryEntity entity);

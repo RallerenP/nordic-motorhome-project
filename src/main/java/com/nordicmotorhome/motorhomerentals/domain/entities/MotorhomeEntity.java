@@ -1,5 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
+import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -17,12 +19,12 @@ public class MotorhomeEntity extends BaseEntity {
         this.serviced = serviced;
     }
 
-    public double getPriceByRentalLength(int days) {
-        return motorhomeModelEntity.getPrice() * days;
+    public double getPriceByRentalLength(int days, Season season) {
+        return (motorhomeModelEntity.getPrice() * days) * season.getMult();
     }
 
     public double getPriceByRentalLength(LocalDate startDate, LocalDate endDate) {
-        return getPriceByRentalLength((int) ChronoUnit.DAYS.between(startDate, endDate));
+        return getPriceByRentalLength((int) ChronoUnit.DAYS.between(startDate, endDate), Season.getSeason(startDate));
     };
 
     public MotorhomeModelEntity getMotorhomeModelEntity() {

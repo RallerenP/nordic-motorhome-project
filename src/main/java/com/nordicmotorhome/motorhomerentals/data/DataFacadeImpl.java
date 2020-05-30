@@ -251,7 +251,7 @@ public class DataFacadeImpl implements IDataFacade {
     }
 
     @Override
-    public List<RentalAccessoryEntity> getAll() throws NoSuchEntityException {
+    public List<RentalAccessoryEntity> getAllRentalAccessories() throws NoSuchEntityException {
         return rar.getAll();
     }
 

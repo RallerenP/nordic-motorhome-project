@@ -1,14 +1,11 @@
 package com.nordicmotorhome.motorhomerentals.domain.services;
 
+import com.nordicmotorhome.motorhomerentals.domain.entities.*;
 import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModel;
 import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModelModel;
 import com.nordicmotorhome.motorhomerentals.view.model.RentalModel;
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
-import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;
-import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeEntity;
-import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeModelEntity;
-import com.nordicmotorhome.motorhomerentals.domain.entities.RentalEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.MotorhomeEntityModelMapper;
@@ -61,6 +58,22 @@ public class RentalService {
         }
     }
 
+    public double getIntermediatePrice(List<Integer> accessories, int motorhome_id, LocalDate start, LocalDate end) {
+        double total = 0;
+
+        try {
+            total += dataFacade.getMotorhomeById(motorhome_id).getPriceByRentalLength(start, end);
+
+            for (int accessory_id : accessories) {
+                total += dataFacade.getAccessoryById(accessory_id).getPriceByRentalLength(start, end);
+            }
+
+            return total;
+        } catch (NoSuchEntityException e){
+            e.printStackTrace(); // TODO return better message
+            return 0;
+        }
+    };
 
     public List<RentalModel> findRentals(){
         try {

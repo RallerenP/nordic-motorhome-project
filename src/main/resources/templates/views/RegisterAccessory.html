@@ -1,19 +1,55 @@
 <div class="full-size accessory">
-    <div class="row form-group w-100">
-        <form th:object="${assessoryObject}" th:action="@{/rentals/registerAccessory}" method="post">
+    <div class="row form-group w-100 flex-center flex-col">
             <div class="row form-group w-100">
                 <h1>Tilføje tilbehør</h1>
             </div>
             <div>
-                <table class="center" width="600px">
-                    <tr>
-                        <th>Tilbehør</th>
-                        <th>Pris</th>
-                        <th>Antal</th>
-                    </tr>
+                <table class="accessory-table border-theme" width="600px">
+                    <thead>
+                        <tr>
+                            <th>Tilbehør</th>
+                            <th>Pris pr. dag</th>
+                            <th>Antal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <th:block th:each="entry : ${current_accessories}" th:with="amount=${entry.value},accessory=${entry.key}">
+                            <tr>
+                                <td th:text="${accessory.name}"></td>
+                                <td th:text="${accessory.price + 'kr'}"></td>
+                                <td>
+                                    <div class="flex-center">
+                                        <p class="mx-2" th:text="${amount}"></p>
+                                        <form action="/rentals/addaccessory" method="post">
+                                            <input type="hidden" name="id" th:value="${accessory.ID}">
+                                            <button class="icon-button">
+                                                <span class="material-icons ">add_circle_outline</span>
+                                            </button>
+                                        </form>
+                                        <form action="/rentals/removeaccessory" th:value="${accessory.ID}" method="post">
+                                            <input type="hidden" name="id" th:value="${accessory.ID}">
+                                            <button class="icon-button">
+                                                <span class="material-icons ">remove_circle_outline</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </th:block>
 
+                    </tbody>
                 </table>
+                <form action="/rentals/addaccessory" class="flex-vertical-center flex-row my-8 w-full" method="post">
+                    <select class="input" name="id">
+                        <th:block th:each="accessory : ${accessories}">
+                            <option th:value="${accessory.ID}" th:text="${accessory.name}"></option>
+                        </th:block>
+                        <option value="1">Stole og borde</option>
+                    </select>
+                    <button type="submit" class="mx-4 icon-button-lg"><span class="material-icons">add_circle_outline</span></button>
+                </form>
+
             </div>
-        </form>
+
     </div>
 </div>

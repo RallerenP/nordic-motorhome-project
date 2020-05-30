@@ -1,5 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.view.model;
 
+import java.util.Objects;
+
 public class AccessoryModel {
     private int ID;
     private String name;
@@ -21,5 +23,20 @@ public class AccessoryModel {
 
     public double getPrice() {
         return price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccessoryModel that = (AccessoryModel) o;
+        return ID == that.ID &&
+                Double.compare(that.price, price) == 0 &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, name, price);
     }
 }

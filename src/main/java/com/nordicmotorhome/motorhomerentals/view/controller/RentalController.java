@@ -1,11 +1,13 @@
 package com.nordicmotorhome.motorhomerentals.view.controller;
 
+import com.nordicmotorhome.motorhomerentals.domain.services.AccessoryService;
 import com.nordicmotorhome.motorhomerentals.domain.services.MotorhomeService;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.AddRentalFormObject;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchFormObject;
 import com.nordicmotorhome.motorhomerentals.view.FormObject.CreateCustomerFormObject;
 
 import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchUserFormObject;
+import com.nordicmotorhome.motorhomerentals.view.model.AccessoryModel;
 import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.view.model.CustomerModel;
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 // AUTHORS: ME, AML, NKJ, RAP
 @Controller
@@ -28,6 +31,7 @@ public class RentalController {
     CustomerService cs = new CustomerService();
     RentalService rs = new RentalService();
     MotorhomeService ms = new MotorhomeService();
+    AccessoryService as = new AccessoryService();
 
     @GetMapping("/customerselect")
     public String rentoptions(HttpServletRequest request, Model model){
@@ -109,11 +113,51 @@ public class RentalController {
         return "index";
     }
 
-    @GetMapping("/addaccessory")
-    public String registerAccessory(Model model) {
+    @GetMapping("/addaccessories")
+    public String addAccessories(HttpServletRequest request, Model model) {
+        if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
+
         model.addAttribute( "content", "RegisterAccessory.html" );
-        model.addAttribute( "customerObject", new CreateCustomerFormObject() );
+        model.addAttribute( "accessories", as.getAllAccessories());
+        model.addAttribute("current_accessories", ((AddRentalFormObject) request.getSession().getAttribute("rental")).getAccessoriesMap());
+
         return "index";
+    }
+
+    @PostMapping("/addaccessory")
+    public String addAccessory(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
+
+        final Map<AccessoryModel, Integer> arfoAccessoryMap = arfo.getAccessoriesMap();
+        final AccessoryModel accessoryToAdd = as.getAccessory(id);
+
+        arfoAccessoryMap.put(accessoryToAdd, arfoAccessoryMap.getOrDefault(accessoryToAdd, 0) + 1);
+
+        // Maybe not needed
+        request.getSession().setAttribute("rental", arfo);
+
+        return "redirect:/rentals/addaccessories";
+
+    }
+
+    @PostMapping("/removeaccessory")
+    public String removeAccessory(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
+
+        final Map<AccessoryModel, Integer> arfoAccessoryMap = arfo.getAccessoriesMap();
+        final AccessoryModel accessoryToRemove = as.getAccessory(id);
+
+        arfoAccessoryMap.put(accessoryToRemove, arfoAccessoryMap.getOrDefault(accessoryToRemove, 0) - 1);
+
+        if (arfoAccessoryMap.get(accessoryToRemove) == 0) arfoAccessoryMap.remove(accessoryToRemove);
+
+        // Maybe not needed
+        request.getSession().setAttribute("rental", arfo);
+
+        return "redirect:/rentals/addaccessories";
+
     }
 
     @GetMapping("/updatecustomer")
@@ -139,6 +183,6 @@ public class RentalController {
         // Maybe not needed
         request.getSession().setAttribute("rental", rental);
 
-        return "redirect:/rentals/addaccessory";
+        return "redirect:/rentals/addaccessories";
     }
 }

@@ -37,8 +37,49 @@ button:hover {
     background: var(--main-hl-color);
 }
 
+
+.icon-button {
+    border: none;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+    margin: 0;
+}
+
+    .icon-button span {
+        font-size: 24px;
+    }
+
+.icon-button-lg {
+    border: none;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+    margin: 0;
+}
+
+    .icon-button-lg span {
+        font-size: 32px;
+    }
+
 .hidden {
     display: none;
+}
+
+.text-center {
+    text-align: center;
 }
 
 .navbar-container {
@@ -156,17 +197,13 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
-table.center {
-    margin-left: auto;
-    margin-right: auto;
-}
 
 .full-size {
     height: 100%;
     width: 100%;
 }
 
-input {
+input, .input {
     height: 48px;
 
     padding: 10px;
@@ -299,6 +336,16 @@ input {
     .motorhome-search-result-item .info-block {
         flex-grow: 1;
     }
+
+/* Accessory Page */
+
+.accessory-table td {
+    height: 20px;
+}
+
+.accessory-table tr:nth-child(even) {
+    background: antiquewhite;
+}
 
 /* Specific */
 

@@ -1,5 +1,10 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
+import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class AccessoryEntity extends BaseEntity {
     private String name;
     private double price;
@@ -8,6 +13,14 @@ public class AccessoryEntity extends BaseEntity {
         this.ID = id;
         this.name = name;
         this.price = price;
+    }
+
+    public double getPriceByRentalLength(int days) {
+        return (price * days);
+    }
+
+    public double getPriceByRentalLength(LocalDate startDate, LocalDate endDate) {
+        return getPriceByRentalLength((int) ChronoUnit.DAYS.between(startDate, endDate));
     }
 
     public String getName() {
