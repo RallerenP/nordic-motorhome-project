@@ -34,6 +34,59 @@ public class RentalEntity extends BaseEntity {
         this.accessoryEntities = accessoryEntities;
     }
 
+    public double calculateCancellationFees() {
+        double total = 0.0;
+
+        // Total days
+        int totalDays = (int)ChronoUnit.DAYS.between(startDate, endDate);
+
+        // Base prices
+
+        total += getMotorhomeEntity().getMotorhomeModelEntity().getPrice() * totalDays;
+
+        // Find season and get multiplier
+        Month month = startDate.getMonth();
+        double multiplier = 1;
+
+        if (month.equals(Month.JANUARY) || month.equals(Month.FEBRUARY) || month.equals(Month.MARCH)) {
+            multiplier = 1.3;
+        }
+
+        else if (month.equals(Month.APRIL) ||month.equals(Month.MAY) || month.equals(Month.JUNE) ||
+                month.equals(Month.JULY) || month.equals(Month.AUGUST) || month.equals(Month.SEPTEMBER)) {
+            multiplier = 1.6;
+        }
+
+        total *= multiplier;
+
+        for (RentalAccessoryEntity ent : accessoryEntities) {
+            total += ent.calculateFees();
+        }
+
+        // Calculate percentage depending on time left before rental start
+
+        if (ChronoUnit.DAYS.between(startDate, LocalDate.now()) > 50) {
+            total *= 0.2;
+            if (total < 200) {
+                total = 200;
+            }
+        }
+
+        else if (ChronoUnit.DAYS.between(startDate, LocalDate.now()) < 50 && ChronoUnit.DAYS.between(startDate, LocalDate.now()) > 14) {
+            total *= 0.5;
+        }
+
+        else if (ChronoUnit.DAYS.between(startDate, LocalDate.now()) < 15 && ChronoUnit.DAYS.between(startDate, LocalDate.now()) > 1) {
+            total *= 0.8;
+        }
+
+        else {
+            total *= 0.95;
+        }
+
+        return total;
+    }
+
     public double calculateFees() {
         double total = 0.0;
 
