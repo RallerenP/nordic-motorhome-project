@@ -206,6 +206,31 @@ input {
     background-color: #ffcccc;
 } /* Red */
 
+/*Cancel Rental*/
+
+.column {
+    border-bottom: 2px solid #f28015;
+    float: left;
+    width: 15%;
+    height: 50px;
+    padding: 0px;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.button-delete {
+    background-color: #ffcccc;
+    color: black;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
 /* Motorhome Search */
 
 .motorhome-search-container {
@@ -252,10 +277,6 @@ input {
     .motorhome-search-result-item .info-block {
         flex-grow: 1;
     }
-
-
-
-
 
 /* Specific */
 
