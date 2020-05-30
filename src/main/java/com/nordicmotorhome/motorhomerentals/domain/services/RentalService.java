@@ -62,8 +62,6 @@ public class RentalService {
         }
     }
 
-
-
     public List<MotorhomeModelModel> searchMotorhomes(int beds) {
         try {
             return mmemm.mapAllToModel(dataFacade.findAllMotorhomeModels("beds", beds));
@@ -72,25 +70,30 @@ public class RentalService {
         }
     }
 
+    // Author: RAP
     public List<MotorhomeModel> searchMotorhomes(int beds, LocalDate startDate, LocalDate endDate) {
         try {
-            ArrayList<MotorhomeEntity> motorhomeEntities = (ArrayList<MotorhomeEntity>) dataFacade.findAllMotorhomes("beds", 4);
+            ArrayList<MotorhomeModelEntity> motorhomeModelEntities = (ArrayList<MotorhomeModelEntity>) dataFacade.findAllMotorhomeModels("beds", beds);
             ArrayList<MotorhomeEntity> candidates = new ArrayList<>();
 
-            for (MotorhomeEntity entity : motorhomeEntities) {
-                try {
-                    ArrayList<RentalEntity> rentalEntities = (ArrayList<RentalEntity>) dataFacade.findAllRentals("motorhome_id", entity.getID());
+            for (MotorhomeModelEntity model : motorhomeModelEntities) {
+                ArrayList<MotorhomeEntity> motorhomeEntities = (ArrayList<MotorhomeEntity>) dataFacade.findAllMotorhomes("model_id", model.getID());
 
-                    for (RentalEntity re : rentalEntities) {
-                        if (re.getStartDate().isBefore(startDate) && re.getEndDate().isAfter(startDate)) continue;
-                        if (re.getStartDate().isBefore(endDate) && re.getEndDate().isAfter(endDate)) continue;
-                        if (re.getStartDate().isBefore(endDate) && re.getEndDate().isAfter(startDate)) continue;
-                        if (re.getStartDate().isBefore(startDate) && re.getEndDate().isAfter(endDate)) continue;
+                for (MotorhomeEntity entity : motorhomeEntities) {
+                    try {
+                        ArrayList<RentalEntity> rentalEntities = (ArrayList<RentalEntity>) dataFacade.findAllRentals("motorhome_id", entity.getID());
 
-                        candidates.add(re.getMotorhomeEntity());
+                        for (RentalEntity re : rentalEntities) {
+                            if (re.getStartDate().isBefore(startDate) && re.getEndDate().isAfter(startDate)) continue;
+                            if (re.getStartDate().isBefore(endDate) && re.getEndDate().isAfter(endDate)) continue;
+                            if (re.getStartDate().isBefore(endDate) && re.getEndDate().isAfter(startDate)) continue;
+                            if (re.getStartDate().isBefore(startDate) && re.getEndDate().isAfter(endDate)) continue;
+
+                            candidates.add(re.getMotorhomeEntity());
+                        }
+                    } catch (NoSuchEntityException e) {
+                        candidates.add(entity);
                     }
-                } catch (NoSuchEntityException e) {
-                    candidates.add(entity);
                 }
             }
 
