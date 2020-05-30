@@ -1,6 +1,8 @@
+<!--AUTHOR: AML, RAP-->
+
 <div class="full-size flex-center">
-    <div id="finduser-container" class="row">
-        <div class="flex-center">
+    <div class="row h-full w-3/4 flex-col motorhome-search-container">
+        <div class="motorhome-search">
             <div>
                 <p><b>Motorhome Search</b></p>
                 <form th:object="${searchObject}" th:action="@{/rentals/searchmotorhome}" method="post">
@@ -14,17 +16,35 @@
                 </form>
             </div>
         </div>
-        <div>
-            <!-- Arraylist of recommendations -->
-            <p><b>Recommendations</b></p>
-            <table>
-                <th:block th:each="results : ${results}">
-                    <tr>
-                        <td th:text="${results.name}">...</td>
-                    </tr>
-                </th:block>
-            </table>
+        <div class="flex-grow border-theme motorhome-search-result-container">
+            <th:block th:each="result : ${results}">
+                <div class="motorhome-search-result-item">
+                    <img style="height: 100%" th:src='${"/images/motorhomes/" + result.getModel().getName() + ".jpg"}'>
+                    <div class="info-block">
+                        <div class="flex flex-col">
+                            <p class="title" th:text="${result.getModel().getName()}">
+                            <p class="subtitle" th:text="${result.getModel().getBeds() + ' beds'}"></p>
+                        </div>
+                        <div class="flex-center flex-grow flex-col">
+                            <p class="title">$PRICE</p>
+                            <button>Select Motorhome</button>
+                        </div>
 
+                    </div>
+                </div>
+            </th:block>
         </div>
+<!--        <div>-->
+<!--            &lt;!&ndash; Arraylist of recommendations &ndash;&gt;-->
+<!--            <p><b>Recommendations</b></p>-->
+<!--            <table>-->
+<!--                <th:block th:each="results : ${results}">-->
+<!--                    <tr>-->
+<!--                        <td th:text="${results.getModel().name}">...</td>-->
+<!--                    </tr>-->
+<!--                </th:block>-->
+<!--            </table>-->
+
+<!--        </div>-->
     </div>
 </div>

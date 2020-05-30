@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping ("/rentals")
@@ -86,11 +88,18 @@ public class RentalController {
 
     @PostMapping("/searchmotorhome")
     public String search(@ModelAttribute SearchFormObject searchObject, Model model) {
-        model.addAttribute("results", rs.searchMotorhomes(searchObject.getBeds()));
+        // TODO add parse exception handling
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+        LocalDate start = LocalDate.parse(searchObject.getStartDate(), dtf);
+        LocalDate end = LocalDate.parse(searchObject.getEndDate(), dtf);
+
+        model.addAttribute("results", rs.searchMotorhomes(searchObject.getBeds(), start, end));
         model.addAttribute("searchObject", searchObject);
         model.addAttribute("content", "MotorhomeSearchView.html");
         return "index";
     }
+
+
     @GetMapping("/registeraccessory")
     public String registerAaccessory(Model model) {
         model.addAttribute( "content", "registerAccessory.html" );
