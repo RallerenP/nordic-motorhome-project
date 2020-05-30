@@ -101,8 +101,14 @@ public class RentalController {
 
 
     @GetMapping("/registeraccessory")
-    public String registerAaccessory(Model model) {
-        model.addAttribute( "content", "registerAccessory.html" );
+    public String registerAccessory(Model model) {
+        model.addAttribute( "content", "RegisterAccessory.html" );
+        model.addAttribute( "customerObject", new CreateCustomerFormObject() );
+        return "index";
+    }
+    @GetMapping("/updatecustomer")
+    public String updateCustomer(Model model) {
+        model.addAttribute( "content", "UpdateCustomer.html" );
         model.addAttribute( "customerObject", new CreateCustomerFormObject() );
         return "index";
     }
