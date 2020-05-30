@@ -117,10 +117,12 @@ public class RentalController {
     public String addAccessories(HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
 
+        AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
+
         model.addAttribute( "content", "RegisterAccessory.html" );
         model.addAttribute( "accessories", as.getAllAccessories());
-        model.addAttribute("current_accessories", ((AddRentalFormObject) request.getSession().getAttribute("rental")).getAccessoriesMap());
-
+        model.addAttribute("current_accessories", arfo.getAccessoriesMap());
+        model.addAttribute("total", rs.getIntermediatePrice(arfo.getAccessoriesMap(), arfo.getMotorhomeID(), arfo.getStartDate(), arfo.getEndDate()));
         return "index";
     }
 
@@ -178,8 +180,11 @@ public class RentalController {
     public String selectMotorhome(HttpServletRequest request) {
         AddRentalFormObject rental = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
-        rental.setMotorhomeID(Integer.parseInt(request.getParameter("id")));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
+        rental.setMotorhomeID(Integer.parseInt(request.getParameter("id")));
+        rental.setStartDate(LocalDate.parse(request.getParameter("startDate"), dtf));
+        rental.setEndDate(LocalDate.parse(request.getParameter("endDate"), dtf));
         // Maybe not needed
         request.getSession().setAttribute("rental", rental);
 

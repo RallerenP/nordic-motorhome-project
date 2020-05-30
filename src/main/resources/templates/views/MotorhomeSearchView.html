@@ -29,6 +29,8 @@
                             <p class="title" th:text="${'Pris: ' + result.price + 'DKK'}"></p>
                             <form action="/rentals/selectmotorhome" method="post">
                                 <input class="hidden" name="id" th:value="${result.motorhome.ID}" >
+                                <input class="hidden" name="startDate" th:value="${searchObject.startDate}">
+                                <input class="hidden" name="endDate" th:value="${searchObject.endDate}">
                                 <button>Select Motorhome</button>
                             </form>
                         </div>

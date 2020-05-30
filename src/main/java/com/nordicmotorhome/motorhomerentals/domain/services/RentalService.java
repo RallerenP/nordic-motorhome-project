@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.services;
 
 import com.nordicmotorhome.motorhomerentals.domain.entities.*;
+import com.nordicmotorhome.motorhomerentals.view.model.AccessoryModel;
 import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModel;
 import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModelModel;
 import com.nordicmotorhome.motorhomerentals.view.model.RentalModel;
@@ -14,7 +15,9 @@ import com.nordicmotorhome.motorhomerentals.domain.mappers.RentalEntityModelMapp
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RentalService {
     IDataFacade dataFacade = DataFacadeImpl.getInstance();
@@ -58,14 +61,16 @@ public class RentalService {
         }
     }
 
-    public double getIntermediatePrice(List<Integer> accessories, int motorhome_id, LocalDate start, LocalDate end) {
+    public double getIntermediatePrice(HashMap<AccessoryModel, Integer> accessories, int motorhome_id, LocalDate start, LocalDate end) {
         double total = 0;
 
         try {
             total += dataFacade.getMotorhomeById(motorhome_id).getPriceByRentalLength(start, end);
 
-            for (int accessory_id : accessories) {
-                total += dataFacade.getAccessoryById(accessory_id).getPriceByRentalLength(start, end);
+            for (AccessoryModel accessory : accessories.keySet()) {
+                for (int i = 0; i < accessories.get(accessory); i++) {
+                    total += dataFacade.getAccessoryById(accessory.getID()).getPriceByRentalLength(start, end);
+                }
             }
 
             return total;

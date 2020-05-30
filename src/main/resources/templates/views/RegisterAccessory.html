@@ -16,7 +16,7 @@
                         <th:block th:each="entry : ${current_accessories}" th:with="amount=${entry.value},accessory=${entry.key}">
                             <tr>
                                 <td th:text="${accessory.name}"></td>
-                                <td th:text="${accessory.price + 'kr'}"></td>
+                                <td th:text="${(accessory.price * amount) + 'kr'}"></td>
                                 <td>
                                     <div class="flex-center">
                                         <p class="mx-2" th:text="${amount}"></p>
@@ -48,6 +48,9 @@
                     </select>
                     <button type="submit" class="mx-4 icon-button-lg"><span class="material-icons">add_circle_outline</span></button>
                 </form>
+                <div class="title">
+                    Total <span th:text="${total}"></span>
+                </div>
 
             </div>
 
