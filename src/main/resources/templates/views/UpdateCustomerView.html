@@ -1,0 +1,35 @@
+<div class="full-size flex-center">
+   <div id="finduser-container" class="row">
+        <div class="flex-center">
+            <div>
+                <p><h4>CPR nr.</h4></p>
+                <form th:object="${customerObject}" th:action="@{/customers/edit}" method="post">
+                    <input style="width: 100%;" th:field="*{cpr}" id="cpr" placeholder="CPR nr.">
+                    <button type="submit">Søg kunde</button>
+                </form>
+            </div>
+        </div>
+
+       <div class="flex-center">
+            <div>
+                <form th:action="@{/customers/editSubmit}" method="POST" th:object="${customerObject}">
+                    <label for="firstName"><h4>Fornavn(e)</h4></label>
+                    <input th:field="*{firstName}" type="text" id="firstName" class="form-control" placeholder="" />
+                    <br>
+                    <label for="lastName"><h4>Efternavn</h4></label>
+                    <input th:field="*{lastName}" type="text" id="lastName" class="form-control" placeholder="" />
+                    <br>
+                    <label for="number"><h4>Mobilnummer</h4></label>
+                    <input th:field="*{number}" type="text" id="number" class="form-control" placeholder=""/>
+                    <br>
+                    <label for="email"><h4>E-mail</h4></label>
+                    <input th:field="*{email}" type="text" id="email" class="form-control" placeholder=""/>
+                    <br>
+                    <input th:field="*{ID}" type="hidden">
+                    <input name="id" style="display: none;" >
+                    <button type="submit">Opdater kunde</button>
+                </form>
+           </div>
+       </div>
+   </div>
+</div>

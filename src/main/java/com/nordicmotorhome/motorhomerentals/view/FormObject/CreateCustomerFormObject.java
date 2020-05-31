@@ -6,6 +6,15 @@ public class CreateCustomerFormObject {
     private String email;
     private int number;
     private String cpr;
+    private int ID;
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getFirstName() {
         return firstName;
