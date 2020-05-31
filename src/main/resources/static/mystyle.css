@@ -19,7 +19,19 @@ h1 {
     text-align: center;
 }
 
-button {
+.button {
+    font: 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 5px 10px 5px 10px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}
+
+button, .button {
     height: 48px;
     font-size: 1.3rem;
     background: var(--main-bg-color);
@@ -32,7 +44,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:hover, .button:hover {
     color: var(--main-bg-color);
     background: var(--main-hl-color);
 }
@@ -110,48 +122,6 @@ button:hover {
     color: black;
     text-decoration: none;
 }
-
-.h-full {
-    height: 100%;
-}
-
-.w-full {
-    width: 100%;
-}
-
-.w-1\/2 {
-    width: 50%
-}
-
-.w-1\/3 {
-    width: 33.333%
-}
-
-.w-2\/3 {
-    width: 66.666%
-}
-
-.w-1\/4 {
-    width: 25%;
-}
-
-.w-2\/4 {
-    width: 50%;
-}
-
-.w-3\/4 {
-    width: 75%;
-}
-
-.center-screen {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-}
-
 .border-theme {
     border: 2px solid var(--main-hl-color);
 }
@@ -240,7 +210,7 @@ input, .input {
 
 /*HomeView*/
 
-.button {
+.button-big {
     border: 2px solid var(--main-hl-color);
     background-color: white;
     color: black;
@@ -346,6 +316,37 @@ input, .input {
 .accessory-table tr:nth-child(even) {
     background: antiquewhite;
 }
+
+/* Billing Page */
+.billing-page-container {
+    padding: 2rem;
+}
+
+#motorhome-info-block {
+    display: flex;
+}
+
+    #motorhome-info-block p {
+        font-size: 1.3rem;
+    }
+
+    #motorhome-info-block p, #motorhome-info-block h2 {
+        padding: 0;
+        margin: 10px;
+    }
+
+#accessories-info-block {
+    display: flex
+}
+
+    #accessories-info-block p {
+        font-size: 1.3rem;
+    }
+
+    #accessories-info-block p, #accessories-info-block h2 {
+        padding: 0;
+        margin: 10px;
+    }
 
 /* Specific */
 

@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.mappers;
 
-import com.nordicmotorhome.motorhomerentals.view.model.RoleModel;
-import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.RoleModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.domain.entities.StaffEntity;
 
 import java.util.ArrayList;

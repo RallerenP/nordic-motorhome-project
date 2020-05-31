@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.view.model;
+package com.nordicmotorhome.motorhomerentals.UI.model;
 
 import java.util.Objects;
 

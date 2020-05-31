@@ -19,6 +19,10 @@ public class MotorhomeEntity extends BaseEntity {
         this.serviced = serviced;
     }
 
+    public double getBasePriceByRentalLength(int days) {
+        return (motorhomeModelEntity.getPrice() * days);
+    }
+
     public double getPriceByRentalLength(int days, Season season) {
         return (motorhomeModelEntity.getPrice() * days) * season.getMult();
     }

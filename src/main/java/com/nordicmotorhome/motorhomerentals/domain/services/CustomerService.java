@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.services;
 
-import com.nordicmotorhome.motorhomerentals.view.model.CustomerModel;
-import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.CustomerModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
 import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;

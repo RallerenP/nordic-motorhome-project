@@ -9,9 +9,9 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.MotorhomeEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.MotorhomeModelEntityModelMapper;
-import com.nordicmotorhome.motorhomerentals.view.dto.MotorhomeSearchDTO;
-import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModel;
-import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModelModel;
+import com.nordicmotorhome.motorhomerentals.UI.dto.MotorhomeSearchDTO;
+import com.nordicmotorhome.motorhomerentals.UI.model.MotorhomeModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.MotorhomeModelModel;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
-package com.nordicmotorhome.motorhomerentals.view.controller;
+package com.nordicmotorhome.motorhomerentals.UI.controller;
 
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
-import com.nordicmotorhome.motorhomerentals.view.FormObject.CreateCustomerFormObject;
-import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchUserFormObject;
-import com.nordicmotorhome.motorhomerentals.view.model.CustomerModel;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.CreateCustomerFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchUserFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.model.CustomerModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

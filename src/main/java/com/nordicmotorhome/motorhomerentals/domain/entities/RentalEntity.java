@@ -1,5 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
+import com.nordicmotorhome.motorhomerentals.domain.orderlines.RentalOrderLines;
 import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
 
 import java.time.LocalDate;
@@ -58,6 +59,47 @@ public class RentalEntity extends BaseEntity {
         // Calculate percentage depending on time left before rental start
 
         return daysBetweenMultiplier(total);
+    }
+
+    // AUTHOR: RAP
+    public double getBaseRentalPrice() {
+        double total = 0;
+
+        total += motorhomeEntity.getPriceByRentalLength(startDate, endDate);
+        for (RentalAccessoryEntity rae : accessoryEntities) {
+            total += rae.calculateFees();
+        }
+
+        total += pickup_distance * 0.70;
+        total += delivery_distance * 0.70;
+
+        return total;
+    }
+
+    // AUTHOR: RAP
+    public RentalOrderLines generateBillingInfo() {
+        RentalOrderLines rol = new RentalOrderLines();
+
+        rol.setStartDate(startDate.toString());
+        rol.setEndDate(endDate.toString());
+
+        int days = (int) ChronoUnit.DAYS.between(startDate, endDate);
+
+        rol.setMotorhomePrice(String.valueOf(motorhomeEntity.getBasePriceByRentalLength(days)));
+
+        double seasonPrice = motorhomeEntity.getPriceByRentalLength(startDate, endDate) - motorhomeEntity.getBasePriceByRentalLength(days);
+
+        rol.setSeasonPrice(String.valueOf(seasonPrice));
+
+        rol.setMotorhomeName(motorhomeEntity.getMotorhomeModelEntity().getName());
+
+        for (RentalAccessoryEntity entity : accessoryEntities) {
+            rol.getAccessories().put(entity.getAmount() + " " + entity.getAccessory().getName(), String.valueOf(entity.calculateFees()));
+        }
+
+        rol.setTotalPrice(String.valueOf(getBaseRentalPrice()));
+
+        return rol;
     }
 
     // AUTHOR: AML

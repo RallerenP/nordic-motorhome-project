@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.mappers;
 
-import com.nordicmotorhome.motorhomerentals.view.model.AccessoryModel;
-import com.nordicmotorhome.motorhomerentals.view.model.RentalAccessoryModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.AccessoryModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.RentalAccessoryModel;
 import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.domain.entities.RentalAccessoryEntity;
 

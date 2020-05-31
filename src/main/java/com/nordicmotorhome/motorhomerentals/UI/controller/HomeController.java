@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.view.controller;
+package com.nordicmotorhome.motorhomerentals.UI.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
