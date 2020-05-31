@@ -150,28 +150,28 @@ public class DBSetup {
             //region MOTOR HOME MODELS DUMMY DATA
 
             stmt.addBatch(
-                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('HammerWar60K', 6, 1500)"
+                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('HammerWar60K', 6, 200)"
             );
             stmt.addBatch(
-                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('HammerWar40K', 4, 1000)"
+                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('HammerWar40K', 4, 135)"
             );
             stmt.addBatch(
-                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('HammerWar20K', 2, 500)"
+                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('HammerWar20K', 2, 70)"
             );
             stmt.addBatch(
-                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('WarHound', 2, 2000)"
+                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('WarHound', 2, 270)"
             );
             stmt.addBatch(
-                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('Knight', 3, 1500)"
+                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('Knight', 3, 200)"
             );
             stmt.addBatch(
-                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('BareEtSkur', 6, 500)"
+                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('BareEtSkur', 6, 70)"
             );
             stmt.addBatch(
-                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('ImperialTitan', 5, 10000)"
+                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('ImperialTitan', 5, 1350)"
             );
             stmt.addBatch(
-                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('BrianVogn', 2, 600)"
+                    "INSERT INTO motorhome_models (name, beds, price) VALUES ('BrianVogn', 2, 80)"
             );
 
             //endregion
@@ -279,11 +279,11 @@ public class DBSetup {
 
             //region ACCESSORIES DUMMY DATA
 
-            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Stole og borde', 25)");
-            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Cykelholder', 10)");
-            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Sengetøj', 30)");
-            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Børnestol', 15)");
-            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Gasgrill', 15)");
+            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Stole og borde', 3.5)");
+            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Cykelholder', 1.5)");
+            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Sengetøj', 4)");
+            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Børnestol', 2)");
+            stmt.addBatch("INSERT INTO accessories (name, price) VALUES ('Gasgrill', 2)");
 
             stmt.addBatch("INSERT INTO accessories_stock (accessories_id, amount) VALUES (1, 10)");
             stmt.addBatch("INSERT INTO accessories_stock (accessories_id, amount) VALUES (2, 22)");
