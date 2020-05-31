@@ -110,4 +110,12 @@ public class RentalService {
             return null;
         }
     }
+    public void cancelRantal(int id){
+        try {
+            RentalEntity entity = dataFacade.getRentalById(id);
+            dataFacade.deleteRental(entity);
+        } catch (NoSuchEntityException e) {
+            e.printStackTrace();
+        }
+    }
 }

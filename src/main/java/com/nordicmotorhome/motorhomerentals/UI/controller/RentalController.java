@@ -16,10 +16,7 @@ import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
 import com.nordicmotorhome.motorhomerentals.domain.services.RentalService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -170,18 +167,16 @@ public class RentalController {
 
     }
 
-    @GetMapping("/updatecustomer")
-    public String updateCustomer(Model model) {
-        model.addAttribute( "content", "UpdateCustomer.html" );
-        model.addAttribute( "customerObject", new CreateCustomerFormObject() );
-        return "index";
-    }
-
     @GetMapping("/cancelrental")
     public String cancelRental(Model model){
         model.addAttribute("results", rs.findRentals());
         model.addAttribute("content", "CancelRental.html");
         return "index";
+    }
+    @GetMapping("/cancelRental/{id}")
+    public String cancelRental(HttpServletRequest request, @PathVariable int id){
+        rs.cancelRantal(id);
+        return "redirect:/rentals/cancelrental";
     }
 
     @PostMapping("/selectmotorhome")

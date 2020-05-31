@@ -1,18 +1,18 @@
 <div>
     <div class="row full-size flex-center">
-        <div class="column" style="background-color:#aaa;">
+        <div class="column" style="background-color:#A4A4A4;">
             <h4>CPR</h4>
         </div>
-        <div class="column" style="background-color:#aaa;">
+        <div class="column" style="background-color:#6E6E6E;">
             <h4>Motorhome Model</h4>
         </div>
-        <div class="column" style="background-color:#aaa;">
+        <div class="column" style="background-color:#A4A4A4;">
             <h4>Start</h4>
         </div>
-        <div class="column" style="background-color:#aaa;">
+        <div class="column" style="background-color:#6E6E6E;">
             <h4>End</h4>
         </div>
-        <div class="column" style="background-color:#aaa;">
+        <div class="column" style="background-color:#A4A4A4;">
 
         </div>
     </div>
@@ -20,20 +20,20 @@
     <div class="row full-size flex-center">
         <table>
             <th:block th:each="results : ${results}">
-                <div class="column" style="background-color:#ddd;">
+                <div class="column" style="background-color:#F2F2F2;">
                     <p th:text="${results.customer.firstName}">...</p>
                 </div>
-                <div class="column" style="background-color:#ddd;">
+                <div class="column" style="background-color:#D8D8D8;">
                     <p th:text="${results.motorhome.model.name}">...</p>
                 </div>
-                <div class="column" style="background-color:#ddd;">
+                <div class="column" style="background-color:#F2F2F2;">
                     <p th:text="${results.startDate}">...</p>
                 </div>
-                <div class="column" style="background-color:#ddd;">
+                <div class="column" style="background-color:#D8D8D8;">
                     <p th:text="${results.endDate}">...</p>
                 </div>
-                <div class="column" style="background-color:white;">
-                    <a type="button" class="button-delete">delete</a>
+                <div class="column">
+                    <a th:href="${'/rentals/cancelRental/' + results.ID}" class="button-delete">delete</a>
                 </div>
             </th:block>
         </table>

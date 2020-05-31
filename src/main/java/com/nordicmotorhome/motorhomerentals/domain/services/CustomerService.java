@@ -29,4 +29,22 @@ public class CustomerService {
             return null;
         }
     }
+
+    public CustomerModel update(int ID, String firstName, String lastName, String email, int phone) {
+        try {
+            CustomerEntity ce = dataFacade.getCustomerById(ID);
+            ce.setFirstName(firstName);
+            ce.setLastName(lastName);
+            ce.setEmail(email);
+            ce.setNumber(phone);
+
+            ce = dataFacade.saveCustomer(ce);
+
+            return cemm.mapToModel(ce);
+
+        } catch (NoSuchEntityException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
