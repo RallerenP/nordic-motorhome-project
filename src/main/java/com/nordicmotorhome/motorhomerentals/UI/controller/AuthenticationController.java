@@ -1,7 +1,7 @@
-package com.nordicmotorhome.motorhomerentals.view.controller;
+package com.nordicmotorhome.motorhomerentals.UI.controller;
 
 import com.nordicmotorhome.motorhomerentals.domain.services.AuthenticationService;
-import com.nordicmotorhome.motorhomerentals.view.FormObject.LoginFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.LoginFormObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;

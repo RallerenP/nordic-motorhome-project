@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.view.FormObject;
+package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
 public class SearchUserFormObject {
     String cpr;

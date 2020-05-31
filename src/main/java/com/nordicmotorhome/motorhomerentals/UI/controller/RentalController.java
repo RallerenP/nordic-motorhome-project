@@ -1,15 +1,17 @@
-package com.nordicmotorhome.motorhomerentals.view.controller;
+package com.nordicmotorhome.motorhomerentals.UI.controller;
 
+import com.nordicmotorhome.motorhomerentals.data.Message;
+import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.services.AccessoryService;
 import com.nordicmotorhome.motorhomerentals.domain.services.MotorhomeService;
-import com.nordicmotorhome.motorhomerentals.view.FormObject.AddRentalFormObject;
-import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchFormObject;
-import com.nordicmotorhome.motorhomerentals.view.FormObject.CreateCustomerFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.AddRentalFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.CreateCustomerFormObject;
 
-import com.nordicmotorhome.motorhomerentals.view.FormObject.SearchUserFormObject;
-import com.nordicmotorhome.motorhomerentals.view.model.AccessoryModel;
-import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
-import com.nordicmotorhome.motorhomerentals.view.model.CustomerModel;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchUserFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.model.AccessoryModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.CustomerModel;
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
 import com.nordicmotorhome.motorhomerentals.domain.services.RentalService;
 import org.springframework.stereotype.Controller;
@@ -119,10 +121,16 @@ public class RentalController {
 
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
+        Message billMessage = rs.getBillingInfo(arfo.getAccessoriesMap(), arfo.getMotorhomeID(), arfo.getStartDate(), arfo.getEndDate());
+
+        if (billMessage.getType() == MessageType.ERROR) return "redirect:/rentals/searchmotorhome"; // TODO add user feedback
+
+        model.addAttribute("billing", billMessage.getContent());
+
         model.addAttribute( "content", "RegisterAccessory.html" );
         model.addAttribute( "accessories", as.getAllAccessories());
         model.addAttribute("current_accessories", arfo.getAccessoriesMap());
-        model.addAttribute("total", rs.getIntermediatePrice(arfo.getAccessoriesMap(), arfo.getMotorhomeID(), arfo.getStartDate(), arfo.getEndDate()));
+
         return "index";
     }
 
@@ -189,5 +197,33 @@ public class RentalController {
         request.getSession().setAttribute("rental", rental);
 
         return "redirect:/rentals/addaccessories";
+    }
+
+    @GetMapping("/finish")
+    public String getIntermediateBilling(HttpServletRequest request, Model model) {
+        if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
+
+        AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
+
+        Message billMessage = rs.getBillingInfo(arfo.getAccessoriesMap(), arfo.getMotorhomeID(), arfo.getStartDate(), arfo.getEndDate());
+
+        if (billMessage.getType() == MessageType.ERROR) {
+            return "redirect:/rentals/searchmotorhome"; //Todo: add user feedback
+        }
+
+        model.addAttribute("billing", billMessage.getContent());
+        model.addAttribute("content", "BillingPageView.html");
+
+        return "index";
+    }
+
+    @GetMapping("/confirm")
+    public String confirmOrder(HttpServletRequest request){
+
+        AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
+        Message createMessage = rs.create(arfo.getCustomerID(), arfo.getStartDate(), arfo.getEndDate(), arfo.getMotorhomeID(),0,0);
+
+        if (createMessage.getType() == MessageType.ERROR) return "redirect:/rentals/finish"; // todo add user feedback
+        return "redirect:/";
     }
 }

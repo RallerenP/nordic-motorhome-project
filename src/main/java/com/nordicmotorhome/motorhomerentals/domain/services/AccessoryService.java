@@ -6,7 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.AccessoryEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
-import com.nordicmotorhome.motorhomerentals.view.model.AccessoryModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.AccessoryModel;
 
 import java.util.ArrayList;
 import java.util.List;

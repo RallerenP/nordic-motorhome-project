@@ -1,37 +1,35 @@
 package com.nordicmotorhome.motorhomerentals.domain.services;
 
+import com.nordicmotorhome.motorhomerentals.data.Message;
+import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.entities.*;
-import com.nordicmotorhome.motorhomerentals.view.model.AccessoryModel;
-import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModel;
-import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModelModel;
-import com.nordicmotorhome.motorhomerentals.view.model.RentalModel;
+import com.nordicmotorhome.motorhomerentals.domain.orderlines.RentalOrderLines;
+import com.nordicmotorhome.motorhomerentals.UI.model.AccessoryModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.RentalModel;
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
-import com.nordicmotorhome.motorhomerentals.domain.mappers.MotorhomeEntityModelMapper;
-import com.nordicmotorhome.motorhomerentals.domain.mappers.MotorhomeModelEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.RentalEntityModelMapper;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RentalService {
     IDataFacade dataFacade = DataFacadeImpl.getInstance();
 
     IEntityModelMapper<RentalEntity, RentalModel> remm = new RentalEntityModelMapper();
 
-    public RentalModel create(
+    // AUTHOR: RAP
+    public Message create(
             int customerID,
             LocalDate startDate,
             LocalDate endDate,
             int motorhomeID,
             int pickupDistance,
-            int deliveryDistance,
-            int startKm
+            int deliveryDistance
     ) {
         try {
             CustomerEntity ce = dataFacade.getCustomerById(customerID);
@@ -41,7 +39,7 @@ public class RentalService {
                     0,
                     startDate,
                     endDate,
-                    startKm,
+                    me.getKilometersDriven(),
                     0,
                     false,
                     ce,
@@ -51,7 +49,7 @@ public class RentalService {
                     null
             );
 
-            return remm.mapToModel(dataFacade.createRental(re));
+            return new Message(MessageType.SUCCESS, remm.mapToModel(dataFacade.createRental(re)));
 
         } catch (NoSuchEntityException e) {
             e.printStackTrace();
@@ -61,25 +59,48 @@ public class RentalService {
         }
     }
 
-    public double getIntermediatePrice(HashMap<AccessoryModel, Integer> accessories, int motorhome_id, LocalDate start, LocalDate end) {
-        double total = 0;
+    //AUTHOR: RAP
+//    public RentalOrderLines getBillingInfo(int id) {
+//
+//    }
 
+    // AUTHOR: RAP
+    public Message getBillingInfo(HashMap<AccessoryModel, Integer> accessories, int motorhome_id, LocalDate start, LocalDate end) {
         try {
-            total += dataFacade.getMotorhomeById(motorhome_id).getPriceByRentalLength(start, end);
+            ArrayList<RentalAccessoryEntity> rentalAccessoryEntities = new ArrayList<>();
+
+            RentalAccessoryEntity rae;
+
+            // Creating a temporary (fake) RentalEntity object responsible for generating the billing.
+            RentalEntity tempRe = new RentalEntity(
+                    0,
+                    start,
+                    end,
+                    0,
+                    0,
+                    false,
+                    null,
+                    dataFacade.getMotorhomeById(motorhome_id),
+                    0,
+                    0,
+                    null
+                    );
 
             for (AccessoryModel accessory : accessories.keySet()) {
-                for (int i = 0; i < accessories.get(accessory); i++) {
-                    total += dataFacade.getAccessoryById(accessory.getID()).getPriceByRentalLength(start, end);
-                }
+                rae = new RentalAccessoryEntity(tempRe, dataFacade.getAccessoryById(accessory.getID()),accessories.get(accessory));
+                rentalAccessoryEntities.add(rae);
             }
 
-            return total;
+            tempRe.setAccessoryEntities(rentalAccessoryEntities);
+
+            return new Message(MessageType.SUCCESS, tempRe.generateBillingInfo());
         } catch (NoSuchEntityException e){
             e.printStackTrace(); // TODO return better message
-            return 0;
+            return new Message(MessageType.ERROR, "Unknown Error");
         }
     };
 
+    // AUTHOR: TODO
     public List<RentalModel> findRentals(){
         try {
             ArrayList<RentalEntity> re = (ArrayList<RentalEntity>) dataFacade.getAllRentals();

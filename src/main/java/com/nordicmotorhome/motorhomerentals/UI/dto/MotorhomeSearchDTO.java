@@ -1,6 +1,6 @@
-package com.nordicmotorhome.motorhomerentals.view.dto;
+package com.nordicmotorhome.motorhomerentals.UI.dto;
 
-import com.nordicmotorhome.motorhomerentals.view.model.MotorhomeModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.MotorhomeModel;
 
 public class MotorhomeSearchDTO {
     private MotorhomeModel motorhome;

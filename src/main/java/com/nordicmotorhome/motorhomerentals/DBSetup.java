@@ -1,8 +1,8 @@
 package com.nordicmotorhome.motorhomerentals;
 
-import com.nordicmotorhome.motorhomerentals.view.model.CustomerModel;
-import com.nordicmotorhome.motorhomerentals.view.model.RentalModel;
-import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.CustomerModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.RentalModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.DBManager;
 import com.nordicmotorhome.motorhomerentals.data.repositories.StaffRepository;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
@@ -322,7 +322,7 @@ public class DBSetup {
                 StaffModel sm = new StaffEntityModelMapper().mapToModel(sr.getById(1));
                 CustomerModel ce = cs.create("Bob", "Bob", 88888888, "bob@bob.dk", "2605204555", sm);
 
-                RentalModel rm = rs.create(ce.getID(), LocalDate.now(), LocalDate.now().plusWeeks(2), 5, 0, 0, 0);
+                RentalModel rm = (RentalModel) rs.create(ce.getID(), LocalDate.now(), LocalDate.now().plusWeeks(2), 5, 0, 0).getContent();
 
             } catch (NoSuchEntityException e) {
                 e.printStackTrace();

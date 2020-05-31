@@ -1,7 +1,6 @@
-package com.nordicmotorhome.motorhomerentals.view.interceptors;
+package com.nordicmotorhome.motorhomerentals.UI.interceptors;
 
-import com.nordicmotorhome.motorhomerentals.view.FormObject.LoginFormObject;
-import com.nordicmotorhome.motorhomerentals.view.model.StaffModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.StaffModel;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

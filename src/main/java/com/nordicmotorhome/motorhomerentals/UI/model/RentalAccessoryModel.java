@@ -1,4 +1,4 @@
-package com.nordicmotorhome.motorhomerentals.view.model;
+package com.nordicmotorhome.motorhomerentals.UI.model;
 
 public class RentalAccessoryModel {
     private int rental_id;

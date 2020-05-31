@@ -1,8 +1,7 @@
-package com.nordicmotorhome.motorhomerentals.view.FormObject;
+package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
-import com.nordicmotorhome.motorhomerentals.view.model.AccessoryModel;
+import com.nordicmotorhome.motorhomerentals.UI.model.AccessoryModel;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
