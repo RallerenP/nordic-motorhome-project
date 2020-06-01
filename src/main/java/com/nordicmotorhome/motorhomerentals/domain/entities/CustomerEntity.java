@@ -1,3 +1,4 @@
+// AUTHOR: NKJ
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
 import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;

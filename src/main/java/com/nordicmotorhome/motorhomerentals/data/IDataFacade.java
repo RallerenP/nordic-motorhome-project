@@ -1,3 +1,4 @@
+// AUTHOR: NKJ
 package com.nordicmotorhome.motorhomerentals.data;
 
 import com.nordicmotorhome.motorhomerentals.domain.entities.*;

@@ -110,6 +110,8 @@ public class RentalService {
             return null;
         }
     }
+
+    // AUTHOR: NKJ
     public void cancelRantal(int id){
         try {
             RentalEntity entity = dataFacade.getRentalById(id);
