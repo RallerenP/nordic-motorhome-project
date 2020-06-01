@@ -236,6 +236,29 @@ input, .input {
 } /* Red */
 
 /*Cancel Rental*/
+#RentalListTable {
+    margin: 20px auto;
+}
+
+    #RentalListTable th {
+
+        background: #ccc;
+        padding: 10px 50px;
+        font-size: 1.3rem;
+    }
+
+    #RentalListTable td {
+        height: 2rem;
+    }
+
+    #RentalListTable tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    #RentalListTable td p {
+        margin: 0;
+        padding: 0;
+    }
 
 .column {
     border-bottom: 2px solid #f28015;
