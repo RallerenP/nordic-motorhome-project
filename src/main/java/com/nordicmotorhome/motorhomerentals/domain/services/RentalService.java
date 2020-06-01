@@ -95,7 +95,7 @@ public class RentalService {
 
             return new Message(MessageType.SUCCESS, tempRe.generateBillingInfo());
         } catch (NoSuchEntityException e){
-            e.printStackTrace(); // TODO return better message
+            e.printStackTrace();
             return new Message(MessageType.ERROR, "Unknown Error");
         }
     };
