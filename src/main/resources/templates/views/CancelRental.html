@@ -7,9 +7,9 @@
             <th>Start Date</th>
             <th>End Date</th>
             <th>Options</th>
-        </tr>
-        <tr>
-            <th:block th:each="result : ${results}">
+        </tr
+        <th:block th:each="result : ${results}">>
+            <tr>
                 <td>
                     <p th:text="${result.customer.firstName + ' ' + result.customer.lastName}"></p>
                 </td>
@@ -25,7 +25,7 @@
                 <td>
                     <a th:href="${'/rentals/cancelRental/' + result.ID}" class="button-delete">delete</a>
                 </td>
-            </th:block>
-        </tr>
+            </tr>
+        </th:block>
     </table>
 </div>
