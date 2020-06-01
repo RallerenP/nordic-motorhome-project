@@ -12,6 +12,8 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.RentalAccessoryEntityModelMapper;
 
+import java.util.ArrayList;
+
 public class RentalAccessoryService {
     IDataFacade dataFacade = new DataFacadeImpl();
     IEntityModelMapper<RentalAccessoryEntity, RentalAccessoryModel> raemm = new RentalAccessoryEntityModelMapper();
@@ -24,7 +26,17 @@ public class RentalAccessoryService {
             e.printStackTrace();
             return new Message(MessageType.ERROR, "An unknown error occured");
         }
+    }
 
-
+    // AUTHOR: NKJ
+    public void cancelAccessoryRantal(int id){
+        try {
+            ArrayList<RentalAccessoryEntity> accessoryEntity = (ArrayList<RentalAccessoryEntity>) dataFacade.findAllRentalAccessories("rental_id", id);
+            for (RentalAccessoryEntity entity : accessoryEntity) {
+                dataFacade.deleteRentalAccessory(entity);
+            }
+        } catch (NoSuchEntityException e) {
+            e.printStackTrace();
+        }
     }
 }
