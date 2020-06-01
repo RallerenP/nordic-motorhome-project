@@ -1,24 +1,20 @@
 package com.nordicmotorhome.motorhomerentals.UI.controller;
 
+import com.nordicmotorhome.motorhomerentals.UI.model.*;
 import com.nordicmotorhome.motorhomerentals.data.Message;
 import com.nordicmotorhome.motorhomerentals.domain.MessageType;
-import com.nordicmotorhome.motorhomerentals.domain.services.AccessoryService;
-import com.nordicmotorhome.motorhomerentals.domain.services.MotorhomeService;
+import com.nordicmotorhome.motorhomerentals.domain.services.*;
 import com.nordicmotorhome.motorhomerentals.UI.FormObject.AddRentalFormObject;
 import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchFormObject;
 import com.nordicmotorhome.motorhomerentals.UI.FormObject.CreateCustomerFormObject;
 
 import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchUserFormObject;
-import com.nordicmotorhome.motorhomerentals.UI.model.AccessoryModel;
-import com.nordicmotorhome.motorhomerentals.UI.model.StaffModel;
-import com.nordicmotorhome.motorhomerentals.UI.model.CustomerModel;
-import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
-import com.nordicmotorhome.motorhomerentals.domain.services.RentalService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -31,6 +27,19 @@ public class RentalController {
     RentalService rs = new RentalService();
     MotorhomeService ms = new MotorhomeService();
     AccessoryService as = new AccessoryService();
+    RentalAccessoryService ras = new RentalAccessoryService();
+
+    @GetMapping("/view/{id}")
+    public String viewRental(@PathVariable int id, HttpServletResponse request, Model model) {
+        Message billMessage = rs.getRental(id);
+
+        if (billMessage.getType() == MessageType.ERROR) return "redirect:/rentals/list";
+
+        model.addAttribute("rental", billMessage.getContent());
+        model.addAttribute("content", "RentalView.html");
+
+        return "index";
+    }
 
     @GetMapping("/customerselect")
     public String rentoptions(HttpServletRequest request, Model model){
@@ -167,10 +176,10 @@ public class RentalController {
 
     }
 
-    @GetMapping("/cancelrental")
+    @GetMapping("/list")
     public String cancelRental(Model model){
         model.addAttribute("results", rs.findRentals());
-        model.addAttribute("content", "CancelRental.html");
+        model.addAttribute("content", "RentalList.html");
         return "index";
     }
     @GetMapping("/cancelRental/{id}")
@@ -217,6 +226,12 @@ public class RentalController {
 
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
         Message createMessage = rs.create(arfo.getCustomerID(), arfo.getStartDate(), arfo.getEndDate(), arfo.getMotorhomeID(),0,0);
+
+        RentalModel rm = (RentalModel) createMessage.getContent();
+
+        for (AccessoryModel model : arfo.getAccessoriesMap().keySet()) {
+            ras.create(rm.getID(), model.getID(), arfo.getAccessoriesMap().get(model));
+        }
 
         if (createMessage.getType() == MessageType.ERROR) return "redirect:/rentals/finish"; // todo add user feedback
         return "redirect:/";

@@ -45,9 +45,9 @@ public class RentalService {
                     ce,
                     me,
                     pickupDistance,
-                    deliveryDistance,
-                    null
+                    deliveryDistance
             );
+
 
             return new Message(MessageType.SUCCESS, remm.mapToModel(dataFacade.createRental(re)));
 
@@ -60,9 +60,14 @@ public class RentalService {
     }
 
     //AUTHOR: RAP
-//    public RentalOrderLines getBillingInfo(int id) {
-//
-//    }
+    public Message getRental(int id) {
+        try {
+            return new Message(MessageType.SUCCESS, remm.mapToModel(dataFacade.getRentalById(id)));
+        } catch (NoSuchEntityException e) {
+            e.printStackTrace();
+            return new Message(MessageType.ERROR, "No rental with id '" + id + "' was found");
+        }
+    }
 
     // AUTHOR: RAP
     public Message getBillingInfo(HashMap<AccessoryModel, Integer> accessories, int motorhome_id, LocalDate start, LocalDate end) {
@@ -82,13 +87,14 @@ public class RentalService {
                     null,
                     dataFacade.getMotorhomeById(motorhome_id),
                     0,
-                    0,
-                    null
+                    0
                     );
 
             for (AccessoryModel accessory : accessories.keySet()) {
                 rae = new RentalAccessoryEntity(tempRe, dataFacade.getAccessoryById(accessory.getID()),accessories.get(accessory));
                 rentalAccessoryEntities.add(rae);
+
+
             }
 
             tempRe.setAccessoryEntities(rentalAccessoryEntities);

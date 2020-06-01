@@ -33,7 +33,8 @@ public class RentalEntityModelMapper implements IEntityModelMapper<RentalEntity,
                 mm,
                 accessories,
                 entity.getPickup_distance(),
-                entity.getDelivery_distance()
+                entity.getDelivery_distance(),
+                entity.generateBillingInfo()
         );
     }
 

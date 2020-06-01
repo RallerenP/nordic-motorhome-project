@@ -1,5 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.model;
 
+import com.nordicmotorhome.motorhomerentals.domain.orderlines.RentalOrderLines;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,8 +17,22 @@ public class RentalModel {
     private ArrayList<RentalAccessoryModel> accessories;
     private int pickupDistance;
     private int deliveryDistance;
+    private RentalOrderLines billing;
 
-    public RentalModel(int ID, LocalDate startDate, LocalDate endDate, int startKm, int endKm, boolean fuelNeeded, CustomerModel customer, MotorhomeModel motorhome, ArrayList<RentalAccessoryModel> accessories, int pickupDistance, int deliveryDistance) {
+    public RentalModel(
+            int ID,
+            LocalDate startDate,
+            LocalDate endDate,
+            int startKm,
+            int endKm,
+            boolean fuelNeeded,
+            CustomerModel customer,
+            MotorhomeModel motorhome,
+            ArrayList<RentalAccessoryModel> accessories,
+            int pickupDistance,
+            int deliveryDistance,
+            RentalOrderLines billing
+    ) {
         this.ID = ID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -28,6 +44,11 @@ public class RentalModel {
         this.accessories = accessories;
         this.pickupDistance = pickupDistance;
         this.deliveryDistance = deliveryDistance;
+        this.billing = billing;
+    }
+
+    public RentalOrderLines getBilling() {
+        return billing;
     }
 
     public int getID() {

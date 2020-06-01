@@ -6,10 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.RentalAccessoryEntit
 import com.nordicmotorhome.motorhomerentals.domain.entities.RentalEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,8 +58,8 @@ public class RentalAccessoriesRepository implements IRepository<RentalAccessoryE
     public RentalAccessoryEntity create(RentalAccessoryEntity entity) {
         try {
             Connection conn = DBManager.getConnection();
-            String SQL = "INSERT INTO rental_accessories (rental_id, accessory_id, amount) VALUES (?,?,?)";
-            PreparedStatement ps = conn.prepareStatement(SQL);
+            String SQL = "INSERT INTO rental_accessories (rental_id, accessories_id, amount) VALUES (?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
             ps.setInt(1, entity.getRental().getID());
             ps.setInt(2, entity.getAccessory().getID());
@@ -70,11 +67,11 @@ public class RentalAccessoriesRepository implements IRepository<RentalAccessoryE
 
             ps.executeUpdate();
 
-            ResultSet rs = ps.getResultSet();
+            ResultSet rs = ps.getGeneratedKeys();
 
             if (!rs.next()) throw new NoSuchEntityException();
 
-            return load(rs);
+            return getById(rs.getInt(1));
         } catch (SQLException | NoSuchEntityException e) {
             e.printStackTrace();
             return null;

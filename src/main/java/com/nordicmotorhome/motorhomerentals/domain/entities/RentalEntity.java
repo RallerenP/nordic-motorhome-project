@@ -1,5 +1,8 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
+import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
+import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
+import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.orderlines.RentalOrderLines;
 import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
 
@@ -20,11 +23,12 @@ public class RentalEntity extends BaseEntity {
     private int pickup_distance;
     private int delivery_distance;
 
-    private ArrayList<RentalAccessoryEntity> accessoryEntities = new ArrayList<>();
+    private IDataFacade dataFacade = new DataFacadeImpl();
+    private ArrayList<RentalAccessoryEntity> _accessoryEntities;
 
     public RentalEntity(int id, LocalDate startDate, LocalDate endDate, int startKilometers, int endKilometers, boolean fuelNeeded,
-                        CustomerEntity customerEntity, MotorhomeEntity motorhomeEntity, int pickup_distance, int delivery_distance,
-                        ArrayList<RentalAccessoryEntity> accessoryEntities) {
+                        CustomerEntity customerEntity, MotorhomeEntity motorhomeEntity, int pickup_distance, int delivery_distance
+                        ) {
         this.ID = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -35,7 +39,6 @@ public class RentalEntity extends BaseEntity {
         this.motorhomeEntity = motorhomeEntity;
         this.pickup_distance = pickup_distance;
         this.delivery_distance = delivery_distance;
-        this.accessoryEntities = accessoryEntities;
     }
 
     // AUTHOR: AML
@@ -52,7 +55,7 @@ public class RentalEntity extends BaseEntity {
         // Find season and get multiplier
         total *= Season.getSeason(startDate).getMult();
 
-        for (RentalAccessoryEntity ent : accessoryEntities) {
+        for (RentalAccessoryEntity ent : getAccessoryEntities()) {
             total += ent.calculateFees();
         }
 
@@ -66,7 +69,7 @@ public class RentalEntity extends BaseEntity {
         double total = 0;
 
         total += motorhomeEntity.getPriceByRentalLength(startDate, endDate);
-        for (RentalAccessoryEntity rae : accessoryEntities) {
+        for (RentalAccessoryEntity rae : getAccessoryEntities()) {
             total += rae.calculateFees();
         }
 
@@ -93,7 +96,7 @@ public class RentalEntity extends BaseEntity {
 
         rol.setMotorhomeName(motorhomeEntity.getMotorhomeModelEntity().getName());
 
-        for (RentalAccessoryEntity entity : accessoryEntities) {
+        for (RentalAccessoryEntity entity : getAccessoryEntities()) {
             rol.getAccessories().put(entity.getAmount() + " " + entity.getAccessory().getName(), String.valueOf(entity.calculateFees()));
         }
 
@@ -137,7 +140,7 @@ public class RentalEntity extends BaseEntity {
 
         // Find season and get multiplier
 
-        for (RentalAccessoryEntity ent : accessoryEntities) {
+        for (RentalAccessoryEntity ent : getAccessoryEntities()) {
             total += ent.calculateFees();
         }
 
@@ -160,11 +163,19 @@ public class RentalEntity extends BaseEntity {
     }
 
     public ArrayList<RentalAccessoryEntity> getAccessoryEntities() {
-        return accessoryEntities;
+        if (_accessoryEntities == null) {
+            try {
+                return (ArrayList<RentalAccessoryEntity>) dataFacade.findAllRentalAccessories("rental_id", ID);
+            } catch (NoSuchEntityException e) {
+                e.printStackTrace();
+                return new ArrayList<>();
+            }
+        }
+        else return _accessoryEntities;
     }
 
     public void setAccessoryEntities(ArrayList<RentalAccessoryEntity> accessoryEntities) {
-        this.accessoryEntities = accessoryEntities;
+        this._accessoryEntities = accessoryEntities;
     }
 
     public LocalDate getStartDate() {
