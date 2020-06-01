@@ -6,22 +6,22 @@
                 <p><b>CPR nr.</b></p>
                 <form th:object="${CPRObject}" th:action="@{/rentals/findcustomer}" method="post">
                     <input style="width: 100%;" th:field="*{cpr}" id="cpr" placeholder="CPR nr.">
-                    <button type="submit">Search</button>
+                    <button type="submit">Søg</button>
                 </form>
             </div>
         </div>
         <div>
-            <p><b>First Name: </b><span th:text="${customer?.getFirstName()}"></span></p>
+            <p><b>Fornavn(e): </b><span th:text="${customer?.getFirstName()}"></span></p>
 
-            <p><b>Last Name: </b><span th:text="${customer?.getLastName()}"></span></p>
+            <p><b>Efternavn: </b><span th:text="${customer?.getLastName()}"></span></p>
 
-            <p><b>Phone nr.: </b><span th:text="${customer?.getPhone()}"></span></p>
+            <p><b>Telefon nr.: </b><span th:text="${customer?.getPhone()}"></span></p>
 
             <p><b>E-Mail: </b><span th:text="${customer?.getEmail()}"></span></p>
 
             <form action="/rentals/selectcustomer" method="POST">
                 <input name="id" style="display: none;" th:value="${customer?.getID()}">
-                <button type="submit">Select User</button>
+                <button type="submit">Vælg kunde</button>
             </form>
 
 
