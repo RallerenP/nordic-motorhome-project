@@ -2,7 +2,7 @@
     <p class="title">Title</p>
         <div th:object="${rental.billing}"  class="full-size flex-center flex-col">
             <div class="border-theme w-full billing-page-container flex flex-col">
-                <div class="title flex-center w-full">Lejemål for <span th:text=""></span></div>
+                <div class="title flex-center w-full"> <span th:text="${'Lejemål for  ' + rental.customer.firstName + ' ' + rental.customer.lastName}"></span></div>
                 <h2><b>Motorhome</b></h2>
                 <div id="motorhome-info-block" >
                     <div style="width: 45%;" >
@@ -23,26 +23,28 @@
                     </div>
                 </div>
                 <hr class="border-theme w-full" />
-                <h2><b>Accessories</b></h2>
-                <div id="accessories-info-block">
-                    <div style="width: 45%;">
-                        <p>
-                            <th:block th:each="entry : *{accessories}" th:with="amount=${entry.value},accessory=${entry.key}">
-                                <b th:text="${accessory}"></b> <span style="float: right" th:text="${amount} + 'EUR'"></span>
-                                <br/>
+
+                    <th:block th:if="${rental.accessories.size() != 0}">
+                        <h2><b>Accessories</b></h2>
+                    </th:block>
+                    <div id="accessories-info-block">
+                        <div style="width: 45%;">
+                            <th:block th:if="${rental.accessories.size() != 0}">
+                                <p>
+                                    <th:block th:each="entry : *{accessories}" th:with="amount=${entry.value},accessory=${entry.key}">
+                                        <b th:text="${accessory}"></b> <span style="float: right" th:text="${amount} + 'EUR'"></span>
+                                        <br/>
+                                    </th:block>
+                                </p>
                             </th:block>
-                        </p>
+                        </div>
+                        <div class="w-1/4"></div>
+                        <div class="w-1/4">
+                            <img style="width: 100%" th:src="'/images/motorhomes/' + *{motorhomeName} + '.jpg'" />
+                        </div>
                     </div>
-                    <div class="w-1/4"></div>
-                    <div class="w-1/4">
-                        <img style="width: 100%" th:src="'/images/motorhomes/' + *{motorhomeName} + '.jpg'" />
-                    </div>
-                </div>
-            </div>
-            <div class="title w-1/2 my-4 flex">
-                <b>Total: </b><span th:text="*{totalPrice}"></span>
-                <div class="flex-grow"></div>
-                <a role="button" class="button" href="/rentals/confirm">Bekræft Bestilling</a>
+                    <!--TODO: Add extra costs (fuel, km driven, etc..) -->
+                <div class="title"><b>Total: </b><span th:text="*{totalPrice}"></span></div>
             </div>
     </div>
 </div>
