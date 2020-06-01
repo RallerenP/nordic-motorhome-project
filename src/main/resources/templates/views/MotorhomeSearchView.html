@@ -4,15 +4,15 @@
     <div class="row h-full w-3/4 flex-col motorhome-search-container">
         <div class="motorhome-search">
             <div>
-                <p><b>Motorhome Search</b></p>
+                <p><b>Autocamper søgning</b></p>
                 <form th:object="${searchObject}" th:action="@{/rentals/searchmotorhome}" method="post">
-                    Number of beds
+                    Antal senge
                     <input style="width: 100%;" th:field="*{beds}" id="beds" placeholder="4">
-                    Start date
+                    Start dato
                     <input style="width: 100%;" th:field="*{startDate}" id="startDate" placeholder="1-4-2019">
-                    End date
+                    Slut dato
                     <input style="width: 100%;" th:field="*{endDate}" id="endDate" placeholder="30-4-2019">
-                    <button type="submit">Search</button>
+                    <button type="submit">Søg</button>
                 </form>
             </div>
         </div>
@@ -31,7 +31,7 @@
                                 <input class="hidden" name="id" th:value="${result.motorhome.ID}" >
                                 <input class="hidden" name="startDate" th:value="${searchObject.startDate}">
                                 <input class="hidden" name="endDate" th:value="${searchObject.endDate}">
-                                <button>Select Motorhome</button>
+                                <button>Vælg autocamper</button>
                             </form>
                         </div>
 
