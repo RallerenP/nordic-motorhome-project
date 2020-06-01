@@ -208,7 +208,7 @@ public class RentalAccessoriesRepository implements IRepository<RentalAccessoryE
 
         return new RentalAccessoryEntity(
                 rtr.getById(rs.getInt("rental_id")),
-                ar.getById(rs.getInt("accessory_id")),
+                ar.getById(rs.getInt("accessories_id")),
                 rs.getInt("amount")
         );
     }
