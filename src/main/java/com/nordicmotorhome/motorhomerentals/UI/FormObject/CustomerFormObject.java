@@ -1,12 +1,20 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
 public class CustomerFormObject {
-    private int ID;
     private String firstName;
     private String lastName;
-    private int number;
     private String email;
-    private String CPR;
+    private int phone;
+    private String cpr;
+    private int ID;
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -24,14 +32,6 @@ public class CustomerFormObject {
         this.lastName = lastName;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -40,11 +40,19 @@ public class CustomerFormObject {
         this.email = email;
     }
 
-    public String getCPR() {
-        return CPR;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setCPR(String CPR) {
-        this.CPR = CPR;
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getCpr() {
+        return cpr;
+    }
+
+    public void setCpr(String cpr) {
+        this.cpr = cpr;
     }
 }

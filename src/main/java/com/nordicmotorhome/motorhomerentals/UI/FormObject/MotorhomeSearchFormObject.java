@@ -1,6 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
-public class SearchFormObject {
+public class MotorhomeSearchFormObject {
     private int beds;
     private String startDate;
     private String endDate;
