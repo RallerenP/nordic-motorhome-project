@@ -1,4 +1,4 @@
-<!--AUTHOR: NKJ-->
+<!--AUTHOR: NKJ, RAP-->
 <div class="full-size">
     <table id="RentalListTable">
         <tr>
@@ -23,7 +23,8 @@
                     <p th:text="${result.endDate}">...</p>
                 </td>
                 <td>
-                    <a th:href="${'/rentals/cancelRental/' + result.ID}" class="button-delete">delete</a>
+                    <a th:href="${'/rentals/view/' + result.ID}" class="button">Detaljer</a>
+                    <a th:href="${'/rentals/cancelRental/' + result.ID}" class="button">Slet</a>
                 </td>
             </tr>
         </th:block>

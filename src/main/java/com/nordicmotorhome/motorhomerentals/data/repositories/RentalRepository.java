@@ -215,12 +215,6 @@ public class RentalRepository implements IRepository<RentalEntity> {
         CustomerRepository cr = new CustomerRepository();
         MotorhomeRepository mr = new MotorhomeRepository();
         RentalAccessoriesRepository rar = new RentalAccessoriesRepository();
-        ArrayList<RentalAccessoryEntity> rae = new ArrayList<RentalAccessoryEntity>();
-        try {
-             rae = rar.findAll("rental_id", rs.getInt("id"));
-        }catch (NoSuchEntityException e){
-
-        }
 
         return new RentalEntity(
             rs.getInt("id"),
@@ -232,8 +226,7 @@ public class RentalRepository implements IRepository<RentalEntity> {
             cr.getById(rs.getInt("customer_id")),
             mr.getById(rs.getInt("motorhome_id")),
             rs.getInt("pickup_distance"),
-            rs.getInt("delivery_distance"),
-            rae
+            rs.getInt("delivery_distance")
         );
     }
 

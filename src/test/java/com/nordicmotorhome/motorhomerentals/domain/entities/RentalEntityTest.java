@@ -39,9 +39,9 @@ class RentalEntityTest {
                 null,
                 motorhomeEntity,
                 70,
-                70,
-                rentalAccessoryEntities
+                70
         );
+        rentalEntity.setAccessoryEntities(rentalAccessoryEntities);
         sengetøjRental.setRental(rentalEntity);
         grillRental.setRental(rentalEntity);
 
@@ -83,9 +83,9 @@ class RentalEntityTest {
                 null,
                 motorhomeEntity,
                 70,
-                70,
-                rentalAccessoryEntities
+                70
         );
+        rentalEntity.setAccessoryEntities(rentalAccessoryEntities);
         sengetøjRental.setRental(rentalEntity);
         grillRental.setRental(rentalEntity);
 
@@ -128,9 +128,9 @@ class RentalEntityTest {
                 null,
                 motorhomeEntity,
                 70,
-                70,
-                rentalAccessoryEntities
+                70
         );
+        rentalEntity.setAccessoryEntities(rentalAccessoryEntities);
         sengetøjRental.setRental(rentalEntity);
         grillRental.setRental(rentalEntity);
 
@@ -173,9 +173,9 @@ class RentalEntityTest {
                 null,
                 motorhomeEntity,
                 70,
-                70,
-                rentalAccessoryEntities
+                70
         );
+        rentalEntity.setAccessoryEntities(rentalAccessoryEntities);
         sengetøjRental.setRental(rentalEntity);
         grillRental.setRental(rentalEntity);
 
@@ -218,9 +218,9 @@ class RentalEntityTest {
                 null,
                 motorhomeEntity,
                 70,
-                70,
-                rentalAccessoryEntities
+                70
         );
+        rentalEntity.setAccessoryEntities(rentalAccessoryEntities);
         sengetøjRental.setRental(rentalEntity);
         grillRental.setRental(rentalEntity);
 
@@ -254,9 +254,9 @@ class RentalEntityTest {
                 null,
                 motorhomeEntity,
                 70,
-                70,
-                rentalAccessoryEntities
+                70
         );
+        rentalEntity.setAccessoryEntities(rentalAccessoryEntities);
 
         // Formula = (((basePrice * days) * seasonalMultiplier) * daysLeftMultiplier
         // Value = (((500 * 1) * 1.6) * 0.2 = 160
