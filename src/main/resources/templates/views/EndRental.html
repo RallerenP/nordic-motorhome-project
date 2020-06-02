@@ -1,0 +1,39 @@
+<div class="full-size flex-center">
+    <div id="finduser-container" class="row">
+
+        <div class="flex-center">
+            <div>
+                <form method="POST" >
+                    <label for="endKm"><h4>Km ved lejemål ophør</h4></label>
+                    <input type="text" id="endKm" class="form-control" placeholder="" />
+                    <br>
+                    <label for="needFuel"><h4>Autocamperen skal tankes</h4></label>
+                    <form action="/action_page.php">
+                        <input type="checkbox" id="ja" name="ja" value="needFuel">
+                        <label for="ja"> Ja</label><br>
+                        <input type="checkbox" id="nej" name="nej" value="needNotFuel">
+                        <label for="nej"> Nej</label><br>
+                    </form>
+                    <br>
+                    <label for="needService"><h4>Autocamperen skal til service eller på værksted</h4></label>
+                    <form action="/action_page.php">
+                        <input type="checkbox" id="ja" name="ja" value="needService">
+                        <label for="ja"> Ja</label><br>
+                        <input type="checkbox" id="nej" name="nej" value="needNotService">
+                        <label for="nej"> Nej</label><br>
+                    </form>
+                    <br>
+                    <label for="cleaningOk"><h4>Autocamperen er rengjort</h4></label>
+                    <form action="/action_page.php">
+                        <input type="checkbox" id="ja" name="ja" value="cleaningOk">
+                        <label for="ja"> Ja</label><br>
+                        <input type="checkbox" id="nej" name="nej" value="cleaningNotOk">
+                        <label for="nej"> Nej</label><br>
+                    </form>
+                    <input name="id" style="display: none;" >
+                    <button type="submit">Opdater lejen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
