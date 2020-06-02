@@ -82,7 +82,7 @@ public class RentalAccessoriesRepository implements IRepository<RentalAccessoryE
     public void delete(RentalAccessoryEntity entity) {
         try {
             Connection conn = DBManager.getConnection();
-            String SQL = "DELETE FROM rental_accessories WHERE id = ?";
+            String SQL = "DELETE FROM rental_accessories WHERE rental_id = ?";
             PreparedStatement ps = conn.prepareStatement(SQL);
 
             ps.setInt(1, entity.getRental().getID());

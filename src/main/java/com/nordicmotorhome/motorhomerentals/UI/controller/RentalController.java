@@ -184,8 +184,9 @@ public class RentalController {
     }
     @GetMapping("/cancelRental/{id}")
     public String cancelRental(HttpServletRequest request, @PathVariable int id){
+        ras.cancelAccessoryRantal(id);
         rs.cancelRantal(id);
-        return "redirect:/rentals/cancelrental";
+        return "redirect:/rentals/list";
     }
 
     @PostMapping("/selectmotorhome")
