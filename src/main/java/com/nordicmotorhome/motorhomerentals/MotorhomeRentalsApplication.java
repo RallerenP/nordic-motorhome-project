@@ -12,8 +12,8 @@ public class MotorhomeRentalsApplication {
     public static void main(String[] args) {
         SpringApplication.run(MotorhomeRentalsApplication.class, args);
 
-//       DBSetup setup = new DBSetup();
-//       setup.setup();
+       DBSetup setup = new DBSetup();
+       setup.setup();
 
     }
 }
