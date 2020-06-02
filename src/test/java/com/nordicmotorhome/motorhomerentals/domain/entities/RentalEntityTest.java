@@ -46,8 +46,8 @@ class RentalEntityTest {
         grillRental.setRental(rentalEntity);
 
         // Formula = ((basePrice * days) * seasonalMult) + fuelNeeded + (((grillPrice * amount) * days) + ((bedLinnenPrice * amount) * days) + floor(AVG_KM_OVER) + (deliveryDistance * 0.70) + (pickupDistance * 0.70)
-        // value = ((1000 * 14) * 1.6) + 70 + ((15 * 1) * 14) + ((30 * 4) * 14) + 171 + (70 * 0.7) + (70 * 0.7) = 24629;
-        double expected = 24629;
+        // value = ((1000 * 14) * 1.6) + 70 + ((15 * 1) * 14) + ((30 * 4) * 14) + (8000 - (14 * 400)) + (70 * 0.7) + (70 * 0.7) = 26858;
+        double expected = 26858;
 
         // Act
         double found = rentalEntity.calculateFees();
