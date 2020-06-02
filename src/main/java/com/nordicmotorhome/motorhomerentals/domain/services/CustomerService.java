@@ -4,6 +4,8 @@ import com.nordicmotorhome.motorhomerentals.UI.model.CustomerModel;
 import com.nordicmotorhome.motorhomerentals.UI.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
+import com.nordicmotorhome.motorhomerentals.data.Message;
+import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.CustomerEntityModelMapper;
@@ -13,24 +15,27 @@ public class CustomerService {
     private final IEntityModelMapper<CustomerEntity, CustomerModel> cemm = new CustomerEntityModelMapper();
     private final IDataFacade dataFacade = DataFacadeImpl.getInstance();
 
-    public CustomerModel create(String firstName, String lastName, int number, String email, String cpr, StaffModel auth) {
+    public Message create(String firstName, String lastName, int number, String email, String cpr, StaffModel auth) {
         if (auth == null) return null; // TODO: Throw exception
 
         CustomerEntity ce = new CustomerEntity(0, firstName, lastName, number, email, cpr);
         ce = dataFacade.createCustomer(ce);
 
-        return cemm.mapToModel(ce);
+        CustomerModel cm = cemm.mapToModel(ce);
+
+        return new Message(MessageType.SUCCESS, cm);
     }
 
-    public CustomerModel findCustomer(String cpr){
+    public Message findCustomer(String cpr){
         try{
-            return cemm.mapToModel(dataFacade.findOneCustomer("cpr", cpr));
+            CustomerModel cm = cemm.mapToModel(dataFacade.findOneCustomer("cpr", cpr));
+            return new Message(MessageType.SUCCESS, cm);
         }catch (NoSuchEntityException e){
-            return null;
+            return new Message(MessageType.ERROR, "No customer found with cpr'" + cpr + "'");
         }
     }
 
-    public CustomerModel update(int ID, String firstName, String lastName, String email, int phone) {
+    public Message update(int ID, String firstName, String lastName, String email, int phone) {
         try {
             CustomerEntity ce = dataFacade.getCustomerById(ID);
             ce.setFirstName(firstName);
@@ -40,11 +45,12 @@ public class CustomerService {
 
             ce = dataFacade.saveCustomer(ce);
 
-            return cemm.mapToModel(ce);
+            CustomerModel cm = cemm.mapToModel(ce);
+
+            return new Message(MessageType.SUCCESS, cm);
 
         } catch (NoSuchEntityException e) {
-            e.printStackTrace();
+            return new Message(MessageType.ERROR, "No customer was found with id '" + ID + "'");
         }
-        return null;
     }
 }

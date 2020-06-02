@@ -105,38 +105,60 @@ public class RentalService {
         }
     };
 
-    // AUTHOR: TODO
-    public List<RentalModel> findRentals(){
+    // AUTHOR: RAP
+    public Message findRentals(){
         try {
             ArrayList<RentalEntity> re = (ArrayList<RentalEntity>) dataFacade.getAllRentals();
-            return remm.mapAllToModel(re);
+            List<RentalModel> list = remm.mapAllToModel(re);
+            return new Message(MessageType.SUCCESS, list);
         } catch (NoSuchEntityException e) {
-            e.printStackTrace();
-            return null;
+            return new Message(MessageType.WARNING, "No rentals found");
         }
     }
 
     // AUTHOR: NKJ
-    public void cancelRantal(int id){
+    public Message cancelRental(int id){
         try {
             RentalEntity entity = dataFacade.getRentalById(id);
             dataFacade.deleteRental(entity);
+            return new Message(MessageType.SUCCESS, "Success");
         } catch (NoSuchEntityException e) {
-            e.printStackTrace();
+            return new Message(MessageType.ERROR, "No rental with id '" + id + "' was found");
+        }
+    }
+
+    // AUTHOR: RAP
+    public Message setRentalFuelNeeded(int id, boolean fuelNeeded) {
+        try {
+            RentalEntity entity = dataFacade.getRentalById(id);
+            entity.setFuelNeeded(fuelNeeded);
+            return new Message(MessageType.SUCCESS, "Success");
+        } catch (NoSuchEntityException e) {
+            return new Message(MessageType.ERROR, "No entity with id '" + id + "' was found in the system");
+        }
+    }
+
+    // AUTHOR : RAP
+    public Message setRentalEndKilometers(int id, int km) {
+        try {
+            RentalEntity entity = dataFacade.getRentalById(id);
+            entity.setEndKilometers(km);
+            return new Message(MessageType.SUCCESS, "Success");
+        } catch (NoSuchEntityException e) {
+            return new Message(MessageType.ERROR, "No entity with id '" + id + "' was found in the system");
         }
     }
 
     // AUTHOR: AML
-    public double calculateFees(int id, boolean fuelNeeded, int kmDriven) {
+    public Message calculateFees(int id) {
         double fee = 0;
         try {
             RentalEntity entity = dataFacade.getRentalById(id);
-            entity.setFuelNeeded(fuelNeeded);
-            entity.setEndKilometers(kmDriven);
             fee = entity.calculateFees();
+            return new Message(MessageType.SUCCESS, fee);
         } catch (NoSuchEntityException e) {
-            e.printStackTrace();
+            return new Message(MessageType.ERROR, "No rental with id '" + id + "' was found");
         }
-        return fee;
+
     }
 }
