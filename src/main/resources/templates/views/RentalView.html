@@ -8,9 +8,9 @@
                     <div style="width: 45%;" >
                         <p class="">
                             <b th:text="*{motorhomeName}"></b>
-                            <span style="float: right" th:text="*{motorhomePrice} + 'EUR'"></span>
+                            <span style="float: right" th:text="*{motorhomePrice} + ' ' + ' EUR'"></span>
                             <br/>
-                            <span><b>Sæson</b>  <span style="float: right" th:text="*{seasonPrice} + 'EUR'"></span></span>
+                            <span><b>Sæson</b>  <span style="float: right" th:text="*{seasonPrice} + ' EUR'"></span></span>
                         </p>
                     </div>
                     <div class="w-1/4"></div>
@@ -32,7 +32,7 @@
                             <th:block th:if="${rental.accessories.size() != 0}">
                                 <p>
                                     <th:block th:each="entry : *{accessories}" th:with="amount=${entry.value},accessory=${entry.key}">
-                                        <b th:text="${accessory}"></b> <span style="float: right" th:text="${amount} + 'EUR'"></span>
+                                        <b th:text="${accessory}"></b> <span style="float: right" th:text="${amount} + ' EUR'"></span>
                                         <br/>
                                     </th:block>
                                 </p>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <!--TODO: Add extra costs (fuel, km driven, etc..) -->
-                <div class="title"><b>Total: </b><span th:text="*{totalPrice}"></span></div>
+                <div class="title"><b>Total EUR: </b><span th:text="*{totalPrice}"></span></div>
             </div>
     </div>
 </div>
