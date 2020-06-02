@@ -7,6 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RentalOrderLines {
+    public Map<String, String> getExtras() {
+        return extras;
+    }
+
+    public void setExtras(Map<String, String> extras) {
+        this.extras = extras;
+    }
+
     public String getMotorhomeName() {
         return motorhomeName;
     }
@@ -70,6 +78,7 @@ public class RentalOrderLines {
     private String seasonPrice;
 
     private Map<String, String> accessories = new HashMap<>();
+    private Map<String, String> extras = new HashMap<>();
 
     private String totalPrice;
 }

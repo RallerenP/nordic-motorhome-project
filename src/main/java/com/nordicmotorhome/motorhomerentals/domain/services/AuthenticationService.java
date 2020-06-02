@@ -33,8 +33,6 @@ public class AuthenticationService {
         try {
             StaffEntity se = dataFacade.findOneStaff("email", email);
 
-
-
             if (HashUtil.verify(pw, se.getPassword())) {
                 StaffModel sm = semm.mapToModel(se);
                 return new Message(MessageType.SUCCESS, sm);

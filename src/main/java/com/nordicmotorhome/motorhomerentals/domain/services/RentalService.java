@@ -132,6 +132,7 @@ public class RentalService {
         try {
             RentalEntity entity = dataFacade.getRentalById(id);
             entity.setFuelNeeded(fuelNeeded);
+            dataFacade.saveRental(entity);
             return new Message(MessageType.SUCCESS, "Success");
         } catch (NoSuchEntityException e) {
             return new Message(MessageType.ERROR, "No entity with id '" + id + "' was found in the system");
@@ -143,6 +144,7 @@ public class RentalService {
         try {
             RentalEntity entity = dataFacade.getRentalById(id);
             entity.setEndKilometers(km);
+            dataFacade.saveRental(entity);
             return new Message(MessageType.SUCCESS, "Success");
         } catch (NoSuchEntityException e) {
             return new Message(MessageType.ERROR, "No entity with id '" + id + "' was found in the system");

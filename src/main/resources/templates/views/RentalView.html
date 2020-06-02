@@ -43,6 +43,21 @@
                             <img style="width: 100%" th:src="'/images/motorhomes/' + *{motorhomeName} + '.jpg'" />
                         </div>
                     </div>
+                <th:block th:if="*{extras.keySet().size() != 0}">
+                    <hr class="border-theme w-full" />
+                    <h2><b>Extras</b></h2>
+
+                    <div id="accessories-info-block">
+                        <div style="width: 100%;">
+                            <p>
+                                <th:block th:each="entry : *{extras}" th:with="cost=${entry.value},extra=${entry.key}">
+                                    <b th:text="${extra}"></b> <span style="float: right" th:text="${cost} + ' EUR'"></span>
+                                    <br/>
+                                </th:block>
+                            </p>
+                        </div>
+                    </div>
+                </th:block>
                     <!--TODO: Add extra costs (fuel, km driven, etc..) -->
                 <div class="title"><b>Total EUR: </b><span th:text="*{totalPrice}"></span></div>
             </div>
