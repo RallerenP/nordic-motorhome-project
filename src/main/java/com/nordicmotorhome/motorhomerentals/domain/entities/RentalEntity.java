@@ -100,9 +100,35 @@ public class RentalEntity extends BaseEntity {
             rol.getAccessories().put(entity.getAmount() + " " + entity.getAccessory().getName(), String.valueOf(entity.calculateFees()));
         }
 
+        if (fuelNeeded) {
+            rol.getExtras().put("Brændstof", "70");
+        }
+
+        double mileagePrice = getMileagePrice();
+
+        if (mileagePrice > 0) {
+            rol.getExtras().put(mileagePrice + " Ekstra Kilometer", String.valueOf(mileagePrice));
+        }
+
+
         rol.setTotalPrice(String.valueOf(getBaseRentalPrice()));
 
         return rol;
+    }
+
+    // AUTHOR: RAP
+    public double getMileagePrice() {
+        int totalDays = (int)ChronoUnit.DAYS.between(startDate, endDate);
+
+        // Average kilometers
+        long averageKilometers = (long) Math.ceil(((double)endKilometers - (double)startKilometers) / (double)totalDays);
+
+        // Calculate fees from multiplier and distance
+        if (averageKilometers > 400) {
+            return (endKilometers - startKilometers) - (400 * totalDays);
+        } else {
+            return 0;
+        }
     }
 
     // AUTHOR: AML
@@ -144,15 +170,7 @@ public class RentalEntity extends BaseEntity {
             total += ent.calculateFees();
         }
 
-
-        // Average kilometers
-        long averageKilometers = (long) Math.ceil(((double)endKilometers - (double)startKilometers) / (double)totalDays);
-
-
-        // Calculate fees from multiplier and distance
-        if (averageKilometers > 400) {
-            total +=  (endKilometers - startKilometers) - (400 * totalDays);
-        }
+        total += getMileagePrice();
 
         total += pickup_distance * 0.70;
         total += delivery_distance * 0.70;

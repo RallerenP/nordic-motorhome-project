@@ -24,7 +24,9 @@ public class AuthenticationController {
     public String login(@ModelAttribute LoginFormObject loginFormObject, HttpServletRequest request) {
         Message loginMessage = domainFacade.loginStaff(loginFormObject.getEmail(), loginFormObject.getPassword());
 
-        if (loginMessage.getType() == MessageType.ERROR) return "redirect:/"; // Todo: something else
+        if (loginMessage.getType() == MessageType.ERROR || loginMessage.getType() == MessageType.WARNING) return "redirect:/"; // Todo: something else
+
+        request.getSession().setAttribute("user", loginMessage.getContent());
 
         return "redirect:/";
     }
