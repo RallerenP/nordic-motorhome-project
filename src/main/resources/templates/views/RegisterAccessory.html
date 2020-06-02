@@ -16,7 +16,7 @@
                     <th:block th:each="entry : ${current_accessories}" th:with="amount=${entry.value},accessory=${entry.key}">
                         <tr>
                             <td th:text="${accessory.name}"></td>
-                            <td th:text="${(accessory.price * amount) + 'kr'}"></td>
+                            <td th:text="${(accessory.price * amount) + ' EUR'}"></td>
                             <td>
                                 <div class="flex-center">
                                     <p class="mx-2" th:text="${amount}"></p>
@@ -51,7 +51,7 @@
                 </form>
                 <div class="flex-grow"></div>
                 <div  class="title">
-                    <b>Total:</b> <span th:text="${billing.totalPrice}"></span>
+                    <b>Total EUR:</b> <span th:text="${billing.totalPrice}"></span>
                 </div>
             </div>
             <a class="button" role="button" href="/rentals/finish" >
