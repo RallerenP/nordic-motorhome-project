@@ -11,6 +11,10 @@ import com.nordicmotorhome.motorhomerentals.domain.services.AuthenticationServic
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
 import com.nordicmotorhome.motorhomerentals.domain.services.RentalService;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,6 +25,16 @@ public class DBSetup {
         Connection conn = DBManager.getConnection();
 
         try {
+            File f = new File("SetupHasBeenRun");
+
+            if (f.exists()) {
+                // Setup has been run, abort
+                return;
+            }
+
+            // Setup has not been run
+            new FileOutputStream(f).close();
+
             Statement stmt = conn.createStatement();
 
             // region SCHEMA SETUP
@@ -329,7 +343,9 @@ public class DBSetup {
             }
             //endregion
 
-        } catch (SQLException e) {
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
