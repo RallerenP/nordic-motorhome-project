@@ -3,7 +3,6 @@ package com.nordicmotorhome.motorhomerentals.domain.services;
 import com.nordicmotorhome.motorhomerentals.data.Message;
 import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.entities.*;
-import com.nordicmotorhome.motorhomerentals.domain.orderlines.RentalOrderLines;
 import com.nordicmotorhome.motorhomerentals.UI.model.AccessoryModel;
 import com.nordicmotorhome.motorhomerentals.UI.model.RentalModel;
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
@@ -125,5 +124,19 @@ public class RentalService {
         } catch (NoSuchEntityException e) {
             e.printStackTrace();
         }
+    }
+
+    // AUTHOR: AML
+    public double calculateFees(int id, boolean fuelNeeded, int kmDriven) {
+        double fee = 0;
+        try {
+            RentalEntity entity = dataFacade.getRentalById(id);
+            entity.setFuelNeeded(fuelNeeded);
+            entity.setEndKilometers(kmDriven);
+            fee = entity.calculateFees();
+        } catch (NoSuchEntityException e) {
+            e.printStackTrace();
+        }
+        return fee;
     }
 }

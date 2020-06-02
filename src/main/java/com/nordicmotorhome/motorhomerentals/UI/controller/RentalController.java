@@ -1,14 +1,11 @@
 package com.nordicmotorhome.motorhomerentals.UI.controller;
 
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.*;
 import com.nordicmotorhome.motorhomerentals.UI.model.*;
 import com.nordicmotorhome.motorhomerentals.data.Message;
 import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.services.*;
-import com.nordicmotorhome.motorhomerentals.UI.FormObject.AddRentalFormObject;
-import com.nordicmotorhome.motorhomerentals.UI.FormObject.MotorhomeSearchFormObject;
-import com.nordicmotorhome.motorhomerentals.UI.FormObject.CustomerFormObject;
 
-import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchUserFormObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -182,6 +179,7 @@ public class RentalController {
         model.addAttribute("content", "RentalList.html");
         return "index";
     }
+
     @GetMapping("/cancelRental/{id}")
     public String cancelRental(HttpServletRequest request, @PathVariable int id){
         ras.cancelAccessoryRantal(id);
@@ -236,5 +234,23 @@ public class RentalController {
 
         if (createMessage.getType() == MessageType.ERROR) return "redirect:/rentals/finish"; // todo add user feedback
         return "redirect:/";
+    }
+
+    @GetMapping("/deliver/{id}")
+    public String deliverMotorhome(Model model, @PathVariable int id) {
+        model.addAttribute("rentalID", id);
+        model.addAttribute("endRentalObject", new EndRentalFormObject());
+        model.addAttribute("content", "EndRental.html");
+        return "index";
+    }
+
+    @PostMapping("/deliver/{id}")
+    public String deliverFee(@ModelAttribute EndRentalFormObject endRentalObject, @PathVariable int id, Model model) {
+        model.addAttribute("rentalID", id);
+        model.addAttribute("endRentalObject", endRentalObject);
+        model.addAttribute("result", rs.calculateFees(id, endRentalObject.isFuelNeeded(), endRentalObject.getKmDriven()));
+        model.addAttribute("content", "EndRental.html");
+
+        return "index";
     }
 }
