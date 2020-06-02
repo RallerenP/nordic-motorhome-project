@@ -1,8 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.controller;
 
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
-import com.nordicmotorhome.motorhomerentals.UI.FormObject.CreateCustomerFormObject;
-import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchUserFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.CustomerFormObject;
 import com.nordicmotorhome.motorhomerentals.UI.model.CustomerModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,17 +21,17 @@ public class CustomerController {
     @GetMapping("/edit")
     public String updateCustomer(Model model) {
         model.addAttribute( "content", "UpdateCustomerView.html" );
-        model.addAttribute( "customerObject", new CreateCustomerFormObject() );
+        model.addAttribute( "customerObject", new CustomerFormObject() );
         return "index";
     }
 
     @PostMapping("/edit")
-    public String findCustomer(@ModelAttribute CreateCustomerFormObject customerObject, HttpServletRequest request, Model model){
+    public String findCustomer(@ModelAttribute CustomerFormObject customerObject, HttpServletRequest request, Model model){
         CustomerModel cm = cs.findCustomer(customerObject.getCpr());
         customerObject.setEmail(cm.getEmail());
         customerObject.setFirstName(cm.getFirstName());
         customerObject.setLastName(cm.getLastName());
-        customerObject.setNumber(Integer.parseInt(cm.getPhone()));
+        customerObject.setPhone(Integer.parseInt(cm.getPhone()));
         customerObject.setID(cm.getID());
 
         model.addAttribute("customerObject", customerObject);
@@ -41,8 +40,8 @@ public class CustomerController {
     }
 
     @PostMapping("/editSubmit")
-    public String submitCustomer(@ModelAttribute CreateCustomerFormObject customerObject) {
-        cs.update(customerObject.getID(), customerObject.getFirstName(), customerObject.getLastName(), customerObject.getEmail(), customerObject.getNumber());
+    public String submitCustomer(@ModelAttribute CustomerFormObject customerObject) {
+        cs.update(customerObject.getID(), customerObject.getFirstName(), customerObject.getLastName(), customerObject.getEmail(), customerObject.getPhone());
         return "redirect:/";
     }
 

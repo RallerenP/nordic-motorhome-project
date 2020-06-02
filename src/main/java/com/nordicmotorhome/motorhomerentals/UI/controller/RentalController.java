@@ -5,8 +5,8 @@ import com.nordicmotorhome.motorhomerentals.data.Message;
 import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.services.*;
 import com.nordicmotorhome.motorhomerentals.UI.FormObject.AddRentalFormObject;
-import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchFormObject;
-import com.nordicmotorhome.motorhomerentals.UI.FormObject.CreateCustomerFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.MotorhomeSearchFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.CustomerFormObject;
 
 import com.nordicmotorhome.motorhomerentals.UI.FormObject.SearchUserFormObject;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class RentalController {
     RentalAccessoryService ras = new RentalAccessoryService();
 
     @GetMapping("/view/{id}")
-    public String viewRental(@PathVariable int id, HttpServletResponse request, Model model) {
+    public String getRentalView(@PathVariable int id, HttpServletResponse request, Model model) {
         Message billMessage = rs.getRental(id);
 
         if (billMessage.getType() == MessageType.ERROR) return "redirect:/rentals/list";
@@ -42,14 +42,14 @@ public class RentalController {
     }
 
     @GetMapping("/customerselect")
-    public String rentoptions(HttpServletRequest request, Model model){
+    public String getInitialCustomerChoiceView(HttpServletRequest request, Model model){
         request.getSession().setAttribute("rental", new AddRentalFormObject());
         model.addAttribute("content","SelectRentOptionsView.html");
         return "index";
     }
 
     @GetMapping("/findcustomer")
-    public String findCustomer(HttpServletRequest request, Model model){
+    public String getCustomerSearchView(HttpServletRequest request, Model model){
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
 
         model.addAttribute("CPRObject", new SearchUserFormObject());
@@ -58,7 +58,7 @@ public class RentalController {
     }
 
     @PostMapping("/selectcustomer")
-    public String selectCustomer(HttpServletRequest request, Model model) {
+    public String selectCustomerForRequest(HttpServletRequest request, Model model) {
         AddRentalFormObject rental = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
         rental.setCustomerID(Integer.parseInt(request.getParameter("id")));
@@ -70,25 +70,25 @@ public class RentalController {
     }
 
     @PostMapping("/findcustomer")
-    public String findCustomer(@ModelAttribute SearchUserFormObject cprObject, HttpServletRequest request,  Model model){
-        model.addAttribute("customer", cs.findCustomer(cprObject.getCpr()));
-        model.addAttribute("CPRObject", cprObject);
+    public String searchForCustomer(@ModelAttribute SearchUserFormObject userSearchFormObject, HttpServletRequest request, Model model){
+        model.addAttribute("customer", cs.findCustomer(userSearchFormObject.getCpr()));
+        model.addAttribute("CPRObject", userSearchFormObject);
         model.addAttribute("content","SelectCustomerView.html");
         return "index";
     }
 
     @GetMapping("/createcustomer")
-    public String createCustomer(HttpServletRequest request, Model model) {
+    public String getCreateCustomerView(HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
         model.addAttribute( "content","RegisterCustomerView.html" );
-        model.addAttribute( "customerObject",new CreateCustomerFormObject() );
+        model.addAttribute( "customerObject",new CustomerFormObject() );
         return "index";
     }
 
     @PostMapping("/createcustomer")
-    public String createCustomer(@ModelAttribute CreateCustomerFormObject customerObject, HttpServletRequest request, Model model) {
+    public String createCustomerForRental(@ModelAttribute CustomerFormObject customerObject, HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
-        CustomerModel cm = cs.create( customerObject.getFirstName(), customerObject.getLastName(),customerObject.getNumber(),customerObject.getEmail(),customerObject.getCpr(),
+        CustomerModel cm = cs.create( customerObject.getFirstName(), customerObject.getLastName(),customerObject.getPhone(),customerObject.getEmail(),customerObject.getCpr(),
                 new StaffModel( null,null,null,null)); // TODO Actual auth
 
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
@@ -101,15 +101,15 @@ public class RentalController {
     }
 
     @GetMapping("/searchmotorhome")
-    public String search(HttpServletRequest request, Model model) {
+    public String getMotorhomeSearchView(HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
-        model.addAttribute("searchObject", new SearchFormObject());
+        model.addAttribute("searchObject", new MotorhomeSearchFormObject());
         model.addAttribute("content","MotorhomeSearchView");
         return "index";
     }
 
     @PostMapping("/searchmotorhome")
-    public String search(@ModelAttribute SearchFormObject searchObject, Model model) {
+    public String searchForMotorhome(@ModelAttribute MotorhomeSearchFormObject searchObject, Model model) {
         // TODO add parse exception handling
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu");
         LocalDate start = LocalDate.parse(searchObject.getStartDate(), dtf);
@@ -122,7 +122,7 @@ public class RentalController {
     }
 
     @GetMapping("/addaccessories")
-    public String addAccessories(HttpServletRequest request, Model model) {
+    public String getAccessorySelectionView(HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
 
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
@@ -141,7 +141,7 @@ public class RentalController {
     }
 
     @PostMapping("/addaccessory")
-    public String addAccessory(HttpServletRequest request) {
+    public String addAccessoryToRental(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
@@ -158,7 +158,7 @@ public class RentalController {
     }
 
     @PostMapping("/removeaccessory")
-    public String removeAccessory(HttpServletRequest request) {
+    public String removeAccessoryFromRental(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
@@ -177,7 +177,7 @@ public class RentalController {
     }
 
     @GetMapping("/list")
-    public String cancelRental(Model model){
+    public String getRentalListView(Model model){
         model.addAttribute("results", rs.findRentals());
         model.addAttribute("content", "RentalList.html");
         return "index";
@@ -190,7 +190,7 @@ public class RentalController {
     }
 
     @PostMapping("/selectmotorhome")
-    public String selectMotorhome(HttpServletRequest request) {
+    public String selectMotorhomeForRental(HttpServletRequest request) {
         AddRentalFormObject rental = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu");

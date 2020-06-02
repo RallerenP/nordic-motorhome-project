@@ -15,16 +15,9 @@ public class AddRentalFormObject {
     private int deliveryDistance;
     private int startKm;
     private HashMap<AccessoryModel, Integer> accessoriesMap = new HashMap<>();
-    private ArrayList<Integer> accessoryIdsList = new ArrayList<>();
-
-
 
     public HashMap<AccessoryModel, Integer> getAccessoriesMap() {
         return accessoriesMap;
-    }
-
-    public void setAccessoryIdsList(ArrayList<Integer> accessoryIdsList) {
-        this.accessoryIdsList = accessoryIdsList;
     }
 
     public int getStartKm() {
