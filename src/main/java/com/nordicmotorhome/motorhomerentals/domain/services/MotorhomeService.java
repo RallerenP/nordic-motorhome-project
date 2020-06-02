@@ -2,6 +2,8 @@ package com.nordicmotorhome.motorhomerentals.domain.services;
 
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
+import com.nordicmotorhome.motorhomerentals.data.Message;
+import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeEntity;
 import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeModelEntity;
 import com.nordicmotorhome.motorhomerentals.domain.entities.RentalEntity;
@@ -24,16 +26,17 @@ public class MotorhomeService {
     IEntityModelMapper<MotorhomeEntity, MotorhomeModel> memm = new MotorhomeEntityModelMapper();
 
 
-    public List<MotorhomeModelModel> searchMotorhomes(int beds) {
+    public Message searchMotorhomes(int beds) {
         try {
-            return mmemm.mapAllToModel(dataFacade.findAllMotorhomeModels("beds", beds));
+            List<MotorhomeModelModel> list = mmemm.mapAllToModel(dataFacade.findAllMotorhomeModels("beds", beds));
+            return new Message(MessageType.SUCCESS, list);
         }catch (NoSuchEntityException e) {
-            return null;
+            return new Message(MessageType.ERROR, "No motorhomes found with '" + beds + "' beds");
         }
     }
 
     // Author: RAP
-    public List<MotorhomeSearchDTO> searchMotorhomes(int beds, LocalDate startDate, LocalDate endDate) {
+    public Message searchMotorhomes(int beds, LocalDate startDate, LocalDate endDate) {
         try {
             ArrayList<MotorhomeModelEntity> motorhomeModelEntities = (ArrayList<MotorhomeModelEntity>) dataFacade.findAllMotorhomeModels("beds", beds);
             ArrayList<MotorhomeEntity> candidates = new ArrayList<>();
@@ -65,9 +68,9 @@ public class MotorhomeService {
                 dtos.add(new MotorhomeSearchDTO(memm.mapToModel(candidate), candidate.getPriceByRentalLength(startDate, endDate)));
             }
 
-            return dtos;
+            return new Message(MessageType.SUCCESS, dtos);
         } catch (NoSuchEntityException e) {
-            return null; // TODO: return something better
+            return new Message(MessageType.ERROR, "No motorhomes were found matching the criteria");
         }
     };
 }

@@ -2,6 +2,8 @@ package com.nordicmotorhome.motorhomerentals.domain.services;
 
 import com.nordicmotorhome.motorhomerentals.data.DataFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.data.IDataFacade;
+import com.nordicmotorhome.motorhomerentals.data.Message;
+import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.AccessoryEntityModelMapper;
@@ -16,25 +18,26 @@ public class AccessoryService {
 
     IEntityModelMapper<AccessoryEntity, AccessoryModel> aemm = new AccessoryEntityModelMapper();
 
-    public AccessoryModel getAccessory(int id) {
+    public Message getAccessory(int id) {
         try {
-            return aemm.mapToModel(dataFacade.getAccessoryById(id));
+            AccessoryModel am = aemm.mapToModel(dataFacade.getAccessoryById(id));
+            return new Message(MessageType.SUCCESS, am);
         } catch (NoSuchEntityException e) {
-            e.printStackTrace();
-            return null;
+            return new Message(MessageType.ERROR, "No accessory with id '" + id + "' was found");
         }
     }
 
-    public ArrayList<AccessoryModel> getAllAccessories() {
+    public Message getAllAccessories() {
         try {
-            return (ArrayList<AccessoryModel>) aemm.mapAllToModel(dataFacade.getAllAccessories());
+            ArrayList<AccessoryModel> models = (ArrayList<AccessoryModel>) aemm.mapAllToModel(dataFacade.getAllAccessories());
+
+            return new Message(MessageType.SUCCESS, models);
         } catch (NoSuchEntityException e) {
-            // TODO: Return something better
-            return null;
+            return new Message(MessageType.WARNING, "No accessories found");
         }
     }
 
-    public ArrayList<AccessoryModel> getAllAccessories(List<Integer> ids) {
+    public Message getAllAccessories(List<Integer> ids) {
         try {
             ArrayList<AccessoryEntity> accessoryEntities = new ArrayList<>();
 
@@ -42,9 +45,11 @@ public class AccessoryService {
                 accessoryEntities.add(dataFacade.getAccessoryById(id));
             }
 
-            return (ArrayList<AccessoryModel>) aemm.mapAllToModel(accessoryEntities);
+            ArrayList<AccessoryModel> models = (ArrayList<AccessoryModel>) aemm.mapAllToModel(accessoryEntities);
+
+            return new Message(MessageType.SUCCESS, models);
         } catch (NoSuchEntityException e) {
-            return null; // TODO better message
+            return new Message(MessageType.WARNING, "No accessories found"); // TODO better message
         }
     }
 }

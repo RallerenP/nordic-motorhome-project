@@ -3,6 +3,8 @@ package com.nordicmotorhome.motorhomerentals.UI.controller;
 import com.nordicmotorhome.motorhomerentals.UI.FormObject.*;
 import com.nordicmotorhome.motorhomerentals.UI.model.*;
 import com.nordicmotorhome.motorhomerentals.data.Message;
+import com.nordicmotorhome.motorhomerentals.domain.DomainFacadeImpl;
+import com.nordicmotorhome.motorhomerentals.domain.IDomainFacade;
 import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.services.*;
 
@@ -20,15 +22,12 @@ import java.util.Map;
 @Controller
 @RequestMapping ("/rentals")
 public class RentalController {
-    CustomerService cs = new CustomerService();
-    RentalService rs = new RentalService();
-    MotorhomeService ms = new MotorhomeService();
-    AccessoryService as = new AccessoryService();
-    RentalAccessoryService ras = new RentalAccessoryService();
+
+    private final IDomainFacade domainFacade = DomainFacadeImpl.getInstance();
 
     @GetMapping("/view/{id}")
     public String getRentalView(@PathVariable int id, HttpServletResponse request, Model model) {
-        Message billMessage = rs.getRental(id);
+        Message billMessage = domainFacade.getRental(id);
 
         if (billMessage.getType() == MessageType.ERROR) return "redirect:/rentals/list";
 
@@ -68,7 +67,12 @@ public class RentalController {
 
     @PostMapping("/findcustomer")
     public String searchForCustomer(@ModelAttribute SearchUserFormObject userSearchFormObject, HttpServletRequest request, Model model){
-        model.addAttribute("customer", cs.findCustomer(userSearchFormObject.getCpr()));
+
+        Message searchMessage = domainFacade.findCustomer(userSearchFormObject.getCpr());
+
+        if (searchMessage.getType() == MessageType.ERROR) return "redirect:/rentals/findcustomer";
+
+        model.addAttribute("customer", searchMessage.getContent());
         model.addAttribute("CPRObject", userSearchFormObject);
         model.addAttribute("content","SelectCustomerView.html");
         return "index";
@@ -85,11 +89,15 @@ public class RentalController {
     @PostMapping("/createcustomer")
     public String createCustomerForRental(@ModelAttribute CustomerFormObject customerObject, HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
-        CustomerModel cm = cs.create( customerObject.getFirstName(), customerObject.getLastName(),customerObject.getPhone(),customerObject.getEmail(),customerObject.getCpr(),
+
+        Message createMessage = domainFacade.createCustomer(customerObject.getFirstName(), customerObject.getLastName(),customerObject.getPhone(),customerObject.getEmail(),customerObject.getCpr(),
                 new StaffModel( null,null,null,null)); // TODO Actual auth
 
+
+        if (createMessage.getType() == MessageType.ERROR) return "redirect:/rentals/customerselect";
+
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
-        arfo.setCustomerID(cm.getID());
+        arfo.setCustomerID(((CustomerModel)createMessage.getContent()).getID());
 
         // Maybe not needed
         request.getSession().setAttribute("rental", arfo);
@@ -112,7 +120,11 @@ public class RentalController {
         LocalDate start = LocalDate.parse(searchObject.getStartDate(), dtf);
         LocalDate end = LocalDate.parse(searchObject.getEndDate(), dtf);
 
-        model.addAttribute("results", ms.searchMotorhomes(searchObject.getBeds(), start, end));
+        Message searchMessage = domainFacade.searchMotorhome(searchObject.getBeds(), start, end);
+
+        if (searchMessage.getType() == MessageType.ERROR) return "redirect:/rentals/searchmotorhome";
+
+        model.addAttribute("results", searchMessage.getContent());
         model.addAttribute("searchObject", searchObject);
         model.addAttribute("content", "MotorhomeSearchView.html");
         return "index";
@@ -124,14 +136,16 @@ public class RentalController {
 
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
-        Message billMessage = rs.getBillingInfo(arfo.getAccessoriesMap(), arfo.getMotorhomeID(), arfo.getStartDate(), arfo.getEndDate());
+
+        Message billMessage = domainFacade.getBillingInfo(arfo.getAccessoriesMap(), arfo.getMotorhomeID(), arfo.getStartDate(), arfo.getEndDate());
+        Message accessoriesMessage = domainFacade.getAllAccessories();
 
         if (billMessage.getType() == MessageType.ERROR) return "redirect:/rentals/searchmotorhome"; // TODO add user feedback
+        if (accessoriesMessage.getType() == MessageType.ERROR || accessoriesMessage.getType() == MessageType.WARNING) model.addAttribute( "accessories", null);
+        else model.addAttribute( "accessories", accessoriesMessage.getContent());
 
         model.addAttribute("billing", billMessage.getContent());
-
         model.addAttribute( "content", "RegisterAccessory.html" );
-        model.addAttribute( "accessories", as.getAllAccessories());
         model.addAttribute("current_accessories", arfo.getAccessoriesMap());
 
         return "index";
@@ -142,8 +156,12 @@ public class RentalController {
         int id = Integer.parseInt(request.getParameter("id"));
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
+        Message accessoriesMessage = domainFacade.getAccessory(id);
+
+        if (accessoriesMessage.getType() == MessageType.ERROR) return "redirect:/rentals/addaccessories";
+
         final Map<AccessoryModel, Integer> arfoAccessoryMap = arfo.getAccessoriesMap();
-        final AccessoryModel accessoryToAdd = as.getAccessory(id);
+        final AccessoryModel accessoryToAdd = (AccessoryModel) accessoriesMessage.getContent();
 
         arfoAccessoryMap.put(accessoryToAdd, arfoAccessoryMap.getOrDefault(accessoryToAdd, 0) + 1);
 
@@ -159,8 +177,12 @@ public class RentalController {
         int id = Integer.parseInt(request.getParameter("id"));
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
+        Message accessoriesMessage = domainFacade.getAccessory(id);
+
+        if (accessoriesMessage.getType() == MessageType.ERROR) return "redirect:/rentals/addaccessories";
+
         final Map<AccessoryModel, Integer> arfoAccessoryMap = arfo.getAccessoriesMap();
-        final AccessoryModel accessoryToRemove = as.getAccessory(id);
+        final AccessoryModel accessoryToRemove = (AccessoryModel) accessoriesMessage.getContent();
 
         arfoAccessoryMap.put(accessoryToRemove, arfoAccessoryMap.getOrDefault(accessoryToRemove, 0) - 1);
 
@@ -175,15 +197,26 @@ public class RentalController {
 
     @GetMapping("/list")
     public String getRentalListView(Model model){
-        model.addAttribute("results", rs.findRentals());
+        Message rentalMessage = domainFacade.findRentals();
+
+        if (rentalMessage.getType() != MessageType.WARNING) model.addAttribute("results", rentalMessage.getContent());
+        else model.addAttribute("results", null);
+
+
         model.addAttribute("content", "RentalList.html");
         return "index";
     }
 
     @GetMapping("/cancelRental/{id}")
     public String cancelRental(HttpServletRequest request, @PathVariable int id){
-        ras.cancelAccessoryRantal(id);
-        rs.cancelRantal(id);
+        Message rentalMessage = domainFacade.cancelRental(id);
+
+        if (rentalMessage.getType() == MessageType.ERROR) return "redirect:/rentals/list";
+
+        Message accessoryMessage = domainFacade.cancelAccessoryRental(id);
+
+        if (accessoryMessage.getType() == MessageType.ERROR) return "redirect:/rentals/list";
+
         return "redirect:/rentals/list";
     }
 
@@ -208,7 +241,7 @@ public class RentalController {
 
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
 
-        Message billMessage = rs.getBillingInfo(arfo.getAccessoriesMap(), arfo.getMotorhomeID(), arfo.getStartDate(), arfo.getEndDate());
+        Message billMessage = domainFacade.getBillingInfo(arfo.getAccessoriesMap(), arfo.getMotorhomeID(), arfo.getStartDate(), arfo.getEndDate());
 
         if (billMessage.getType() == MessageType.ERROR) {
             return "redirect:/rentals/searchmotorhome"; //Todo: add user feedback
@@ -224,15 +257,18 @@ public class RentalController {
     public String confirmOrder(HttpServletRequest request){
 
         AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
-        Message createMessage = rs.create(arfo.getCustomerID(), arfo.getStartDate(), arfo.getEndDate(), arfo.getMotorhomeID(),0,0);
+        Message createMessage = domainFacade.createRental(arfo.getCustomerID(), arfo.getStartDate(), arfo.getEndDate(), arfo.getMotorhomeID(),0,0);
 
         RentalModel rm = (RentalModel) createMessage.getContent();
 
+        Message accessoryMessage;
         for (AccessoryModel model : arfo.getAccessoriesMap().keySet()) {
-            ras.create(rm.getID(), model.getID(), arfo.getAccessoriesMap().get(model));
+            accessoryMessage = domainFacade.createRentalAccessory(rm.getID(), model.getID(), arfo.getAccessoriesMap().get(model));
+            if (accessoryMessage.getType() == MessageType.ERROR) return "redirect:/rentals/confirm";
         }
 
         if (createMessage.getType() == MessageType.ERROR) return "redirect:/rentals/finish"; // todo add user feedback
+
         return "redirect:/";
     }
 
@@ -246,9 +282,14 @@ public class RentalController {
 
     @PostMapping("/deliver/{id}")
     public String deliverFee(@ModelAttribute EndRentalFormObject endRentalObject, @PathVariable int id, Model model) {
+
+        Message feesMessage = domainFacade.getRentalEndingFees(id, endRentalObject.isFuelNeeded(), endRentalObject.getKmDriven());
+
+        if (feesMessage.getType() == MessageType.ERROR) return "redirect:/rentals/list";
+
         model.addAttribute("rentalID", id);
         model.addAttribute("endRentalObject", endRentalObject);
-        model.addAttribute("result", rs.calculateFees(id, endRentalObject.isFuelNeeded(), endRentalObject.getKmDriven()));
+        model.addAttribute("result", feesMessage.getContent());
         model.addAttribute("content", "EndRental.html");
 
         return "index";

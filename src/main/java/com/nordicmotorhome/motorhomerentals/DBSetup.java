@@ -320,7 +320,7 @@ public class DBSetup {
             StaffRepository sr = new StaffRepository();
             try {
                 StaffModel sm = new StaffEntityModelMapper().mapToModel(sr.getById(1));
-                CustomerModel ce = cs.create("Bob", "Bob", 88888888, "bob@bob.dk", "2605204555", sm);
+                CustomerModel ce = (CustomerModel) cs.create("Bob", "Bob", 88888888, "bob@bob.dk", "2605204555", sm).getContent();
 
                 RentalModel rm = (RentalModel) rs.create(ce.getID(), LocalDate.now(), LocalDate.now().plusWeeks(2), 5, 0, 0).getContent();
 

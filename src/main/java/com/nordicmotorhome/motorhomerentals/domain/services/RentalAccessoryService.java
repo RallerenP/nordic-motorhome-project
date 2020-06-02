@@ -29,14 +29,16 @@ public class RentalAccessoryService {
     }
 
     // AUTHOR: NKJ
-    public void cancelAccessoryRantal(int id){
+    public Message cancelAccessoryRental(int id){
         try {
             ArrayList<RentalAccessoryEntity> accessoryEntity = (ArrayList<RentalAccessoryEntity>) dataFacade.findAllRentalAccessories("rental_id", id);
             for (RentalAccessoryEntity entity : accessoryEntity) {
                 dataFacade.deleteRentalAccessory(entity);
             }
+
+            return new Message(MessageType.SUCCESS, "Success");
         } catch (NoSuchEntityException e) {
-            e.printStackTrace();
+            return new Message(MessageType.ERROR, "No RentalAccessory found with id '" + id + "'");
         }
     }
 }

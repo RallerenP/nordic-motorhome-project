@@ -1,5 +1,9 @@
 package com.nordicmotorhome.motorhomerentals.UI.controller;
 
+import com.nordicmotorhome.motorhomerentals.data.Message;
+import com.nordicmotorhome.motorhomerentals.domain.DomainFacadeImpl;
+import com.nordicmotorhome.motorhomerentals.domain.IDomainFacade;
+import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 import com.nordicmotorhome.motorhomerentals.domain.services.CustomerService;
 import com.nordicmotorhome.motorhomerentals.UI.FormObject.CustomerFormObject;
 import com.nordicmotorhome.motorhomerentals.UI.model.CustomerModel;
@@ -15,8 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
-
-    CustomerService cs = new CustomerService();
+    private final IDomainFacade domainFacade = DomainFacadeImpl.getInstance();
 
     @GetMapping("/edit")
     public String updateCustomer(Model model) {
@@ -27,7 +30,11 @@ public class CustomerController {
 
     @PostMapping("/edit")
     public String findCustomer(@ModelAttribute CustomerFormObject customerObject, HttpServletRequest request, Model model){
-        CustomerModel cm = cs.findCustomer(customerObject.getCpr());
+        Message customerMessage = domainFacade.findCustomer(customerObject.getCpr());
+
+        if (customerMessage.getType() == MessageType.ERROR) return "redirect:/";
+
+        CustomerModel cm = (CustomerModel) customerMessage.getContent();
         customerObject.setEmail(cm.getEmail());
         customerObject.setFirstName(cm.getFirstName());
         customerObject.setLastName(cm.getLastName());
@@ -41,7 +48,9 @@ public class CustomerController {
 
     @PostMapping("/editSubmit")
     public String submitCustomer(@ModelAttribute CustomerFormObject customerObject) {
-        cs.update(customerObject.getID(), customerObject.getFirstName(), customerObject.getLastName(), customerObject.getEmail(), customerObject.getPhone());
+        Message submitMessage = domainFacade.updateCustomer(customerObject.getID(), customerObject.getFirstName(), customerObject.getLastName(), customerObject.getEmail(), customerObject.getPhone());
+
+        if (submitMessage.getType() == MessageType.ERROR) return "redirect:/";
         return "redirect:/";
     }
 
