@@ -146,12 +146,12 @@ public class RentalEntity extends BaseEntity {
 
 
         // Average kilometers
-        long averageKilometers = (endKilometers - startKilometers) / totalDays;
+        long averageKilometers = (long) Math.ceil(((double)endKilometers - (double)startKilometers) / (double)totalDays);
 
 
         // Calculate fees from multiplier and distance
         if (averageKilometers > 400) {
-            total += averageKilometers - 400;
+            total +=  (endKilometers - startKilometers) - (400 * totalDays);
         }
 
         total += pickup_distance * 0.70;
