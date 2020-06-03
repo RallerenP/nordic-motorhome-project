@@ -268,4 +268,33 @@ class RentalEntityTest {
         // Assert
         assertEquals(expected, found);
     }
+
+
+    @Test
+    void getMileagePrice() {
+        //Arrange
+        MotorhomeModelEntity motorhomeModelEntity = new MotorhomeModelEntity(0, "BareEtSkur", 4, 500);
+        MotorhomeEntity motorhomeEntity = new MotorhomeEntity(0, motorhomeModelEntity, 5600, true, true);
+
+        RentalEntity rentalEntity = new RentalEntity(
+                0,
+                LocalDate.now().plusDays(51),
+                LocalDate.now().plusDays(52),
+                5600,
+                8000,
+                true,
+                null,
+                motorhomeEntity,
+                70,
+                70
+        );
+        // Formula = AVG KM OVER - 400
+        double expected = 2000;
+
+        // Act
+        double found = rentalEntity.getMileagePrice();
+
+        // Assert
+        assertEquals(expected, found);
+    }
 }

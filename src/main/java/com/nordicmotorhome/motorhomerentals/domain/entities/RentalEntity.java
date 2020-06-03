@@ -65,21 +65,6 @@ public class RentalEntity extends BaseEntity {
     }
 
     // AUTHOR: RAP
-    public double getBaseRentalPrice() {
-        double total = 0;
-
-        total += motorhomeEntity.getPriceByRentalLength(startDate, endDate);
-        for (RentalAccessoryEntity rae : getAccessoryEntities()) {
-            total += rae.calculateFees();
-        }
-
-        total += pickup_distance * 0.70;
-        total += delivery_distance * 0.70;
-
-        return total;
-    }
-
-    // AUTHOR: RAP
     public RentalOrderLines generateBillingInfo() {
         RentalOrderLines rol = new RentalOrderLines();
 
