@@ -3,10 +3,10 @@ package com.nordicmotorhome.motorhomerentals.domain.utils;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class HashUtil {
-    private final int rounds = 5;
+    private static final int rounds = 10;
 
     public static String hash(String pw) {
-        return BCrypt.hashpw(pw, BCrypt.gensalt(5));
+        return BCrypt.hashpw(pw, BCrypt.gensalt(rounds));
     }
 
     public static boolean verify(String pw, String hash) {
