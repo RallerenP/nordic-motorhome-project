@@ -5,7 +5,7 @@
         <div class="motorhome-search">
             <div>
                 <p><b>Autocamper søgning</b></p>
-                <form th:object="${searchObject}" th:action="@{/rentals/searchmotorhome}" method="post">
+                <form th:object="${searchObject}" th:action="@{/motorhomes/search}" method="post">
                     Antal senge
                     <input style="width: 100%;" th:field="*{beds}" id="beds" placeholder="4">
                     Start dato
