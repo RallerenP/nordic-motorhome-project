@@ -1,5 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
+//Author : RAP, AML, NKJ, ME
 public class CustomerFormObject {
     private String firstName;
     private String lastName;

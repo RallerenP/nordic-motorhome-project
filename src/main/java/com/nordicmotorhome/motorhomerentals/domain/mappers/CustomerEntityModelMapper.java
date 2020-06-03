@@ -6,6 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.CustomerEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+// AUTHOR: RAP, AML
 public class CustomerEntityModelMapper implements IEntityModelMapper<CustomerEntity, CustomerModel> {
     @Override
     public CustomerModel mapToModel(CustomerEntity entity) {

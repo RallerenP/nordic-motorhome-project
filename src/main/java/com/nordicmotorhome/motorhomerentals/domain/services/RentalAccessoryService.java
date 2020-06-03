@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class RentalAccessoryService {
     IDataFacade dataFacade = new DataFacadeImpl();
     IEntityModelMapper<RentalAccessoryEntity, RentalAccessoryModel> raemm = new RentalAccessoryEntityModelMapper();
+    //Author : RAP
     public Message create(int rental_id, int accessory_id, int amount) {
         try {
             RentalAccessoryEntity rea = new RentalAccessoryEntity(dataFacade.getRentalById(rental_id), dataFacade.getAccessoryById(accessory_id), amount);

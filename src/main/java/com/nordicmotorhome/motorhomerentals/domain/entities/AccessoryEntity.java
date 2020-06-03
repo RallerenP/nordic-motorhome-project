@@ -5,6 +5,7 @@ import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+// AUTHOR: RAP, NKJ, AML, ME
 public class AccessoryEntity extends BaseEntity {
     private String name;
     private double price;

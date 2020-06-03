@@ -25,7 +25,7 @@ public class MotorhomeService {
     IEntityModelMapper<MotorhomeModelEntity, MotorhomeModelModel> mmemm = new MotorhomeModelEntityModelMapper();
     IEntityModelMapper<MotorhomeEntity, MotorhomeModel> memm = new MotorhomeEntityModelMapper();
 
-
+    //Author : AML
     public Message searchMotorhomes(int beds) {
         try {
             List<MotorhomeModelModel> list = mmemm.mapAllToModel(dataFacade.findAllMotorhomeModels("beds", beds));

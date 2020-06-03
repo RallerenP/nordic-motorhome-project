@@ -4,7 +4,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.util.List;
-
+// AUTHOR: RAP
 public interface IRepository<T> {
 
     /**

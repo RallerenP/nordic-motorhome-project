@@ -3,6 +3,7 @@ package com.nordicmotorhome.motorhomerentals.domain.utils;
 import java.time.LocalDate;
 import java.time.Month;
 
+//Author : RAP
 public enum Season {
     PEAK {
         public double getMult() {

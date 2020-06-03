@@ -2,6 +2,7 @@ package com.nordicmotorhome.motorhomerentals.UI.dto;
 
 import com.nordicmotorhome.motorhomerentals.UI.model.MotorhomeModel;
 
+//Author : RAP
 public class MotorhomeSearchDTO {
     private MotorhomeModel motorhome;
     private double price;

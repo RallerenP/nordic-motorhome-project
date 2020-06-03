@@ -1,5 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.UI.model;
 
+//Author : RAP
 public class MotorhomeModel {
     private int ID;
     private MotorhomeModelModel model;

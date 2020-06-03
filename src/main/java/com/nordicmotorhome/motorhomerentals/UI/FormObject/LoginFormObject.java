@@ -1,5 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
+//Author : RAP
 public class LoginFormObject {
     private String email;
     private String password;

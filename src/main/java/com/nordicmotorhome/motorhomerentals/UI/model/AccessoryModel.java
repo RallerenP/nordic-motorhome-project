@@ -2,6 +2,7 @@ package com.nordicmotorhome.motorhomerentals.UI.model;
 
 import java.util.Objects;
 
+//Author : RAP
 public class AccessoryModel {
     private int ID;
     private String name;

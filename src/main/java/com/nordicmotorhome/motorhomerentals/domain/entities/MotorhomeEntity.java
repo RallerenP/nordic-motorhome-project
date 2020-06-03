@@ -5,6 +5,7 @@ import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+// AUTHOR: RAP, NKJ, AML, ME
 public class MotorhomeEntity extends BaseEntity {
     private MotorhomeModelEntity motorhomeModelEntity;
     private int kilometersDriven;
@@ -19,14 +20,17 @@ public class MotorhomeEntity extends BaseEntity {
         this.serviced = serviced;
     }
 
+    // AUTHOR: RAP
     public double getBasePriceByRentalLength(int days) {
         return (motorhomeModelEntity.getPrice() * days);
     }
 
+    // AUTHOR: RAP
     public double getPriceByRentalLength(int days, Season season) {
         return (motorhomeModelEntity.getPrice() * days) * season.getMult();
     }
 
+    // AUTHOR: RAP
     public double getPriceByRentalLength(LocalDate startDate, LocalDate endDate) {
         return getPriceByRentalLength((int) ChronoUnit.DAYS.between(startDate, endDate), Season.getSeason(startDate));
     };

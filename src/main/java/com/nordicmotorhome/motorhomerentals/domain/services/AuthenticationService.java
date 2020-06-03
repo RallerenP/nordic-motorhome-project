@@ -10,7 +10,7 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.StaffEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.utils.HashUtil;
-
+//Author : RAP
 public class AuthenticationService {
     private final IDataFacade dataFacade = DataFacadeImpl.getInstance();
     private final IEntityModelMapper<StaffEntity, StaffModel> semm = new StaffEntityModelMapper();

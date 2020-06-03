@@ -5,6 +5,7 @@ import com.nordicmotorhome.motorhomerentals.domain.orderlines.RentalOrderLines;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//Author : RAP
 public class RentalModel {
     private int ID;
     private LocalDate startDate;

@@ -6,7 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.RentalEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+// AUTHOR: RAP, AML
 public class RentalEntityModelMapper implements IEntityModelMapper<RentalEntity, RentalModel> {
 
     @Override

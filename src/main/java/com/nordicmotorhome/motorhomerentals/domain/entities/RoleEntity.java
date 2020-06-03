@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
 import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
-
+// AUTHOR: RAP, NKJ, AML, ME
 public class RoleEntity extends BaseEntity {
     private String name;
 

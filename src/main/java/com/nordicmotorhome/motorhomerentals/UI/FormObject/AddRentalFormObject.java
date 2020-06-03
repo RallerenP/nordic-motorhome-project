@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//Author : RAP
 public class AddRentalFormObject {
     private int customerID;
     private LocalDate startDate;

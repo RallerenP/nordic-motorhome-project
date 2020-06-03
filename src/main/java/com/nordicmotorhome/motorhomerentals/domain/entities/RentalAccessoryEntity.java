@@ -2,7 +2,7 @@ package com.nordicmotorhome.motorhomerentals.domain.entities;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-
+// AUTHOR: RAP, NKJ, AML, ME
 public class RentalAccessoryEntity extends BaseEntity {
     private RentalEntity rental;
     private AccessoryEntity accessory;

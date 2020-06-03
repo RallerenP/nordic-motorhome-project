@@ -1,5 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
+//Author : RAP
 public class EndRentalFormObject {
 
     private int kmDriven;

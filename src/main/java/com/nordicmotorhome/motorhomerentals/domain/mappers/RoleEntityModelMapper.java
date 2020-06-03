@@ -5,7 +5,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.RoleEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+// AUTHOR: RAP, AML
 public class RoleEntityModelMapper implements IEntityModelMapper<RoleEntity, RoleModel> {
 
     @Override

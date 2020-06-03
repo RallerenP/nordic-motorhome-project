@@ -13,6 +13,7 @@ import com.nordicmotorhome.motorhomerentals.UI.model.AccessoryModel;
 import java.util.ArrayList;
 import java.util.List;
 
+//Author : RAP, AML, NKJ, ME
 public class AccessoryService {
     IDataFacade dataFacade = new DataFacadeImpl();
 

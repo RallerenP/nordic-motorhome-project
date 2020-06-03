@@ -3,6 +3,7 @@ package com.nordicmotorhome.motorhomerentals.domain.entities;
 import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
 
+// AUTHOR: RAP, NKJ, AML, ME
 public class AccessoryStockEntity extends BaseEntity {
     private AccessoryEntity accessoryEntity;
     private int amount;

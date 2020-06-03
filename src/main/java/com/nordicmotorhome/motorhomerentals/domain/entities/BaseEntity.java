@@ -1,5 +1,6 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
+// AUTHOR: RAP
 public abstract class BaseEntity {
     int ID;
 

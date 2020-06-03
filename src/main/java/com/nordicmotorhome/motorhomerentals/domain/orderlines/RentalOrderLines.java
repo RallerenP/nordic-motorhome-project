@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+// Author : RAP
 public class RentalOrderLines {
     public Map<String, String> getExtras() {
         return extras;

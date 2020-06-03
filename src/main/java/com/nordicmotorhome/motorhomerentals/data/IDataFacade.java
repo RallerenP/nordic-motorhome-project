@@ -1,10 +1,11 @@
-// AUTHOR: NKJ
+// AUTHOR: NKJ, RAP
 package com.nordicmotorhome.motorhomerentals.data;
 
 import com.nordicmotorhome.motorhomerentals.domain.entities.*;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.util.List;
+
 
 public interface IDataFacade {
     // Accessories

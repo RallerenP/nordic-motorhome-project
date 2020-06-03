@@ -9,7 +9,7 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+// AUTHOR: RAP, NKJ, AML, ME
 public class RentalRepository implements IRepository<RentalEntity> {
     @Override
     public RentalEntity getById(int id) throws NoSuchEntityException {

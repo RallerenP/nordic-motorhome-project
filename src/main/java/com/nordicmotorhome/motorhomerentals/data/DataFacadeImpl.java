@@ -1,4 +1,3 @@
-// AUTHOR: NKJ
 package com.nordicmotorhome.motorhomerentals.data;
 
 import com.nordicmotorhome.motorhomerentals.data.repositories.*;
@@ -6,7 +5,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.*;
 import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityException;
 
 import java.util.List;
-
+// AUTHOR: RAP, NKJ
 public class DataFacadeImpl implements IDataFacade {
     private static final DataFacadeImpl instance = new DataFacadeImpl();
     public static DataFacadeImpl getInstance() { return instance; }

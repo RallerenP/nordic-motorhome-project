@@ -2,6 +2,7 @@ package com.nordicmotorhome.motorhomerentals.domain.entities;
 
 import java.util.Objects;
 
+// AUTHOR: RAP, NKJ, AML, ME
 public class MotorhomeModelEntity extends BaseEntity {
     private String name;
     private int beds;

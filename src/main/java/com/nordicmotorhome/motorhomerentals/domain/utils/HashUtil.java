@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
-
+//Author : RAP
 public class HashUtil {
     private static final int rounds = 10;
 

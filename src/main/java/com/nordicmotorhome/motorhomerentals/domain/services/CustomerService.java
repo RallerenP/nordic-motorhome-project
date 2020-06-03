@@ -11,10 +11,12 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 import com.nordicmotorhome.motorhomerentals.domain.mappers.CustomerEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 
+//Author : RAP, AML, NKJ, ME
 public class CustomerService {
     private final IEntityModelMapper<CustomerEntity, CustomerModel> cemm = new CustomerEntityModelMapper();
     private final IDataFacade dataFacade = DataFacadeImpl.getInstance();
 
+    //Author : RAP
     public Message create(String firstName, String lastName, int number, String email, String cpr, StaffModel auth) {
         if (auth == null) return null; // TODO: Throw exception
 
@@ -26,6 +28,7 @@ public class CustomerService {
         return new Message(MessageType.SUCCESS, cm);
     }
 
+    //Author : AML, NKJ, ME
     public Message findCustomer(String cpr){
         try{
             CustomerModel cm = cemm.mapToModel(dataFacade.findOneCustomer("cpr", cpr));
@@ -35,6 +38,7 @@ public class CustomerService {
         }
     }
 
+    //Author : AML, NKJ, ME
     public Message update(int ID, String firstName, String lastName, String email, int phone) {
         try {
             CustomerEntity ce = dataFacade.getCustomerById(ID);

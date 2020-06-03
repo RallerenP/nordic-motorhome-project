@@ -6,6 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.AccessoryEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+// AUTHOR: RAP, AML
 public class AccessoryEntityModelMapper implements IEntityModelMapper<AccessoryEntity, AccessoryModel> {
     @Override
     public AccessoryModel mapToModel(AccessoryEntity entity) {
