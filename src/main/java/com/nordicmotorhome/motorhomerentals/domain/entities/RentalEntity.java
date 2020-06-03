@@ -111,7 +111,7 @@ public class RentalEntity extends BaseEntity {
         }
 
 
-        rol.setTotalPrice(String.valueOf(getBaseRentalPrice()));
+        rol.setTotalPrice(String.valueOf(calculateFees()));
 
         return rol;
     }
