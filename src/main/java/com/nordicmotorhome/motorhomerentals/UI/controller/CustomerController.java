@@ -1,5 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.controller;
 
+import com.nordicmotorhome.motorhomerentals.UI.FormObject.AddRentalFormObject;
+import com.nordicmotorhome.motorhomerentals.UI.model.StaffModel;
 import com.nordicmotorhome.motorhomerentals.data.Message;
 import com.nordicmotorhome.motorhomerentals.domain.DomainFacadeImpl;
 import com.nordicmotorhome.motorhomerentals.domain.IDomainFacade;
@@ -54,6 +56,24 @@ public class CustomerController {
         return "redirect:/";
     }
 
+    @PostMapping("/create")
+    public String createCustomer(@ModelAttribute CustomerFormObject customerObject, HttpServletRequest request, Model model) {
+        if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
+
+        Message createMessage = domainFacade.createCustomer(customerObject.getFirstName(), customerObject.getLastName(),customerObject.getPhone(),customerObject.getEmail(),customerObject.getCpr(),
+                new StaffModel( null,null,null,null)); // TODO Actual auth
+
+
+        if (createMessage.getType() == MessageType.ERROR) return "redirect:/rentals/customerselect";
+
+        AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
+        arfo.setCustomerID(((CustomerModel)createMessage.getContent()).getID());
+
+        // Maybe not needed
+        request.getSession().setAttribute("rental", arfo);
+
+        return "redirect:/rentals/searchmotorhome";
+    }
 
 
 

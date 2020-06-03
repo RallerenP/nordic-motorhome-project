@@ -86,47 +86,11 @@ public class RentalController {
         return "index";
     }
 
-    @PostMapping("/createcustomer")
-    public String createCustomerForRental(@ModelAttribute CustomerFormObject customerObject, HttpServletRequest request, Model model) {
-        if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
-
-        Message createMessage = domainFacade.createCustomer(customerObject.getFirstName(), customerObject.getLastName(),customerObject.getPhone(),customerObject.getEmail(),customerObject.getCpr(),
-                new StaffModel( null,null,null,null)); // TODO Actual auth
-
-
-        if (createMessage.getType() == MessageType.ERROR) return "redirect:/rentals/customerselect";
-
-        AddRentalFormObject arfo = (AddRentalFormObject) request.getSession().getAttribute("rental");
-        arfo.setCustomerID(((CustomerModel)createMessage.getContent()).getID());
-
-        // Maybe not needed
-        request.getSession().setAttribute("rental", arfo);
-
-        return "redirect:/rentals/searchmotorhome";
-    }
-
     @GetMapping("/searchmotorhome")
     public String getMotorhomeSearchView(HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("rental") == null) return "redirect:/rentals/customerselect";
         model.addAttribute("searchObject", new MotorhomeSearchFormObject());
         model.addAttribute("content","MotorhomeSearchView");
-        return "index";
-    }
-
-    @PostMapping("/searchmotorhome")
-    public String searchForMotorhome(@ModelAttribute MotorhomeSearchFormObject searchObject, Model model) {
-        // TODO add parse exception handling
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu");
-        LocalDate start = LocalDate.parse(searchObject.getStartDate(), dtf);
-        LocalDate end = LocalDate.parse(searchObject.getEndDate(), dtf);
-
-        Message searchMessage = domainFacade.searchMotorhome(searchObject.getBeds(), start, end);
-
-        if (searchMessage.getType() == MessageType.ERROR) return "redirect:/rentals/searchmotorhome";
-
-        model.addAttribute("results", searchMessage.getContent());
-        model.addAttribute("searchObject", searchObject);
-        model.addAttribute("content", "MotorhomeSearchView.html");
         return "index";
     }
 
@@ -281,7 +245,7 @@ public class RentalController {
     }
 
     @PostMapping("/deliver/{id}")
-    public String deliverFee(@ModelAttribute EndRentalFormObject endRentalObject, @PathVariable int id, Model model) {
+    public String submitDelivery(@ModelAttribute EndRentalFormObject endRentalObject, @PathVariable int id, Model model) {
 
         Message feesMessage = domainFacade.getRentalEndingFees(id, endRentalObject.isFuelNeeded(), endRentalObject.getKmDriven());
 
@@ -290,8 +254,7 @@ public class RentalController {
         model.addAttribute("rentalID", id);
         model.addAttribute("endRentalObject", endRentalObject);
         model.addAttribute("result", feesMessage.getContent());
-        model.addAttribute("content", "EndRental.html");
 
-        return "index";
+        return "redirect:/rentals/view/" + id;
     }
 }
