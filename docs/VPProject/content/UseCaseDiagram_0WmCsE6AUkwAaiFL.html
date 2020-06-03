@@ -1,0 +1,426 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Use Case Diagram - Nordic Motorhome Project Use Case Diagram</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Nordic Motorhome Project	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_a1UYsE6AUJQUBii7.html" class="PageParentTitle">Nordic Motorhome Project : Model</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Use Case Diagram - Nordic <a onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" class="ItemLink">Motorhome</a> Project Use Case Diagram		</span>
+<a onclick="javascript: showVpLink('Nordic Motorhome Project.vpp://diagram/0WmCsE6AUkwAaiFL', 'Nordic Motorhome Project Use Case Diagram\nNordic Motorhome Project.vpp://diagram/0WmCsE6AUkwAaiFL', 'Nordic Motorhome Project Use Case Diagram', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|266.0|2.0|273.0|570.0|System_gvUVsE6AUWQUBlcS.html|System_gvUVsE6AUWQUBlcS.html|gvUVsE6AUWQUBlcR" id="optiongvUVsE6AUWQUBlcR">System : System</option>
+<option value="shape|32.0|449.0|30.0|60.0|Actor_QqCusE6AUkwAajg4.html|Actor_QqCusE6AUkwAajg4.html|GqCusE6AUkwAajg5" id="optionGqCusE6AUkwAajg5">Bookkeeper : Actor</option>
+<option value="shape|32.0|271.0|30.0|60.0|Actor_8bKusE6AUkwAajhg.html|Actor_8bKusE6AUkwAajhg.html|ZbKusE6AUkwAajhh" id="optionZbKusE6AUkwAajhh">Cleaning staff : Actor</option>
+<option value="shape|33.0|360.0|30.0|60.0|Actor_NA2usE6AUkwAajiO.html|Actor_NA2usE6AUkwAajiO.html|XA2usE6AUkwAajiP" id="optionXA2usE6AUkwAajiP">Auto mechanic : Actor</option>
+<option value="shape|40.0|38.0|30.0|60.0|Actor_2CRusE6AUkwAajjM.html|Actor_2CRusE6AUkwAajjM.html|jCRusE6AUkwAajjN" id="optionjCRusE6AUkwAajjN">Sales assistants : Actor</option>
+<option value="shape|293.0|81.0|129.0|40.0|UseCase_2l0qsE6AUkwAaiKp.html|UseCase_2l0qsE6AUkwAaiKp.html|jl0qsE6AUkwAaiKz" id="optionjl0qsE6AUkwAaiKz">Rent motorhome : Use Case</option>
+<option value="shape|300.0|22.0|110.0|52.0|UseCase__e_qsE6AUkwAaiLk.html|UseCase__e_qsE6AUkwAaiLk.html|ee.qsE6AUkwAaiLj" id="optionee.qsE6AUkwAaiLj">Create customer : Use Case</option>
+<option value="shape|307.0|128.0|107.0|50.0|UseCase_AXKasE6AUkwAaiMX.html|UseCase_AXKasE6AUkwAaiMX.html|AXKasE6AUkwAaiMW" id="optionAXKasE6AUkwAaiMW">Update infomation : Use Case</option>
+<option value="shape|307.0|383.0|107.0|51.0|UseCase_lQ_GsE6AUkwAaiOH.html|UseCase_lQ_GsE6AUkwAaiOH.html|lQ.GsE6AUkwAaiOG" id="optionlQ.GsE6AUkwAaiOG">Register Repair : Use Case</option>
+<option value="shape|312.0|470.0|96.0|49.0|UseCase_cFfGsE6AUkwAaiPN.html|UseCase_cFfGsE6AUkwAaiPN.html|cFfGsE6AUkwAaiPM" id="optioncFfGsE6AUkwAaiPM">Create invoice : Use Case</option>
+<option value="shape|307.0|185.0|104.0|51.0|UseCase_Wr7WsE6AUkwAaiT8.html|UseCase_Wr7WsE6AUkwAaiT8.html|Hr7WsE6AUkwAaiUG" id="optionHr7WsE6AUkwAaiUG">Cancellation rent : Use Case</option>
+<option value="shape|308.0|320.0|98.0|40.0|UseCase_7Nm1sE6AUWQUBmco.html|UseCase_7Nm1sE6AUWQUBmco.html|TNm1sE6AUWQUBmcW" id="optionTNm1sE6AUWQUBmcW">Register Cleaning : Use Case</option>
+<option value="shape|320.0|257.0|80.0|40.0|UseCase_EV_Znk6GAqCufB7P.html|UseCase_EV_Znk6GAqCufB7P.html|EV_Znk6GAqCufB7O" id="optionEV_Znk6GAqCufB7O">Login : Use Case</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Nordic_Motorhome_Project_Use_Case_Diagram.png" usemap="#diagram_map" class="Image" width="543" height="576"/>
+					<map name="diagram_map">
+<area coords="342,101,398,116" coords2="342,101,398,116" shape="rect" alt="Motorhome" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ"/>
+<area imageId="diagram" coords="70.0, 41.0, 70.0, 55.0, 300.0, 55.0, 300.0, 41.0" coords2="70.0, 41.0, 70.0, 55.0, 300.0, 55.0, 300.0, 41.0" shape="poly" alt=":Association" id="areadiagram_map_wedusE6AUkwAajkj_default" href="Association_XudusE6AUkwAajke.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="70.0, 86.0, 70.0, 98.0, 60.0, 98.0, 60.0, 100.0, 293.0, 100.0, 293.0, 86.0" coords2="70.0, 86.0, 70.0, 98.0, 60.0, 98.0, 60.0, 100.0, 293.0, 100.0, 293.0, 86.0" shape="poly" alt=":Association" id="areadiagram_map_35HusE6AUkwAajmW_default" href="Association_z5HusE6AUkwAajmR.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="61.0, 110.0, 61.0, 146.0, 58.0, 146.0, 58.0, 160.0, 61.0, 160.0, 61.0, 163.0, 75.0, 163.0, 75.0, 160.0, 307.0, 160.0, 307.0, 146.0, 75.0, 146.0, 75.0, 110.0" coords2="61.0, 110.0, 61.0, 146.0, 58.0, 146.0, 58.0, 160.0, 61.0, 160.0, 61.0, 163.0, 75.0, 163.0, 75.0, 160.0, 307.0, 160.0, 307.0, 146.0, 75.0, 146.0, 75.0, 110.0" shape="poly" alt=":Association" id="areadiagram_map_JqoesE6AUkwAajnT_default" href="Association_SqoesE6AUkwAajnO.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="50.0, 110.0, 50.0, 194.2, 48.580647, 203.0, 45.0, 203.0, 45.0, 217.0, 46.322582, 217.0, 46.0, 219.0, 60.0, 220.0, 60.48387, 217.0, 307.0, 217.0, 307.0, 203.0, 64.0, 203.0, 64.0, 195.2, 65.0, 189.0, 64.0, 188.92857, 64.0, 188.92857, 64.0, 110.0" coords2="50.0, 110.0, 50.0, 194.2, 48.580647, 203.0, 45.0, 203.0, 45.0, 217.0, 46.322582, 217.0, 46.0, 219.0, 60.0, 220.0, 60.48387, 217.0, 307.0, 217.0, 307.0, 203.0, 64.0, 203.0, 64.0, 195.2, 65.0, 189.0, 64.0, 188.92857, 64.0, 188.92857, 64.0, 110.0" shape="poly" alt=":Association" id="areadiagram_map_74EesE6AUkwAajns_default" href="Association_p4EesE6AUkwAajnn.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="62.0, 487.0, 62.0, 501.0, 312.0, 501.0, 312.0, 487.0" coords2="62.0, 487.0, 62.0, 501.0, 312.0, 501.0, 312.0, 487.0" shape="poly" alt=":Association" id="areadiagram_map_I76esE6AUkwAajp7_default" href="Association_rb6esE6AUkwAajp2.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="62.0, 319.0, 62.0, 331.0, 52.0, 331.0, 52.0, 333.0, 308.0, 333.0, 308.0, 320.0, 332.0, 320.0, 332.0, 319.0" coords2="62.0, 319.0, 62.0, 331.0, 52.0, 331.0, 52.0, 333.0, 308.0, 333.0, 308.0, 320.0, 332.0, 320.0, 332.0, 319.0" shape="poly" alt=":Association" id="areadiagram_map_7_StsE6AUkwAaoL2_default" href="Association_9_StsE6AUkwAaoLx.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="63.0, 401.0, 63.0, 415.0, 307.0, 415.0, 307.0, 401.0" coords2="63.0, 401.0, 63.0, 415.0, 307.0, 415.0, 307.0, 401.0" shape="poly" alt=":Association" id="areadiagram_map_.OqtsE6AUkwAaoMN_default" href="Association_MOqtsE6AUkwAaoMI.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="38.0, 110.0, 38.0, 259.0, 35.0, 259.0, 35.0, 273.0, 38.0, 273.0, 38.0, 276.0, 52.0, 276.0, 52.0, 273.0, 320.0, 273.0, 320.0, 259.0, 52.0, 259.0, 52.0, 110.0" coords2="38.0, 110.0, 38.0, 259.0, 35.0, 259.0, 35.0, 273.0, 38.0, 273.0, 38.0, 276.0, 52.0, 276.0, 52.0, 273.0, 320.0, 273.0, 320.0, 259.0, 52.0, 259.0, 52.0, 110.0" shape="poly" alt=":Association" id="areadiagram_map_oTY5nk6GAqCufB7s_default" href="Association_TjY5nk6GAqCufB7n.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="62.0, 295.0, 62.0, 309.0, 353.0, 309.0, 353.0, 312.0, 367.0, 312.0, 367.0, 309.0, 370.0, 309.0, 370.0, 297.0, 320.0, 297.0, 320.0, 295.0" coords2="62.0, 295.0, 62.0, 309.0, 353.0, 309.0, 353.0, 312.0, 367.0, 312.0, 367.0, 309.0, 370.0, 309.0, 370.0, 297.0, 320.0, 297.0, 320.0, 295.0" shape="poly" alt=":Association" id="areadiagram_map_jP45nk6GAqCufB74_default" href="Association_hP45nk6GAqCufB7z.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="120.0, 267.0, 120.0, 270.0, 117.0, 270.0, 117.0, 284.0, 120.0, 284.0, 120.0, 383.0, 63.0, 383.0, 63.0, 397.0, 120.0, 397.0, 120.0, 400.0, 134.0, 400.0, 134.0, 397.0, 137.0, 397.0, 137.0, 383.0, 134.0, 383.0, 134.0, 284.0, 320.0, 284.0, 320.0, 270.0, 134.0, 270.0, 134.0, 267.0" coords2="120.0, 267.0, 120.0, 270.0, 117.0, 270.0, 117.0, 284.0, 120.0, 284.0, 120.0, 383.0, 63.0, 383.0, 63.0, 397.0, 120.0, 397.0, 120.0, 400.0, 134.0, 400.0, 134.0, 397.0, 137.0, 397.0, 137.0, 383.0, 134.0, 383.0, 134.0, 284.0, 320.0, 284.0, 320.0, 270.0, 134.0, 270.0, 134.0, 267.0" shape="poly" alt=":Association" id="areadiagram_map_fZE5nk6GAqCufB8A_default" href="Association_9ZE5nk6GAqCufB77.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="180.0, 277.0, 180.0, 280.0, 177.0, 280.0, 177.0, 294.0, 180.0, 294.0, 180.0, 472.0, 62.0, 472.0, 62.0, 486.0, 180.0, 486.0, 180.0, 489.0, 194.0, 489.0, 194.0, 486.0, 197.0, 486.0, 197.0, 472.0, 194.0, 472.0, 194.0, 294.0, 320.0, 294.0, 320.0, 280.0, 194.0, 280.0, 194.0, 277.0" coords2="180.0, 277.0, 180.0, 280.0, 177.0, 280.0, 177.0, 294.0, 180.0, 294.0, 180.0, 472.0, 62.0, 472.0, 62.0, 486.0, 180.0, 486.0, 180.0, 489.0, 194.0, 489.0, 194.0, 486.0, 197.0, 486.0, 197.0, 472.0, 194.0, 472.0, 194.0, 294.0, 320.0, 294.0, 320.0, 280.0, 194.0, 280.0, 194.0, 277.0" shape="poly" alt=":Association" id="areadiagram_map_2Ok5nk6GAqCufB8I_default" href="Association_MOk5nk6GAqCufB8D.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="320, 257, 400, 297" coords2="320, 257, 400, 297" shape="rect" alt="Login:Use Case" id="areadiagram_map_EV_Znk6GAqCufB7O_default" href="UseCase_EV_Znk6GAqCufB7P.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','320, 257, 400, 297',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('Actor_2CRusE6AUkwAajjM.html/Sales assistants/Actor'),new Array(),new Array()),showReferenceIcon('diagram', '320, 257, 400, 297'),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="308, 320, 406, 360" coords2="308, 320, 406, 360" shape="rect" alt="Register Cleaning:Use Case" id="areadiagram_map_TNm1sE6AUWQUBmcW_default" href="UseCase_7Nm1sE6AUWQUBmco.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','308, 320, 406, 360',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('Actor_8bKusE6AUkwAajhg.html/Cleaning staff/Actor'),new Array(),new Array()),showReferenceIcon('diagram', '308, 320, 406, 360'),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="40, 38, 70, 110.0" coords2="40, 38, 70, 110.0" shape="rect" alt="Sales assistants:Actor" id="areadiagram_map_jCRusE6AUkwAajjN_default" href="Actor_2CRusE6AUkwAajjM.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','40, 38, 70, 98',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('TextualAnalysis_a8eYsE6AUJQUBijO.html?shapeid=RMAEsE6AUJQUBiov/Sales assistants/TAClass'),new Array('InteractionDiagram_hMxIXk6AUWgC4nor.html?shapeid=lMxIXk6AUWgC4nou/Sales assistants/Actor','InteractionDiagram_hEjIXk6AUWgC4nqe.html?shapeid=TEjIXk6AUWgC4nqh/Sales assistants/Actor')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '40, 38, 70, 98')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="33, 360, 63, 432.0" coords2="33, 360, 63, 432.0" shape="rect" alt="Auto mechanic:Actor" id="areadiagram_map_XA2usE6AUkwAajiP_default" href="Actor_NA2usE6AUkwAajiO.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','33, 360, 63, 420',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('TextualAnalysis_a8eYsE6AUJQUBijO.html?shapeid=RGQEsE6AUJQUBio1/Auto mechanic/TAClass'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '33, 360, 63, 420')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="32, 271, 62, 343.0" coords2="32, 271, 62, 343.0" shape="rect" alt="Cleaning staff:Actor" id="areadiagram_map_ZbKusE6AUkwAajhh_default" href="Actor_8bKusE6AUkwAajhg.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','32, 271, 62, 331',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('TextualAnalysis_a8eYsE6AUJQUBijO.html?shapeid=kpgEsE6AUJQUBioy/Cleaning staff/TAClass'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '32, 271, 62, 331')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="32, 449, 62, 521.0" coords2="32, 449, 62, 521.0" shape="rect" alt="Bookkeeper:Actor" id="areadiagram_map_GqCusE6AUkwAajg5_default" href="Actor_QqCusE6AUkwAajg4.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','32, 449, 62, 509',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('TextualAnalysis_a8eYsE6AUJQUBijO.html?shapeid=s4wEsE6AUJQUBio4/Bookkeeper/TAClass'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '32, 449, 62, 509')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="307, 185, 411, 248.0" coords2="307, 185, 411, 248.0" shape="rect" alt="Cancellation rent:Use Case" id="areadiagram_map_Hr7WsE6AUkwAaiUG_default" href="UseCase_Wr7WsE6AUkwAaiT8.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','307, 185, 411, 236',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_hEjIXk6AUWgC4nqe.html/Cancellation rent - Brief/InteractionDiagram'),new Array('Actor_2CRusE6AUkwAajjM.html/Sales assistants/Actor'),new Array('TextualAnalysis_a8eYsE6AUJQUBijO.html?shapeid=bPVUsE6AUJQUBipi/Cancellation/TAClass'),new Array()),showReferenceIcon('diagram', '307, 185, 411, 236'),showSubdiagramIcon('diagram', '307, 185, 411, 236'),showTransitorIcon('diagram', '307, 185, 411, 236')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="312, 470, 408, 519" coords2="312, 470, 408, 519" shape="rect" alt="Create invoice:Use Case" id="areadiagram_map_cFfGsE6AUkwAaiPM_default" href="UseCase_cFfGsE6AUkwAaiPN.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','312, 470, 408, 519',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('Actor_QqCusE6AUkwAajg4.html/Bookkeeper/Actor'),new Array(),new Array()),showReferenceIcon('diagram', '312, 470, 408, 519'),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="307, 383, 414, 434" coords2="307, 383, 414, 434" shape="rect" alt="Register Repair:Use Case" id="areadiagram_map_lQ.GsE6AUkwAaiOG_default" href="UseCase_lQ_GsE6AUkwAaiOH.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','307, 383, 414, 434',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('Actor_NA2usE6AUkwAajiO.html/Auto mechanic/Actor'),new Array(),new Array()),showReferenceIcon('diagram', '307, 383, 414, 434'),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="307, 128, 414, 178" coords2="307, 128, 414, 178" shape="rect" alt="Update infomation:Use Case" id="areadiagram_map_AXKasE6AUkwAaiMW_default" href="UseCase_AXKasE6AUkwAaiMX.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','307, 128, 414, 178',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_hMxIXk6AUWgC4nor.html/Update infomation - Brief/InteractionDiagram'),new Array('Actor_2CRusE6AUkwAajjM.html/Sales assistants/Actor'),new Array(),new Array()),showReferenceIcon('diagram', '307, 128, 414, 178'),showSubdiagramIcon('diagram', '307, 128, 414, 178'),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="300, 22, 410, 74" coords2="300, 22, 410, 74" shape="rect" alt="Create customer:Use Case" id="areadiagram_map_ee.qsE6AUkwAaiLj_default" href="UseCase__e_qsE6AUkwAaiLk.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','300, 22, 410, 74',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('Actor_2CRusE6AUkwAajjM.html/Sales assistants/Actor'),new Array(),new Array()),showReferenceIcon('diagram', '300, 22, 410, 74'),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="293, 81, 422, 133.0" coords2="293, 81, 422, 133.0" shape="rect" alt="Rent motorhome:Use Case" id="areadiagram_map_jl0qsE6AUkwAaiKz_default" href="UseCase_2l0qsE6AUkwAaiKp.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','293, 81, 422, 121',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('Actor_2CRusE6AUkwAajjM.html/Sales assistants/Actor'),new Array('TextualAnalysis_a8eYsE6AUJQUBijO.html?shapeid=KBs0sE6AUJQUBip0/Rents out motorhomes/TAClass'),new Array()),showReferenceIcon('diagram', '293, 81, 422, 121'),hideSubdiagramIcon(),showTransitorIcon('diagram', '293, 81, 422, 121')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="266, 2, 539, 572" coords2="266, 2, 539, 572" shape="rect" alt="System:System" id="areadiagram_map_gvUVsE6AUWQUBlcR_default" href="System_gvUVsE6AUWQUBlcS.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/System.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/System.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="System_gvUVsE6AUWQUBlcS.html" class="ItemLink">System : System</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_QqCusE6AUkwAajg4.html" class="ItemLink">Bookkeeper : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_8bKusE6AUkwAajhg.html" class="ItemLink">Cleaning staff : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_NA2usE6AUkwAajiO.html" class="ItemLink">Auto mechanic : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_2CRusE6AUkwAajjM.html" class="ItemLink">Sales assistants : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_2l0qsE6AUkwAaiKp.html" class="ItemLink">Rent motorhome : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase__e_qsE6AUkwAaiLk.html" class="ItemLink">Create customer : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_AXKasE6AUkwAaiMX.html" class="ItemLink">Update infomation : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_lQ_GsE6AUkwAaiOH.html" class="ItemLink">Register Repair : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_cFfGsE6AUkwAaiPN.html" class="ItemLink">Create invoice : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_Wr7WsE6AUkwAaiT8.html" class="ItemLink">Cancellation rent : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_7Nm1sE6AUWQUBmco.html" class="ItemLink">Register Cleaning : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_EV_Znk6GAqCufB7P.html" class="ItemLink">Login : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Nordic Motorhome Project	</div>
+</body>
+</html>

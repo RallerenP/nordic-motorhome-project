@@ -28,8 +28,25 @@
             <button id="confirm" type="submit" class="btn btn-success m-1">Opret kunde</button>
         </form>
     </div>
-
-
-
-
 </div>
+<script>
+    $(document).ready(() => {
+        checkInputs();
+
+        $('#firstName').on('input', checkInputs)
+        $('#lastName').on('input', checkInputs)
+        $('#number').on('input', checkInputs)
+        $('#email').on('input', checkInputs)
+        $('#cpr').on('input', checkInputs)
+
+        function checkInputs() {
+            if ($('#firstName').val() === "") return $('#confirm').prop("disabled", true)
+            if ($('#lastName').val() === "") return $('#confirm').prop("disabled", true)
+            if (!$('#number').val().match(/^[0-9]{8}$/)) return $('#confirm').prop("disabled", true)
+            if ($('#email').val() === "") return $('#confirm').prop("disabled", true)
+            if (!$('#cpr').val().match(/^[0-9]{10}$/)) return $('#confirm').prop("disabled", true)
+
+            $('#confirm').prop("disabled", false)
+        }
+    })
+</script>

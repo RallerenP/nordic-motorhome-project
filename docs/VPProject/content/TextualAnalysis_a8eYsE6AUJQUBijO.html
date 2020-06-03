@@ -1,0 +1,1115 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Textual Analysis - Nordic Motorhome Project Textual Analysis</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Nordic Motorhome Project	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_a1UYsE6AUJQUBii7.html" class="PageParentTitle">Nordic Motorhome Project : Model</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Textual Analysis - Nordic <a onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" class="ItemLink">Motorhome</a> Project Textual Analysis		</span>
+<a onclick="javascript: showVpLink('Nordic Motorhome Project.vpp://diagram/a8eYsE6AUJQUBijO', 'Nordic Motorhome Project Textual Analysis\nNordic Motorhome Project.vpp://diagram/a8eYsE6AUJQUBijO', 'Nordic Motorhome Project Textual Analysis', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Problem Statement			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableContent">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="margin-right:0;color:#000000;font-weight:normal;font-size:22px;font-family:Dialog;margin-left:0;">
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:16px;margin-top:0px;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      Nordic <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">Motorhome</a> 
+      Rental is a Danish company that <span bgcolor="#00aaed" style="background-color:#00aaed;">rents 
+      out motorhomes</span>. Nordic <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">Motorhome</a> 
+      Rental was founded in 2019 and is situated just outside Copenhagen. So 
+      far there are 8 employees, but the company is very successful, and the 
+      two <span bgcolor="#90cb48" style="background-color:#90cb48;">owners</span> 
+      expect to hire more people in the near future.
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:16px;margin-top:0px;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      <strong style="font-weight:600;"><b>Employees:</b></strong>&nbsp;4 <span bgcolor="#90cb48" style="background-color:#90cb48;">sales 
+      assistants</span>, 2 <span bgcolor="#90cb48" style="background-color:#90cb48;">cleaning 
+      staff</span>, 1 <span bgcolor="#90cb48" style="background-color:#90cb48;">auto 
+      mechanic</span>, 1 <span bgcolor="#90cb48" style="background-color:#90cb48;">bookkeeper</span>
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:16px;margin-top:0px;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">Nordic <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">Motorhome</a> 
+      Rental has a fleet of 32 motorhomes available for hire.</span>&nbsp;<span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">Nordic 
+      <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">Motorhome</a> 
+      Rental currently offers 8 different types of motorhomes.</span> These 
+      are of various brands and models. <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">Some 
+      are small compact campers for 2 persons and others are large with up to 
+      6 beds.</span>
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:16px;margin-top:0px;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">The price per 
+      day for rent depends on the brand and model of the <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">motorhome</a>. 
+      Apart from the brand and model price per day also depends upon the 
+      season. There are 3 seasons: Peak season, Middle Season and Low season.</span>
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:16px;margin-top:0px;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">In peak season 
+      the prices for all motorhomes are 60 % higher than prices in the low 
+      season. In middle season the prices for all motorhomes are 30 % higher 
+      than prices in the low season.</span>
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:16px;margin-top:0px;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      The price per day includes:
+    </p>
+    <ul class="disc" font-style="normal" letter-spacing="normal" margin-left-ltr="50" margin-right-rtl="50" style="list-style-type:disc;padding-left:0;margin-left:40pt;margin-bottom:16px;margin-top:0px;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      <li style="margin-right:0;margin-left:0;margin-bottom:0;margin-top:0;">
+        400 free kilometers per day.
+      </li>
+      <li style="margin-right:0;margin-left:0;margin-bottom:0;margin-top:0;">
+        Insurance
+      </li>
+      <li style="margin-right:0;margin-left:0;margin-bottom:0;margin-top:0;">
+        External cleaning
+      </li>
+    </ul>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      Nordic <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">motorhome</a> 
+      rental offers <span bgcolor="#00aaed" style="background-color:#00aaed;">delivery 
+      of motorhomes</span> to a location that is most convenient for the 
+      customers. It is often an airport, but it can be any other location for 
+      instance a ferry port or a hotel. <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">For 
+      pick-up or drop-off outside Nordic <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">motorhome</a> 
+      Rentals office, customers will be charged a transfer cost of 0,70&#8364; per 
+      kilometer.</span>&nbsp;
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      To make the trip more enjoyable customers can <span bgcolor="#00aaed" style="background-color:#00aaed;">rent 
+      accessories</span> such as bike rack, bed linen, child seat, picnic 
+      table and chairs etc.
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      When customers picks-up the <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">motorhome</a> 
+      the tank is full. By drop-off the staff checks the fuel level and reads 
+      kilometers of the speedometer. <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">If 
+      the tank it is less than &#189; full there will be a charge of 70&#8364;</span>. 
+      <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">If it turns 
+      out that the customer in average has driven more than 400 kilometers per 
+      day the customer will be charged 1&#8364; per extra kilometer</span>.
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      &nbsp;
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      In case of <span bgcolor="#00aaed" style="background-color:#00aaed;">cancellation</span> 
+      following charges become due:
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      * <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">Up to 50 
+      days prior to the start of the <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#kHQFnk6AUWgC4ngA" name="" onclick="javascript: highlightGridModelSelection('kHQFnk6AUWgC4ngA');">term</a> 
+      of rental: 20% of the rental price, minimum 200&#8364;</span>
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      * <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">Between 49 
+      and 15 days prior to the start of the <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#kHQFnk6AUWgC4ngA" name="" onclick="javascript: highlightGridModelSelection('kHQFnk6AUWgC4ngA');">term</a> 
+      of rental: 50% of the rental price</span>
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      * <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">Less than 15 
+      days prior to the start of the <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#kHQFnk6AUWgC4ngA" name="" onclick="javascript: highlightGridModelSelection('kHQFnk6AUWgC4ngA');">term</a> 
+      of rental: 80% of the rental price</span>
+    </p>
+    <p font-style="normal" letter-spacing="normal" style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;" text-indent="0px" text-transform="none" white-space="normal" word-spacing="0px">
+      * <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">On the day 
+      of renting: 95% of the rental price</span>
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      After drop-off the <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">Motorhome</a> 
+      will be cleaned. The <span bgcolor="#90cb48" style="background-color:#90cb48;">auto 
+      mechanic</span> checks oil &amp; water etc. If repairs or further <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#3rkaSE6AUkwAapZG" name="" onclick="javascript: highlightGridModelSelection('3rkaSE6AUkwAapZG');">service</a> 
+      is needed the <span bgcolor="#90cb48" style="background-color:#90cb48;">auto 
+      mechanic</span>&nbsp;<span bgcolor="#00aaed" style="background-color:#00aaed;">register</span> 
+      this.
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      You are hired to develop a new system for Nordic <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">Motorhome</a> 
+      Rental that can <span bgcolor="#ff4d7f" style="background-color:#ff4d7f;">handle 
+      information about motorhomes, rentals and customers</span>. For this 
+      first version of the system the <span bgcolor="#90cb48" style="background-color:#90cb48;">owners</span> 
+      and the staff at Nordic <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">motorhome</a> 
+      Rentals will be the users of the system. In a future version of the 
+      system the customers should be able to make reservations through a web 
+      interface.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr>
+			<td class="TableHeaderLine2">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Candidate items			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="12" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="12" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="25%">
+<span class="TableHeaderText">Candidate Class</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Extracted Text</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Occurrence</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Highlight</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="12" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Handle information about motorhomes, rentals and customers			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+handle information about motorhomes, rentals and customers			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+Sales assistants			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+sales assistants			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Actor</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #90cb48; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Cleaning staff			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+cleaning staff			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Actor</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #90cb48; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+Auto mechanic			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+auto mechanic			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Actor</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+3			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #90cb48; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Bookkeeper			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+bookkeeper			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Actor</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #90cb48; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+32 motorhomes			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Nordic <a onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" class="ItemLink">Motorhome</a> Rental has a fleet of 32 motorhomes available for hire.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Campers from 2 persons up to 6 persons.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Some are small compact campers for 2 persons and others are large with up to 6 beds.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+8 types of motorhomes.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Nordic <a onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" class="ItemLink">Motorhome</a> Rental currently offers 8 different types of motorhomes.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Owners			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+owners			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Actor</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+2			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #90cb48; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+The price depends on the <a onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" class="ItemLink">motorhome</a>. There are 3 seasons: Peak, Middle and Low season.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+The price per day for rent depends on the brand and model of the <a onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" class="ItemLink">motorhome</a>. Apart from the brand and model price per day also depends upon the season. There are 3 seasons: Peak season, Middle Season and Low season.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Peak season 60 % and middle season 30 %, higher than low season.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+In peak season the prices for all motorhomes are 60 % higher than prices in the low season. In middle season the prices for all motorhomes are 30 % higher than prices in the low season.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+For pick-up or drop-off, 0,70€ per kilometer.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+For pick-up or drop-off outside Nordic <a onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" class="ItemLink">motorhome</a> Rentals office, customers will be charged a transfer cost of 0,70€ per kilometer.			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Rent accessories			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+rent accessories			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Use Case</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #00aaed; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+Tank ½ full charge 70€			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+If the tank it is less than ½ full there will be a charge of 70€			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Driven more than 400 kilometers per day, charged 1€ per extra kilometer			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+If it turns out that the customer in average has driven more than 400 kilometers per day the customer will be charged 1€ per extra kilometer			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+Cancellation			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+cancellation			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Use Case</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #00aaed; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Up to 50 days rental: 20% rental price, minimum 200€			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Up to 50 days prior to the start of the <a onclick="javascript: highlightGridModelSelection('kHQFnk6AUWgC4ngA');" href="GridDiagram_4zXCSE6AUkwAapWy.html#kHQFnk6AUWgC4ngA" class="ItemLink">term</a> of rental: 20% of the rental price, minimum 200€			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+Between 49 and 15 dayl: 50% rental price			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Between 49 and 15 days prior to the start of the <a onclick="javascript: highlightGridModelSelection('kHQFnk6AUWgC4ngA');" href="GridDiagram_4zXCSE6AUkwAapWy.html#kHQFnk6AUWgC4ngA" class="ItemLink">term</a> of rental: 50% of the rental price			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Less than 15 days prior to the start of the <a onclick="javascript: highlightGridModelSelection('kHQFnk6AUWgC4ngA');" href="GridDiagram_4zXCSE6AUkwAapWy.html#kHQFnk6AUWgC4ngA" class="ItemLink">term</a> of rental: 80% of the rental price			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Less than 15 days prior to the start of the <a onclick="javascript: highlightGridModelSelection('kHQFnk6AUWgC4ngA');" href="GridDiagram_4zXCSE6AUkwAapWy.html#kHQFnk6AUWgC4ngA" class="ItemLink">term</a> of rental: 80% of the rental price			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+On the day of renting: 95% rental price			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+On the day of renting: 95% of the rental price			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Requirement</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #ff4d7f; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Register			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+register			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Use Case</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #00aaed; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+Rents out motorhomes			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+rents out motorhomes			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Use Case</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #00aaed; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+Delivery of motorhomes			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+delivery of motorhomes			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <span style="line-height: 18px">Use Case</span>				</span>
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+1			</td>
+			<td>
+			</td>
+			<td>
+				<div style="background: #00aaed; line-height: 12px; margin: 3px;">
+&nbsp;				</div>
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Nordic Motorhome Project	</div>
+</body>
+</html>

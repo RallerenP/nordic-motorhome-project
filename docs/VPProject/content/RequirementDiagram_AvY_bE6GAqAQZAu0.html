@@ -1,0 +1,444 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Requirement Diagram - Nordic Motorhome Project Requirement Diagram</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Nordic Motorhome Project	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_a1UYsE6AUJQUBii7.html" class="PageParentTitle">Nordic Motorhome Project : Model</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Requirement Diagram - Nordic <a onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" class="ItemLink">Motorhome</a> Project Requirement Diagram		</span>
+<a onclick="javascript: showVpLink('Nordic Motorhome Project.vpp://diagram/AvY.bE6GAqAQZAu0', 'Nordic Motorhome Project Requirement Diagram\nNordic Motorhome Project.vpp://diagram/AvY.bE6GAqAQZAu0', 'Nordic Motorhome Project Requirement Diagram', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|2.0|2.0|388.0|141.0|Requirement_RtM_bE6GAqAQZAvF.html|Requirement_RtM_bE6GAqAQZAvF.html|RtM.bE6GAqAQZAvE" id="optionRtM.bE6GAqAQZAvE">Driven more than 400 kilometers per day, charged 1€ per extra kilometer : Requirement</option>
+<option value="shape|904.0|2.0|367.0|141.0|Requirement__ge_bE6GAqAQZAve.html|Requirement__ge_bE6GAqAQZAve.html|.ge.bE6GAqAQZAvd" id="option.ge.bE6GAqAQZAvd">Peak season 60 % and middle season 30 %, higher than low season. : Requirement</option>
+<option value="shape|2.0|163.0|388.0|173.0|Requirement_Eax_bE6GAqAQZAv7.html|Requirement_Eax_bE6GAqAQZAv7.html|4ax.bE6GAqAQZAv6" id="option4ax.bE6GAqAQZAv6">For pick-up or drop-off, 0,70€ per kilometer. : Requirement</option>
+<option value="shape|405.0|163.0|484.0|173.0|Requirement_FD1_bE6GAqAQZAwZ.html|Requirement_FD1_bE6GAqAQZAwZ.html|FD1.bE6GAqAQZAwY" id="optionFD1.bE6GAqAQZAwY">Handle information about motorhomes, rentals and customers : Requirement</option>
+<option value="shape|315.0|352.0|225.0|141.0|Requirement_irb_bE6GAqAQZAxP.html|Requirement_irb_bE6GAqAQZAxP.html|irb.bE6GAqAQZAxO" id="optionirb.bE6GAqAQZAxO">Cancellation: Between 49 and 15 dayl: 50% rental price : Requirement</option>
+<option value="shape|564.0|352.0|424.0|141.0|Requirement_oZGBbE6GAqAQZAyS.html|Requirement_oZGBbE6GAqAQZAyS.html|oZGBbE6GAqAQZAyR" id="optionoZGBbE6GAqAQZAyR">Cancellation: Less than 15 days prior to the start of the term of rental: 80% of the rental price : Requirement</option>
+<option value="shape|1012.0|352.0|212.0|141.0|Requirement_S7hBbE6GAqAQZAy1.html|Requirement_S7hBbE6GAqAQZAy1.html|S7hBbE6GAqAQZAy0" id="optionS7hBbE6GAqAQZAy0">Cancellation: On the day of renting: 95% rental price : Requirement</option>
+<option value="shape|904.0|163.0|367.0|141.0|Requirement_aNlhbE6GAqAQZAz8.html|Requirement_aNlhbE6GAqAQZAz8.html|aNlhbE6GAqAQZAz7" id="optionaNlhbE6GAqAQZAz7">Tank ½ full charge 70€ : Requirement</option>
+<option value="shape|2.0|352.0|289.0|141.0|Requirement_OVZRbE6GAqAQZA12.html|Requirement_OVZRbE6GAqAQZA12.html|OVZRbE6GAqAQZA11" id="optionOVZRbE6GAqAQZA11">Cancellation: Up to 50 days rental: 20% rental price, minimum 200€ : Requirement</option>
+<option value="shape|405.0|2.0|484.0|141.0|Requirement_LRrRbE6GAqAQZA24.html|Requirement_LRrRbE6GAqAQZA24.html|LRrRbE6GAqAQZA23" id="optionLRrRbE6GAqAQZA23">The price depends on the motorhome. There are 3 seasons: Peak, Middle and Low season. : Requirement</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Nordic_Motorhome_Project_Requirement_Diagram.png" usemap="#diagram_map" class="Image" width="1275" height="497"/>
+					<map name="diagram_map">
+<area coords="144,214,200,229" coords2="144,214,200,229" shape="rect" alt="Motorhome" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ"/>
+<area coords="604,229,660,244" coords2="604,229,660,244" shape="rect" alt="Motorhome" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ"/>
+<area coords="865,367,889,382" coords2="865,367,889,382" shape="rect" alt="Term" href="GridDiagram_4zXCSE6AUkwAapWy.html#kHQFnk6AUWgC4ngA"/>
+<area coords="546,17,607,32" coords2="546,17,607,32" shape="rect" alt="Motorhome" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ"/>
+<area imageId="diagram" coords="405, 2, 889, 143" coords2="405, 2, 889, 143" shape="rect" alt="The price depends on the motorhome. There are 3 seasons: Peak, Middle and Low season.:Requirement" id="areadiagram_map_LRrRbE6GAqAQZA23_default" href="Requirement_LRrRbE6GAqAQZA24.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 352, 291, 493" coords2="2, 352, 291, 493" shape="rect" alt="Cancellation: Up to 50 days rental: 20% rental price, minimum 200€:Requirement" id="areadiagram_map_OVZRbE6GAqAQZA11_default" href="Requirement_OVZRbE6GAqAQZA12.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="904, 163, 1271, 304" coords2="904, 163, 1271, 304" shape="rect" alt="Tank ½ full charge 70€:Requirement" id="areadiagram_map_aNlhbE6GAqAQZAz7_default" href="Requirement_aNlhbE6GAqAQZAz8.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1012, 352, 1224, 493" coords2="1012, 352, 1224, 493" shape="rect" alt="Cancellation: On the day of renting: 95% rental price:Requirement" id="areadiagram_map_S7hBbE6GAqAQZAy0_default" href="Requirement_S7hBbE6GAqAQZAy1.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="564, 352, 988, 493" coords2="564, 352, 988, 493" shape="rect" alt="Cancellation: Less than 15 days prior to the start of the term of rental: 80% of the rental price:Requirement" id="areadiagram_map_oZGBbE6GAqAQZAyR_default" href="Requirement_oZGBbE6GAqAQZAyS.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="315, 352, 540, 493" coords2="315, 352, 540, 493" shape="rect" alt="Cancellation: Between 49 and 15 dayl: 50% rental price:Requirement" id="areadiagram_map_irb.bE6GAqAQZAxO_default" href="Requirement_irb_bE6GAqAQZAxP.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;margin-right:0;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Opbygget DB til h&amp;#229;ndtering af motorhomes, kunder samt leje
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Rolle Salgassistent implementeret s&amp;#229; kunde kan oprette, updates og 
+      slettes
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;&amp;quot;&amp;gt;
+      leje kan oprette, updates og slettes. P&amp;#229; &amp;lt;a class=&amp;quot;ItemLink&amp;quot; href=&amp;quot;GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ&amp;quot; name=&amp;quot;&amp;quot; onclick=&amp;quot;javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');&amp;quot;&amp;gt;motorhome&amp;lt;/a&amp;gt; 
+      kan visse atributer updateres
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="405, 163, 889, 336" coords2="405, 163, 889, 336" shape="rect" alt="Handle information about motorhomes, rentals and customers:Requirement" id="areadiagram_map_FD1.bE6GAqAQZAwY_default" href="Requirement_FD1_bE6GAqAQZAwZ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;margin-right:0;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;&amp;quot;&amp;gt;
+      neededFuel ikke implementeret p&amp;#229; bruger da automekaniker har opgaven med 
+      at kontrollere &amp;lt;a class=&amp;quot;ItemLink&amp;quot; href=&amp;quot;GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ&amp;quot; name=&amp;quot;&amp;quot; onclick=&amp;quot;javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');&amp;quot;&amp;gt;motorhome&amp;lt;/a&amp;gt; 
+      ved hjemkomst.
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Der er er taget h&amp;#248;jde for det i DB
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2, 163, 390, 336" coords2="2, 163, 390, 336" shape="rect" alt="For pick-up or drop-off, 0,70€ per kilometer.:Requirement" id="areadiagram_map_4ax.bE6GAqAQZAv6_default" href="Requirement_Eax_bE6GAqAQZAv7.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="904, 2, 1271, 143" coords2="904, 2, 1271, 143" shape="rect" alt="Peak season 60 % and middle season 30 %, higher than low season.:Requirement" id="areadiagram_map_.ge.bE6GAqAQZAvd_default" href="Requirement__ge_bE6GAqAQZAve.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;margin-right:0;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Atribut km_start og km_slut oprettet i DB
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Beregnes udfra hvordage k&amp;#248;ret&amp;#248;jet er lejet
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2, 2, 390, 143" coords2="2, 2, 390, 143" shape="rect" alt="Driven more than 400 kilometers per day, charged 1€ per extra kilometer:Requirement" id="areadiagram_map_RtM.bE6GAqAQZAvE_default" href="Requirement_RtM_bE6GAqAQZAvF.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_RtM_bE6GAqAQZAvF.html" class="ItemLink">Driven more than 400 kilometers per day, charged 1€ per extra kilometer : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="margin-right:0;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-left:0;">
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      Atribut km_start og km_slut oprettet i DB
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      Beregnes udfra hvordage k&#248;ret&#248;jet er lejet
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement__ge_bE6GAqAQZAve.html" class="ItemLink">Peak season 60 % and middle season 30 %, higher than low season. : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_Eax_bE6GAqAQZAv7.html" class="ItemLink">For pick-up or drop-off, 0,70€ per kilometer. : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="margin-right:0;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-left:0;">
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      neededFuel ikke implementeret p&#229; bruger da automekaniker har opgaven med 
+      at kontrollere <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">motorhome</a> 
+      ved hjemkomst.
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      Der er er taget h&#248;jde for det i DB
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_FD1_bE6GAqAQZAwZ.html" class="ItemLink">Handle information about motorhomes, rentals and customers : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="margin-right:0;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-left:0;">
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      Opbygget DB til h&#229;ndtering af motorhomes, kunder samt leje
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      Rolle Salgassistent implementeret s&#229; kunde kan oprette, updates og 
+      slettes
+    </p>
+    <p style="margin-right:0pt;margin-left:0pt;margin-bottom:.0001pt;margin-top:0pt;">
+      leje kan oprette, updates og slettes. P&#229; <a class="ItemLink" href="GridDiagram_4zXCSE6AUkwAapWy.html#_jziSE6AUkwAapXQ" name="" onclick="javascript: highlightGridModelSelection('_jziSE6AUkwAapXQ');">motorhome</a> 
+      kan visse atributer updateres
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_irb_bE6GAqAQZAxP.html" class="ItemLink">Cancellation: Between 49 and 15 dayl: 50% rental price : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_oZGBbE6GAqAQZAyS.html" class="ItemLink">Cancellation: Less than 15 days prior to the start of the term of rental: 80% of the rental price : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_S7hBbE6GAqAQZAy1.html" class="ItemLink">Cancellation: On the day of renting: 95% rental price : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_aNlhbE6GAqAQZAz8.html" class="ItemLink">Tank ½ full charge 70€ : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_OVZRbE6GAqAQZA12.html" class="ItemLink">Cancellation: Up to 50 days rental: 20% rental price, minimum 200€ : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_LRrRbE6GAqAQZA24.html" class="ItemLink">The price depends on the motorhome. There are 3 seasons: Peak, Middle and Low season. : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Nordic Motorhome Project	</div>
+</body>
+</html>

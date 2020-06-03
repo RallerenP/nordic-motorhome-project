@@ -6,7 +6,7 @@
                 <p><b>CPR nr.</b></p>
                 <form th:object="${CPRObject}" th:action="@{/rentals/findcustomer}" method="post">
                     <input style="width: 100%;" th:field="*{cpr}" id="cpr" placeholder="CPR nr.">
-                    <button type="submit">Søg</button>
+                    <button id="cprSubmit" type="submit">Søg</button>
                 </form>
             </div>
         </div>
@@ -20,11 +20,38 @@
             <p><b>E-Mail: </b><span th:text="${customer?.getEmail()}"></span></p>
 
             <form action="/rentals/selectcustomer" method="POST">
-                <input name="id" style="display: none;" th:value="${customer?.getID()}">
-                <button type="submit">Vælg kunde</button>
+                <input id="hiddenId" name="id" style="display: none;" th:value="${customer?.getID()}">
+                <button id="selectSubmit" type="submit">Vælg kunde</button>
             </form>
 
 
         </div>
     </div>
+
 </div>
+<script>
+    $(document).ready(() => {
+        checkCpr();
+        checkHiddenId();
+
+        $('#cpr').on('input', checkCpr)
+
+        function checkCpr() {
+            const value = $('#cpr').val()
+            if (value.match(/^[0-9]{10}$/)) {
+                $('#cprSubmit').prop('disabled', false)
+            } else {
+                $('#cprSubmit').prop('disabled', true)
+            }
+        }
+
+        function checkHiddenId() {
+            const value = $('#hiddenId').val();
+            if (value !== "") {
+                $('#selectSubmit').prop('disabled', false)
+            } else {
+                $('#selectSubmit').prop('disabled', true)
+            }
+        }
+    });
+</script>

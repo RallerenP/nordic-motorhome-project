@@ -25,11 +25,32 @@
                     <label for="email"><h4>E-mail</h4></label>
                     <input th:field="*{email}" type="text" id="email" class="form-control" placeholder=""/>
                     <br>
-                    <input th:field="*{ID}" type="hidden">
-                    <input name="id" style="display: none;" >
-                    <button type="submit">Opdater kunde</button>
+                    <input id="hiddenId" th:field="*{ID}" type="hidden">
+                    <button id="confirm" type="submit">Opdater kunde</button>
                 </form>
            </div>
        </div>
    </div>
 </div>
+<script>
+    $(document).ready(() => {
+        console.log(checkInputs());
+
+        $('#firstName').on('input', checkInputs)
+        $('#lastName').on('input', checkInputs)
+        $('#number').on('input', checkInputs)
+        $('#email').on('input', checkInputs)
+
+
+
+        function checkInputs() {
+            if ($('#firstName').val() === "") return $('#confirm').prop("disabled", true)
+            if ($('#lastName').val() === "") return $('#confirm').prop("disabled", true)
+            if (!$('#number').val().match(/^[0-9]{8}$/)) return $('#confirm').prop("disabled", true)
+            if ($('#email').val() === "") return $('#confirm').prop("disabled", true)
+            if ($('#hiddenId').val() === "") return $('#confirm').prop("disabled", true)
+
+            $('#confirm').prop("disabled", false)
+        }
+    })
+</script>

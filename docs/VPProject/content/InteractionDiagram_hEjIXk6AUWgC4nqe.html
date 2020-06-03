@@ -1,0 +1,262 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Sequence Diagram - Cancellation rent - Brief</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Nordic Motorhome Project	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_a1UYsE6AUJQUBii7.html" class="PageParentTitle">Nordic Motorhome Project : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="Model_PGgqsE6AUkwAaiKQ.html" class="PageParentTitle">Use Cases diagram : Model</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="UseCaseDiagram_0WmCsE6AUkwAaiFL.html" class="PageParentTitle">Cancellation rent : Use Case</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Sequence Diagram - Cancellation rent - Brief		</span>
+<a onclick="javascript: showVpLink('Nordic Motorhome Project.vpp://diagram/hEjIXk6AUWgC4nqe', 'Cancellation rent - Brief\nNordic Motorhome Project.vpp://diagram/hEjIXk6AUWgC4nqe', 'Cancellation rent - Brief', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|2.0|2.0|100.0|35.0|InteractionActor_zEjIXk6AUWgC4nqi.html|InteractionActor_zEjIXk6AUWgC4nqi.html|TEjIXk6AUWgC4nqh" id="optionTEjIXk6AUWgC4nqh">Sales assistants : Actor</option>
+<option value="shape|382.0|62.0|8.0|250.0|Activation_7EjIXk6AUWgC4nqo.html|Activation_7EjIXk6AUWgC4nqo.html|bEjIXk6AUWgC4nqn" id="optionbEjIXk6AUWgC4nqn">Activation : Activation</option>
+<option value="shape|336.0|2.0|100.0|35.0|InteractionLifeLine_rEjIXk6AUWgC4nql.html|InteractionLifeLine_rEjIXk6AUWgC4nql.html|rEjIXk6AUWgC4nqk" id="optionrEjIXk6AUWgC4nqk">System : Lifeline</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Cancellation_rent_Brief.png" usemap="#diagram_map" class="Image" width="440" height="346"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="46.0, 55.0, 46.0, 69.0, 392.0, 69.0, 392.0, 55.0" coords2="46.0, 55.0, 46.0, 69.0, 392.0, 69.0, 392.0, 55.0" shape="poly" alt="1: vælg Cancel Rent:Message" id="areadiagram_map_HEjIXk6AUWgC4nqt_default" href="Message_7EjIXk6AUWgC4nqq.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','46.0, 55.0, 46.0, 69.0, 392.0, 69.0, 392.0, 55.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/a1UYsE6AUJQUBii7:PGgqsE6AUkwAaiKQ:2CRusE6AUkwAajjM v&#xe6;lg Cancel Rent/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '46.0, 55.0, 46.0, 69.0, 392.0, 69.0, 392.0, 55.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="46.0, 85.0, 46.0, 99.0, 392.0, 99.0, 392.0, 85.0" coords2="46.0, 85.0, 46.0, 99.0, 392.0, 99.0, 392.0, 85.0" shape="poly" alt="2: viser "vælg kunde side":Message" id="areadiagram_map_nEjIXk6AUWgC4nqy_default" href="Message_HEjIXk6AUWgC4nqv.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','46.0, 85.0, 46.0, 99.0, 392.0, 99.0, 392.0, 85.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/viser &#x22;v&#xe6;lg kunde side&#x22;/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '46.0, 85.0, 46.0, 99.0, 392.0, 99.0, 392.0, 85.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="46.0, 115.0, 46.0, 129.0, 392.0, 129.0, 392.0, 115.0" coords2="46.0, 115.0, 46.0, 129.0, 392.0, 129.0, 392.0, 115.0" shape="poly" alt="3: vælger kunden:Message" id="areadiagram_map_3EjIXk6AUWgC4nq3_default" href="Message_XEjIXk6AUWgC4nq0.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','46.0, 115.0, 46.0, 129.0, 392.0, 129.0, 392.0, 115.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/a1UYsE6AUJQUBii7:PGgqsE6AUkwAaiKQ:2CRusE6AUkwAajjM v&#xe6;lger kunden/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '46.0, 115.0, 46.0, 129.0, 392.0, 129.0, 392.0, 115.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="46.0, 145.0, 46.0, 159.0, 392.0, 159.0, 392.0, 145.0" coords2="46.0, 145.0, 46.0, 159.0, 392.0, 159.0, 392.0, 145.0" shape="poly" alt="4: viser kundens order liste:Message" id="areadiagram_map_vEjIXk6AUWgC4nq8_default" href="Message_PEjIXk6AUWgC4nq5.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','46.0, 145.0, 46.0, 159.0, 392.0, 159.0, 392.0, 145.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/viser kundens order liste/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '46.0, 145.0, 46.0, 159.0, 392.0, 159.0, 392.0, 145.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="46.0, 175.0, 46.0, 189.0, 392.0, 189.0, 392.0, 175.0" coords2="46.0, 175.0, 46.0, 189.0, 392.0, 189.0, 392.0, 175.0" shape="poly" alt="5: vælger Cancel rentel:Message" id="areadiagram_map_fEjIXk6AUWgC4nrB_default" href="Message_fEjIXk6AUWgC4nq_.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','46.0, 175.0, 46.0, 189.0, 392.0, 189.0, 392.0, 175.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/a1UYsE6AUJQUBii7:PGgqsE6AUkwAaiKQ:2CRusE6AUkwAajjM v&#xe6;lger Cancel rentel/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '46.0, 175.0, 46.0, 189.0, 392.0, 189.0, 392.0, 175.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="46.0, 205.0, 46.0, 219.0, 392.0, 219.0, 392.0, 205.0" coords2="46.0, 205.0, 46.0, 219.0, 392.0, 219.0, 392.0, 205.0" shape="poly" alt="6: viser data over leje og retur beløb:Message" id="areadiagram_map_gkjIXk6AUWgC4nrG_default" href="Message__EjIXk6AUWgC4nrD.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','46.0, 205.0, 46.0, 219.0, 392.0, 219.0, 392.0, 205.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/viser data over leje og retur bel&#xf8;b/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '46.0, 205.0, 46.0, 219.0, 392.0, 219.0, 392.0, 205.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="46.0, 235.0, 46.0, 249.0, 392.0, 249.0, 392.0, 235.0" coords2="46.0, 235.0, 46.0, 249.0, 392.0, 249.0, 392.0, 235.0" shape="poly" alt="7: vælger delete rentel:Message" id="areadiagram_map_wkjIXk6AUWgC4nrL_default" href="Message_QkjIXk6AUWgC4nrI.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','46.0, 235.0, 46.0, 249.0, 392.0, 249.0, 392.0, 235.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/a1UYsE6AUJQUBii7:PGgqsE6AUkwAaiKQ:2CRusE6AUkwAajjM v&#xe6;lger delete rentel/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '46.0, 235.0, 46.0, 249.0, 392.0, 249.0, 392.0, 235.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="46.0, 265.0, 46.0, 279.0, 392.0, 279.0, 392.0, 265.0" coords2="46.0, 265.0, 46.0, 279.0, 392.0, 279.0, 392.0, 265.0" shape="poly" alt="8: sletter leje data fra database og retunere til main menu:Message" id="areadiagram_map_okjIXk6AUWgC4nrQ_default" href="Message_IkjIXk6AUWgC4nrN.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','46.0, 265.0, 46.0, 279.0, 392.0, 279.0, 392.0, 265.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/sletter leje data fra database/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '46.0, 265.0, 46.0, 279.0, 392.0, 279.0, 392.0, 265.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 2, 102, 49.0" coords2="2, 2, 102, 49.0" shape="rect" alt="Sales assistants:Actor" id="areadiagram_map_TEjIXk6AUWgC4nqh_default" href="InteractionActor_zEjIXk6AUWgC4nqi.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 2, 102, 37',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('UseCaseDiagram_0WmCsE6AUkwAaiFL.html?shapeid=jCRusE6AUkwAajjN/Sales assistants/Actor'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '2, 2, 102, 37')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="382, 62, 390, 312" coords2="382, 62, 390, 312" shape="rect" alt="Activation:Activation" id="areadiagram_map_bEjIXk6AUWgC4nqn_default" href="Activation_7EjIXk6AUWgC4nqo.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="336, 2, 436, 49.0" coords2="336, 2, 436, 49.0" shape="rect" alt="System:Lifeline" id="areadiagram_map_rEjIXk6AUWgC4nqk_default" href="InteractionLifeLine_rEjIXk6AUWgC4nql.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','336, 2, 436, 37',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Brief/GenericModel'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '336, 2, 436, 37')" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InteractionActor_zEjIXk6AUWgC4nqi.html" class="ItemLink">Sales assistants : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Activation.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Activation.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Activation_7EjIXk6AUWgC4nqo.html" class="ItemLink">Activation : Activation</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/LifeLine.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/LifeLine.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InteractionLifeLine_rEjIXk6AUWgC4nql.html" class="ItemLink">System : Lifeline</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Nordic Motorhome Project	</div>
+</body>
+</html>
