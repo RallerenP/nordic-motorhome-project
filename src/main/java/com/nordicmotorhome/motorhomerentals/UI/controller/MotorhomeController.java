@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+//Used for everything motorhome related
+
 @Controller
 @RequestMapping("/motorhomes")
 public class MotorhomeController {

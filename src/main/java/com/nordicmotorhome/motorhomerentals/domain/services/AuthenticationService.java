@@ -11,6 +11,7 @@ import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.mappers.StaffEntityModelMapper;
 import com.nordicmotorhome.motorhomerentals.domain.utils.HashUtil;
 //Author : RAP
+// Is used for servicing and performing 'commands' given from DomainFacadeImpl, always returning a Message
 public class AuthenticationService {
     private final IDataFacade dataFacade = DataFacadeImpl.getInstance();
     private final IEntityModelMapper<StaffEntity, StaffModel> semm = new StaffEntityModelMapper();

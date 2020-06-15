@@ -3,6 +3,7 @@ package com.nordicmotorhome.motorhomerentals.domain.entities;
 import java.util.Objects;
 
 // AUTHOR: RAP, NKJ, AML, ME
+// entity for motorhome models, extends BaseEntity, and is used for conversion to model
 public class MotorhomeModelEntity extends BaseEntity {
     private String name;
     private int beds;

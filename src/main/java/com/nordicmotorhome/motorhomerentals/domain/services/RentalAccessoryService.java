@@ -14,6 +14,8 @@ import com.nordicmotorhome.motorhomerentals.domain.mappers.RentalAccessoryEntity
 
 import java.util.ArrayList;
 
+// Is used for servicing and performing 'commands' given from DomainFacadeImpl, always returning a Message
+
 public class RentalAccessoryService {
     IDataFacade dataFacade = new DataFacadeImpl();
     IEntityModelMapper<RentalAccessoryEntity, RentalAccessoryModel> raemm = new RentalAccessoryEntityModelMapper();

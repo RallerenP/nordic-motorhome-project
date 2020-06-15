@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Author : RAP, AML, NKJ, ME
+// Is used for servicing and performing 'commands' given from DomainFacadeImpl, always returning a Message
 public class AccessoryService {
     IDataFacade dataFacade = new DataFacadeImpl();
 

@@ -6,6 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.RoleEntity;
 import java.util.ArrayList;
 import java.util.List;
 // AUTHOR: RAP, AML
+// mapper used for conversion between RoleEntity to RoleModel, implements an interface
 public class RoleEntityModelMapper implements IEntityModelMapper<RoleEntity, RoleModel> {
 
     @Override

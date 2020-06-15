@@ -19,6 +19,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// Is used for servicing and performing 'commands' given from DomainFacadeImpl, always returning a Message
+
 public class MotorhomeService {
     IDataFacade dataFacade = new DataFacadeImpl();
 

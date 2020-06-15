@@ -12,6 +12,7 @@ import com.nordicmotorhome.motorhomerentals.domain.mappers.CustomerEntityModelMa
 import com.nordicmotorhome.motorhomerentals.domain.mappers.IEntityModelMapper;
 
 //Author : RAP, AML, NKJ, ME
+// Is used for servicing and performing 'commands' given from DomainFacadeImpl, always returning a Message
 public class CustomerService {
     private final IEntityModelMapper<CustomerEntity, CustomerModel> cemm = new CustomerEntityModelMapper();
     private final IDataFacade dataFacade = DataFacadeImpl.getInstance();

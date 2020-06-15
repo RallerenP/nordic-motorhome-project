@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 //Author : RAP
+//Used for checking our session every time we load or reload a page
 @Configuration
 public class MVCConfig implements WebMvcConfigurer {
     @Override

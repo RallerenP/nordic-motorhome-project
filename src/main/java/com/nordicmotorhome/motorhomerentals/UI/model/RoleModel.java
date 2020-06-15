@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.model;
 
 //Author : RAP
+//Used for possible staff roles
 public enum RoleModel {
     SALES_ASSISTANT {
         public String toString() {

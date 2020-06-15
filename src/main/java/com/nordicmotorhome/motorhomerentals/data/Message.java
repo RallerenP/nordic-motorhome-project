@@ -3,6 +3,7 @@ package com.nordicmotorhome.motorhomerentals.data;
 import com.nordicmotorhome.motorhomerentals.domain.MessageType;
 
 // AUTHOR: RAP
+// Message is a data type we return when converting from entities to models in Services
 
 /**
  * The idea is to return a message between the domain and the UI layer.

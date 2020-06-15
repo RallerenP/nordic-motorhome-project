@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
 //Author : RAP
+//Form used in views for creating endRental thymeleaf object
 public class EndRentalFormObject {
 
     private int kmDriven;

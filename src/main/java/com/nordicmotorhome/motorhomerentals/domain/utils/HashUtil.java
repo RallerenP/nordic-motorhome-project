@@ -1,7 +1,9 @@
 package com.nordicmotorhome.motorhomerentals.domain.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
+
 //Author : RAP
+//Utility class used for encrypting passwords, and verifying passwords, using BCrypt
 public class HashUtil {
     private static final int rounds = 10;
 

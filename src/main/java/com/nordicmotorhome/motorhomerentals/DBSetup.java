@@ -21,6 +21,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 
 //Author : RAP
+// A bunch of MySQL statements, runs once and inserts dummy data
 public class DBSetup {
     public void setup() {
         Connection conn = DBManager.getConnection();

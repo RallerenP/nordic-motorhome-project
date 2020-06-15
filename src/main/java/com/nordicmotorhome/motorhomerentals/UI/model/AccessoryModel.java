@@ -3,6 +3,7 @@ package com.nordicmotorhome.motorhomerentals.UI.model;
 import java.util.Objects;
 
 //Author : RAP
+//Used as a model for each accessory, can only be created, no setters only getters
 public class AccessoryModel {
     private int ID;
     private String name;

@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
 //Author : RAP, AML
+//Form used in views for creating motorhome search object
 public class MotorhomeSearchFormObject {
     private int beds;
     private String startDate;

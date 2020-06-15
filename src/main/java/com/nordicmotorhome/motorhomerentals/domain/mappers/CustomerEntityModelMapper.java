@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // AUTHOR: RAP, AML
+// mapper used for conversion between CustomerEntity to CustomerModel, implements an interface
 public class CustomerEntityModelMapper implements IEntityModelMapper<CustomerEntity, CustomerModel> {
     @Override
     public CustomerModel mapToModel(CustomerEntity entity) {

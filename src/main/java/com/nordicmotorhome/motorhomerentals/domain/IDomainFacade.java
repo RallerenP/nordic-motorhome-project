@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 // AUTHOR : RAP
+// Interface used DomainFacadeImpl, is used for creating Messages out of specific 'commands' sent from Controllers
 public interface IDomainFacade {
     Message getAccessory(int id);
     Message getAllAccessories();

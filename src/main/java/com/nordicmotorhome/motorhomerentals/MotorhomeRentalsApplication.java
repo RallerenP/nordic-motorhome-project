@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+//Where everything starts
+
 @SpringBootApplication
 public class MotorhomeRentalsApplication {
 

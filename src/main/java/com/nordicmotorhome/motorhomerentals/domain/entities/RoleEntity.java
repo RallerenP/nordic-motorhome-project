@@ -1,7 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
-import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
 // AUTHOR: RAP, NKJ, AML, ME
+// entity for roles, extends BaseEntity, and is used for conversion to model
 public class RoleEntity extends BaseEntity {
     private String name;
 

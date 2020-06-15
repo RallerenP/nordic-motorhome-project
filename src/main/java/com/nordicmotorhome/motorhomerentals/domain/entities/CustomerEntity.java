@@ -1,9 +1,8 @@
 // AUTHOR: NKJ
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
-import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
-
 // AUTHOR: RAP, NKJ, AML, ME
+// entity for customers, extends BaseEntity, and is used for conversion to model
 public class CustomerEntity extends BaseEntity {
     private String firstName;
     private String lastName;

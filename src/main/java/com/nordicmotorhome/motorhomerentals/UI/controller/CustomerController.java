@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 //Author : RAP, AML, NKJ, ME
+//Used for everything customer related
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {

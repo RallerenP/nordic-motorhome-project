@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 // AUTHOR: RAP, NKJ, AML, ME
+// entity for motorhomes, extends BaseEntity, and is used for conversion to model
 public class MotorhomeEntity extends BaseEntity {
     private MotorhomeModelEntity motorhomeModelEntity;
     private int kilometersDriven;

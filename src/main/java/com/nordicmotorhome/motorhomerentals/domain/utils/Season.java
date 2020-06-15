@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Month;
 
 //Author : RAP
+// class used for getting a season, and its multiplier, when calculating the base price of a motorhome
 public enum Season {
     PEAK {
         public double getMult() {

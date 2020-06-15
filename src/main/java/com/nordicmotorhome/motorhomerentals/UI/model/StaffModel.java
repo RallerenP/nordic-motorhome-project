@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.model;
 
 //Author : RAP
+//Used as a model for each staff, can only be created, no setters only getters
 public class StaffModel {
     private String firstName;
     private String lastName;

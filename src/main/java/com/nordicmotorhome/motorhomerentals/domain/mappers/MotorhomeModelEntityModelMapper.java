@@ -6,6 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeModelEntity
 import java.util.ArrayList;
 import java.util.List;
 // AUTHOR: RAP, AML
+// mapper used for conversion between MotorhomeModelEntity to MotorhomeModelModel, implements an interface
 public class MotorhomeModelEntityModelMapper implements IEntityModelMapper<MotorhomeModelEntity, MotorhomeModelModel> {
     @Override
     public MotorhomeModelModel mapToModel(MotorhomeModelEntity entity) {

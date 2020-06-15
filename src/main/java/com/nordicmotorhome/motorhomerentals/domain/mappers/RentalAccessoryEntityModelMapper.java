@@ -8,6 +8,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.RentalAccessoryEntit
 import java.util.ArrayList;
 import java.util.List;
 // AUTHOR: RAP, AML
+// mapper used for conversion between RentalAccessoryEntity to RentalAccessoryModel, implements an interface
 public class RentalAccessoryEntityModelMapper implements IEntityModelMapper<RentalAccessoryEntity, RentalAccessoryModel> {
 
     @Override

@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.model;
 
 //Author : RAP
+//Used as a model for each motorhome model, can only be created, no setters only getters
 public class MotorhomeModelModel {
     private int ID;
     private String name;

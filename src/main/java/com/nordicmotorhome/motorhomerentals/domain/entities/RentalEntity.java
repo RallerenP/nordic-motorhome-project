@@ -7,11 +7,11 @@ import com.nordicmotorhome.motorhomerentals.domain.orderlines.RentalOrderLines;
 import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 // AUTHORS: AML, RAP
+// entity for rentals, extends BaseEntity, and is used for conversion to model
 public class RentalEntity extends BaseEntity {
     private LocalDate startDate;
     private LocalDate endDate;

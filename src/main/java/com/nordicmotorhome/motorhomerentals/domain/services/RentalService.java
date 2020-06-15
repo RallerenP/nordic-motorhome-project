@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+// Is used for servicing and performing 'commands' given from DomainFacadeImpl, always returning a Message
+
 public class RentalService {
     IDataFacade dataFacade = DataFacadeImpl.getInstance();
 

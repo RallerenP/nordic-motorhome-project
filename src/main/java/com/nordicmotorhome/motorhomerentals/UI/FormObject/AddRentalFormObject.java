@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //Author : RAP
+//Form used in views for creating rental thymeleaf object
 public class AddRentalFormObject {
     private int customerID;
     private LocalDate startDate;

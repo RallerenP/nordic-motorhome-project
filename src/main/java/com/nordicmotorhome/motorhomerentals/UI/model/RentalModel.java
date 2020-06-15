@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 //Author : RAP
+//Used as a model for each rental, can only be created, no setters only getters
 public class RentalModel {
     private int ID;
     private LocalDate startDate;

@@ -1,12 +1,10 @@
 package com.nordicmotorhome.motorhomerentals.domain.orderlines;
 
-import com.nordicmotorhome.motorhomerentals.domain.entities.MotorhomeEntity;
-
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 // Author : RAP
+// Used as an overview of all prices, mainly used as a receipt
 public class RentalOrderLines {
     public Map<String, String> getExtras() {
         return extras;

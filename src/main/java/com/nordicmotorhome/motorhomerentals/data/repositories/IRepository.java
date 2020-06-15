@@ -5,6 +5,7 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 
 import java.util.List;
 // AUTHOR: RAP
+// Interface used for repositories, is polymorphic since it can be implemented on anything, for instance a MongoDB
 public interface IRepository<T> {
 
     /**

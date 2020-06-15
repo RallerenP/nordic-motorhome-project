@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
 //Author : RAP, AML, NKJ, ME
+//Form used in views for creating customer thymeleaf object
 public class CustomerFormObject {
     private String firstName;
     private String lastName;

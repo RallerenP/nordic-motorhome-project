@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Used for testing mathematical equations when calculating prices for motorhomes etc.
+
 class RentalEntityTest {
 
     @Test

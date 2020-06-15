@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 // AUTHOR: RAP
+// Establishes connection to our MySQL DB
 public class DBManager {
     private static String user;
     private static String password;

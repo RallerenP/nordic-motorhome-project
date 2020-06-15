@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 
 // AUTHORS: RAP
+//Used for loading homepage
 @Controller
 public class HomeController {
 

@@ -1,8 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
-import com.nordicmotorhome.motorhomerentals.domain.entities.BaseEntity;
-import com.nordicmotorhome.motorhomerentals.domain.entities.RoleEntity;
 // AUTHOR: RAP, NKJ, AML, ME
+// entity for staffs, extends BaseEntity, and is used for conversion to model
 public class StaffEntity extends BaseEntity {
     private String firstName;
     private String lastName;

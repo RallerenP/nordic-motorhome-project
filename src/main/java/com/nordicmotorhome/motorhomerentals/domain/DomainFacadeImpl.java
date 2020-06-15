@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 
 //Author : RAP
+// Facade between Domain layer and UI layer, implements IDomainFacade and delivers commands from the UI layer to Services,
+// then returning the given value back to the UI layer.
 public class DomainFacadeImpl implements IDomainFacade {
     private static final DomainFacadeImpl instance = new DomainFacadeImpl();
     public static DomainFacadeImpl getInstance() { return instance; };

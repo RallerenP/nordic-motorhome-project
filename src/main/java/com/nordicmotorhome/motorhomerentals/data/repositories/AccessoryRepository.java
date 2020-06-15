@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 // AUTHOR: RAP, NKJ, AML, ME
+// Used for converting data from database to entities in our program
 public class AccessoryRepository implements IRepository<AccessoryEntity> {
 
     @Override

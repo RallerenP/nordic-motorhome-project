@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 // AUTHOR: RAP, NKJ, AML, ME
+// Used for converting data from database to entities in our program
 public class RentalAccessoriesRepository implements IRepository<RentalAccessoryEntity> {
     @Override
     public RentalAccessoryEntity getById(int id) throws NoSuchEntityException {

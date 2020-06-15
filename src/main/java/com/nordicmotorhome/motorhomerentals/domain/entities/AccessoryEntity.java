@@ -1,11 +1,10 @@
 package com.nordicmotorhome.motorhomerentals.domain.entities;
 
-import com.nordicmotorhome.motorhomerentals.domain.utils.Season;
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 // AUTHOR: RAP, NKJ, AML, ME
+// entity for accessories, extends BaseEntity, and is used for conversion to model
 public class AccessoryEntity extends BaseEntity {
     private String name;
     private double price;

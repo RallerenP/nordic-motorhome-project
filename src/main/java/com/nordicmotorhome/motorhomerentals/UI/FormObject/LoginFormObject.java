@@ -1,6 +1,7 @@
 package com.nordicmotorhome.motorhomerentals.UI.FormObject;
 
 //Author : RAP
+//Form used in views for creating login thymeleaf object
 public class LoginFormObject {
     private String email;
     private String password;

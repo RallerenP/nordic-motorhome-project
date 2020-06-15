@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 // AUTHORS: ME, AML, NKJ, RAP
+//Used for everything rental related
 @Controller
 @RequestMapping ("/rentals")
 public class RentalController {

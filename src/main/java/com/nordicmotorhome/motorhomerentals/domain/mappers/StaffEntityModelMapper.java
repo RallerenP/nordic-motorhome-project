@@ -7,6 +7,7 @@ import com.nordicmotorhome.motorhomerentals.domain.entities.StaffEntity;
 import java.util.ArrayList;
 import java.util.List;
 // AUTHOR: RAP, AML
+// mapper used for conversion between StaffEntity to StaffModel, implements an interface
 public class StaffEntityModelMapper implements IEntityModelMapper<StaffEntity, StaffModel> {
 
     @Override

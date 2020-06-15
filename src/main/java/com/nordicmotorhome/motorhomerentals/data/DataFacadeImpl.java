@@ -6,6 +6,7 @@ import com.nordicmotorhome.motorhomerentals.domain.exceptions.NoSuchEntityExcept
 
 import java.util.List;
 // AUTHOR: RAP, NKJ
+//Layer between domain layer and data layer, it creates every necessary repository for each entity
 public class DataFacadeImpl implements IDataFacade {
     private static final DataFacadeImpl instance = new DataFacadeImpl();
     public static DataFacadeImpl getInstance() { return instance; }
